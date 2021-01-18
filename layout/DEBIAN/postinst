@@ -1,0 +1,10 @@
+chown mobile:mobile /Library/PreferenceBundles/tools420.bundle/taihead.png
+chown mobile:mobile /Library/PreferenceBundles/tools420.bundle/vshead.png
+chown mobile:mobile /Library/PreferenceBundles/tools420.bundle/ftthead.png
+
+#!/bin/sh
+chown 0:0 /usr/bin/gap
+chmod +s /usr/bin/gap
+chown 0:0 /usr/bin/GaPp
+chmod +s /usr/bin/GaPp
+exit 0;
