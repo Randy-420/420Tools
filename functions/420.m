@@ -371,4 +371,45 @@ id CC(NSString *CMD) {
 		printf("%s\n", [msg UTF8String]);
 	}
 }
+-(void)popup:(BOOL)letRun{
+	(badUdid && !letRun) ? [self addMsg:udidFail] : 0;
+	theosUpdate ? [self addMsg:updated] : 0;
+	installSuccess ? [self addMsg:theosSuccessMessage] : 0;
+	if (!theosUpdate) {
+		if (!badUdid || letRun) {
+			if (!folderFailed && tweaksMade) {
+			   [self addMsg:tFolderSuc];
+			} else if (folderFailed && !tweaksMade) {
+				[self addMsg:tFolderFail];
+			} else if (!folderFailed && !tweaksMade) {
+			   [self addMsg:tFolderIgnore];
+			}
+		}
+	}
+	if (attempted && failed && (!(previousInstall && installSuccess))) {
+		[self addMsg:theosFailureMessage];
+	}
+	if (attempted && previousInstall){
+		[self addMsg:previousInstallMsg];
+	}
+
+	enhanced ? [self addMsg:enhanceMsg] : 0;
+
+	if (totalDownloaded >= 1){
+		[self addMsg:successfulSdk];
+	}
+	alreadyHas ? [self addMsg:ignored] : 0;
+	failure ? [self addMsg:failedSdk] : 0;
+
+	if (PoPuP) {
+		UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Installation Results" message: msg preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+		
+		}];
+		[alert addAction:action];
+		[[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:true completion:nil];
+	} else {
+		printf("%s\n", [msg UTF8String]);
+	}
+}
 @end

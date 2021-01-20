@@ -24,6 +24,10 @@
 @interface AppearanceSettings : HBAppearanceSettings
 @end
 
+@interface foo:NSObject
+-(void)bar:(NSString *)bar;
+@end
+
 @interface tools420RootListController : HBListController{
     UITableView * _table;
 }
@@ -76,12 +80,16 @@
     UITableView * _table;
 }
 @property (nonatomic, assign) BOOL dlAll;
+@property (nonatomic, assign) BOOL installed;
+@property (nonatomic, assign) BOOL letRun;
+@property (nonatomic, assign) BOOL activated;
 @property (nonatomic, retain) UIView *headerView;
 @property (nonatomic, retain) UIImageView *headerImageView;
 @property (nonatomic, retain) UILabel *titleLabel;
 @property (nonatomic, retain) UILabel *credit;
 @property (nonatomic, retain) UIImageView *iconView;
 @property (nonatomic, retain) NSMutableDictionary *savedSpecifiers;
+-(void)update;
 -(void) showMe:(NSString *)showMe after:(NSString *)after animate:(bool)animate;
 -(void) hideMe:(NSString *)hideMe animate:(bool)animate;
 @end

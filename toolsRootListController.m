@@ -7,17 +7,21 @@
 #include "includes/popup.h"
 #include "includes/delete.h"
 
+	NSFileManager *fileManager;
+
+	foo *Foo;
 @implementation rrRootListController
 
-- (NSArray *)specifiers {
-	if (!_specifiers) {
+- (NSArray *)specifiers{
+	Foo = [[foo alloc] init];
+	if (!_specifiers){
 		_specifiers = [self loadSpecifiersFromPlistName:@"rr" target:self];
 	}
 
 	return _specifiers;
 }
 
--(void) deleteRussianLanguage {
+-(void) deleteRussianLanguage{
 	loader();
 
 	dlt("/Library/PreferenceBundles/",deleteall);
@@ -26,19 +30,19 @@
 	popup();
 }
 
--(void)T {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://mobile.twitter.com/rj_skins"] options:@{} completionHandler:nil];
+-(void)T{
+	[Foo bar:@"https://mobile.twitter.com/rj_skins"];
 }
 
--(void)P {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.paypal.me/4Randy420"] options:@{} completionHandler:nil];
+-(void)P{
+	[Foo bar:@"https://www.paypal.me/4Randy420"];
 }
 @end
 
 @implementation tools420RootListController
-- (instancetype)init {
+- (instancetype)init{
 	self = [super init];
-	if (self) {
+	if (self){
 		AppearanceSettings *appearanceSettings = [[AppearanceSettings alloc] init];
 
 		self.hb_appearanceSettings = appearanceSettings;
@@ -73,20 +77,21 @@
 	return self;
 }
 
-- (NSArray *)specifiers {
-	NSFileManager *fileManager = NSFileManager.defaultManager;
+- (NSArray *)specifiers{
+	Foo = [[foo alloc] init];
+	fileManager = NSFileManager.defaultManager;
 self.Up2Date = NO;
-self.Tai = [fileManager fileExistsAtPath : @"/usr/bin/tai"];
-self.rr = [fileManager fileExistsAtPath : @"/usr/bin/rr"];
-self.Ftt = [fileManager fileExistsAtPath : @"/usr/bin/ftt"];
-self.Vs = [fileManager fileExistsAtPath : @"/Library/MobileSubstrate/DynamicLibraries/VolumeStep13.dylib"];
-	if (!_specifiers) {
+self.Tai = [fileManager fileExistsAtPath:@"/usr/bin/tai"];
+self.rr = [fileManager fileExistsAtPath:@"/usr/bin/rr"];
+self.Ftt = [fileManager fileExistsAtPath:@"/usr/bin/ftt"];
+self.Vs = [fileManager fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/VolumeStep13.dylib"];
+	if (!_specifiers){
 		_specifiers = [self loadSpecifiersFromPlistName:@"Root" target:self];
 
 		NSArray *chosenIDs = @[@"Ftt", @"Vs", @"Tai", @"Installed", @"rr", @"Not"];
     self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
-		for(PSSpecifier *specifier in _specifiers) {
-			if([chosenIDs containsObject:[specifier propertyForKey:@"id"]]) {
+		for(PSSpecifier *specifier in _specifiers){
+			if([chosenIDs containsObject:[specifier propertyForKey:@"id"]]){
 				[self.savedSpecifiers setObject:specifier forKey:[specifier propertyForKey:@"id"]];
 			}
 		}
@@ -94,20 +99,20 @@ self.Vs = [fileManager fileExistsAtPath : @"/Library/MobileSubstrate/DynamicLibr
 	return _specifiers;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	tableView.tableHeaderView = self.headerView;
 	return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 	CGFloat offsetY = scrollView.contentOffset.y;
 
-	if (offsetY > 200) {
+	if (offsetY > 200){
 		[UIView animateWithDuration:0.2 animations:^{
 			self.iconView.alpha = 1.0;
 			self.titleLabel.alpha = 0.0;
 		}];
-	} else {
+	} else{
 		[UIView animateWithDuration:0.2 animations:^{
 			self.iconView.alpha = 0.0;
 			self.titleLabel.alpha = 1.0;
@@ -118,7 +123,7 @@ self.Vs = [fileManager fileExistsAtPath : @"/Library/MobileSubstrate/DynamicLibr
 	self.headerImageView.frame = CGRectMake(0, offsetY, self.headerView.frame.size.width, 200 - offsetY);
 }
 
-- (void)setPreferenceValue:(id)value specifier:(PSSpecifier*)specifier {
+- (void)setPreferenceValue:(id)value specifier:(PSSpecifier*)specifier{
 	[super setPreferenceValue:value specifier:specifier];
 	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
 	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
@@ -127,85 +132,85 @@ self.Vs = [fileManager fileExistsAtPath : @"/Library/MobileSubstrate/DynamicLibr
 	[settings writeToFile:path atomically:YES];
 	CFStringRef notificationName = (__bridge CFStringRef)specifier.properties[@"PostNotification"];
 
-if (!self.Up2Date) {
+if (!self.Up2Date){
 self.totalz = 0;
 	[self hideMe:@"Vs" animate:NO];
 	[self hideMe:@"Tai" animate:NO];
 	[self hideMe:@"Ftt" animate:NO];
 	[self hideMe:@"rr" animate:NO];
-	if ([self Vs]) { 
+	if ([self Vs]){ 
 self.totalz += 1;
 [self showMe:@"Vs" after:@"Installed" animate:NO];
-} else {
+} else{
 [self showMe:@"Vs" after:@"Not" animate:NO];
 }
-	if (self.Tai) {
+	if (self.Tai){
 self.totalz += 1;
 [self showMe:@"Tai" after:@"Installed" animate:NO];
-} else {
+} else{
 [self showMe:@"Tai" after:@"Not" animate:NO];
 }
-	if (self.rr) {
+	if (self.rr){
 [self showMe:@"rr" after:@"Installed" animate:NO];
 }
-	if (self.Ftt) {
+	if (self.Ftt){
 self.totalz += 1;
 [self showMe:@"Ftt" after:@"Installed" animate:NO];
-} else {
+} else{
 [self showMe:@"Ftt" after:@"Not" animate:NO];
 }
-if (self.totalz == 3) {
+if (self.totalz == 3){
 	[self hideMe:@"Not" animate:NO];
-} else if (self.totalz == 0) {
+} else if ((self.totalz == 0) && !self.rr){
 	[self hideMe:@"Installed" animate:NO];
 }
 self.Up2Date = YES;
 }
-	if (notificationName) {
+	if (notificationName){
 		CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), notificationName, NULL, NULL, YES);
 	}
 }
 
--(void)reloadSpecifiers {
+-(void)reloadSpecifiers{
 	[super reloadSpecifiers];
 
-if (!self.Up2Date) {
+if (!self.Up2Date){
 self.totalz = 0;
 	[self hideMe:@"Vs" animate:NO];
 	[self hideMe:@"Tai" animate:NO];
 	[self hideMe:@"Ftt" animate:NO];
 	[self hideMe:@"rr" animate:NO];
-	if ([self Vs]) { 
+	if ([self Vs]){ 
 self.totalz += 1;
 [self showMe:@"Vs" after:@"Installed" animate:NO];
-} else {
+} else{
 [self showMe:@"Vs" after:@"Not" animate:NO];
 }
-	if (self.Tai) { 
+	if (self.Tai){ 
 self.totalz += 1;
 [self showMe:@"Tai" after:@"Installed" animate:NO];
-} else { 
+} else{ 
 [self showMe:@"Tai" after:@"Not" animate:NO];
 }
-	if (self.rr) {
+	if (self.rr){
 [self showMe:@"rr" after:@"Installed" animate:NO];
 }
-	if (self.Ftt) {
+	if (self.Ftt){
 self.totalz += 1;
 [self showMe:@"Ftt" after:@"Installed" animate:NO];
-} else {
+} else{
 [self showMe:@"Ftt" after:@"Not" animate:NO];
 }
-if (self.totalz == 3) {
+if (self.totalz == 3){
 	[self hideMe:@"Not" animate:NO];
-} else if (self.totalz == 0) {
+} else if ((self.totalz == 0) && !self.rr){
 	[self hideMe:@"Installed" animate:NO];
 }
 self.Up2Date = YES;
 }
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad{
 	[super viewDidLoad];
 	[self reloadSpecifiers];
 
@@ -230,83 +235,77 @@ self.Up2Date = YES;
 	_table.tableHeaderView = self.headerView;
 }
 
--(id)readPreferenceValue:(PSSpecifier *)specifier {
+-(id)readPreferenceValue:(PSSpecifier *)specifier{
 	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
 	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
 	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
 	return (settings[specifier.properties[@"key"]]) ?: specifier.properties[@"default"];
 }
 
--(void)pay {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.paypal.me/4Randy420"] options:@{} completionHandler:nil];
+-(void)pay{
+	[Foo bar:@"https://www.paypal.me/4Randy420"];
 }
 
--(void)Twitter2 {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://mobile.twitter.com/rj_skins"] options:@{} completionHandler:nil];
+-(void)Twitter2{
+	[Foo bar:@"https://mobile.twitter.com/rj_skins"];
 }
 
--(void)Twitter3 {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://mobile.twitter.com/Alicydia"] options:@{} completionHandler:nil];
+-(void)Twitter3{
+	[Foo bar:@"https://mobile.twitter.com/Alicydia"];
 }
 
--(void)emerald {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://theemeraldisle.family"] options:@{} completionHandler:nil];
+-(void)emerald{
+	[Foo bar:@"https://theemeraldisle.family"];
 }
 
--(void)canpng {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://mobile.twitter.com/cnylmz35"] options:@{} completionHandler:nil];
+-(void)canpng{
+	[Foo bar:@"https://mobile.twitter.com/cnylmz35"];
 }
 
--(void)spawnfox {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://mobile.twitter.com/MYM_SPAWNFOX"] options:@{} completionHandler:nil];
+-(void)spawnfox{
+	[Foo bar:@"https://mobile.twitter.com/MYM_SPAWNFOX"];
 }
 
--(void)BigBoss {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"cydia://apt.thebigboss.org/repofiles/cydia/"] options:@{} completionHandler:nil];
-		FILE *hideLog = freopen("/dev/null", "w", stderr);
-		UIPasteboard.generalPasteboard.string = @"https://apt.thebigboss.org/repofiles/cydia/";
-		fclose(hideLog);
+-(void)BigBoss{
+	[Foo bar:@"cydia://url/https://cydia.saurik.com/api/share#?source=https://apt.thebigboss.org/repofiles/cydia/"];
 }
 
--(void)AliCydia {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"cydia://alicydia.com"] options:@{} completionHandler:nil];
-		FILE *hideLog = freopen("/dev/null", "w", stderr);
-		UIPasteboard.generalPasteboard.string = @"http://alicydia.com";
-		fclose(hideLog);
+-(void)AliCydia{
+	[Foo bar:@"cydia://url/https://cydia.saurik.com/api/share#?source=http://alicydia.com"];
 }
 
--(void)CM {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/crazymind90"] options:@{} completionHandler:nil];
+-(void)CM{
+	[Foo bar:@"https://twitter.com/crazymind90"];
 }
 
--(void)Cyx0e {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/Cyx0e"] options:@{} completionHandler:nil];
+-(void)Cyx0e{
+	[Foo bar:@"https://twitter.com/Cyx0e"];
 }
 
--(void)Tele {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://t.me/necr0sis"] options:@{} completionHandler:nil];
+-(void)Tele{
+	[Foo bar:@"https://t.me/necr0sis"];
 }
 
--(void)Jim {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/soulesskeatonc1"] options:@{} completionHandler:nil];
+-(void)Jim{
+	[Foo bar:@"https://twitter.com/soulesskeatonc1"];
 }
 
--(void)Polat {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/Polatby12"] options:@{} completionHandler:nil];
+-(void)Polat{
+	[Foo bar:@"https://twitter.com/Polatby12"];
 }
 
--(void)adiktator {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/vlad"] options:@{} completionHandler:nil];
+-(void)adiktator{
+	[Foo bar:@"https://twitter.com/vlad"];
 }
 
--(void) showMe:(NSString *)showMe after:(NSString *)after animate:(bool)animate {
-	if (![self containsSpecifier:self.savedSpecifiers[showMe]]) {
+-(void) showMe:(NSString *)showMe after:(NSString *)after animate:(bool)animate{
+	if (![self containsSpecifier:self.savedSpecifiers[showMe]]){
 		[self insertContiguousSpecifiers:@[self.savedSpecifiers[showMe]] afterSpecifierID:after animated:animate];
 	}
 }
 
 -(void) hideMe:(NSString *)hideMe animate:(bool)animate{
-	if ([self containsSpecifier:self.savedSpecifiers[hideMe]]) {
+	if ([self containsSpecifier:self.savedSpecifiers[hideMe]]){
 		[self removeContiguousSpecifiers:@[self.savedSpecifiers[hideMe]] animated:animate];
 	}
 }
@@ -318,9 +317,9 @@ self.Up2Date = YES;
 
 
 @implementation fttMainViewController
-- (instancetype)init {
+- (instancetype)init{
 	self = [super init];
-	if (self) {
+	if (self){
 		AppearanceSettings *appearanceSettings = [[AppearanceSettings alloc] init];
 
 		self.hb_appearanceSettings = appearanceSettings;
@@ -355,27 +354,28 @@ self.Up2Date = YES;
 	return self;
 }
 
-- (NSArray *)specifiers {
-	if (!_specifiers) {
+- (NSArray *)specifiers{
+	Foo = [[foo alloc] init];
+	if (!_specifiers){
 		_specifiers = [self loadSpecifiersFromPlistName:@"fttRoot" target:self];
 	}
 	return _specifiers;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	tableView.tableHeaderView = self.headerView;
 	return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 	CGFloat offsetY = scrollView.contentOffset.y;
 
-	if (offsetY > 200) {
+	if (offsetY > 200){
 		[UIView animateWithDuration:0.2 animations:^{
 			self.iconView.alpha = 1.0;
 			self.titleLabel.alpha = 0.0;
 		}];
-	} else {
+	} else{
 		[UIView animateWithDuration:0.2 animations:^{
 			self.iconView.alpha = 0.0;
 			self.titleLabel.alpha = 1.0;
@@ -386,7 +386,7 @@ self.Up2Date = YES;
 	self.headerImageView.frame = CGRectMake(0, offsetY, self.headerView.frame.size.width, 200 - offsetY);
 }
 
-- (void)setPreferenceValue:(id)value specifier:(PSSpecifier*)specifier {
+- (void)setPreferenceValue:(id)value specifier:(PSSpecifier*)specifier{
 	[super setPreferenceValue:value specifier:specifier];
 	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
 	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
@@ -395,16 +395,16 @@ self.Up2Date = YES;
 	[settings writeToFile:path atomically:YES];
 	CFStringRef notificationName = (__bridge CFStringRef)specifier.properties[@"PostNotification"];
 
-	if (notificationName) {
+	if (notificationName){
 		CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), notificationName, NULL, NULL, YES);
 	}
 }
 
--(void)reloadSpecifiers {
+-(void)reloadSpecifiers{
 	[super reloadSpecifiers];
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad{
 	[super viewDidLoad];
 	[self reloadSpecifiers];
 
@@ -429,26 +429,26 @@ self.Up2Date = YES;
 	_table.tableHeaderView = self.headerView;
 }
 
--(id)readPreferenceValue:(PSSpecifier *)specifier {
+-(id)readPreferenceValue:(PSSpecifier *)specifier{
 	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
 	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
 	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
 	return (settings[specifier.properties[@"key"]]) ?: specifier.properties[@"default"];
 }
 
--(void)pay {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.paypal.me/4Randy420"] options:@{} completionHandler:nil];
+-(void)pay{
+	[Foo bar:@"https://www.paypal.me/4Randy420"];
 }
 
--(void)Twitter2 {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://mobile.twitter.com/rj_skins"] options:@{} completionHandler:nil];
+-(void)Twitter2{
+	[Foo bar:@"https://mobile.twitter.com/rj_skins"];
 }
 @end
 
 @implementation fttControl
 
-- (NSArray *)specifiers {
-	if (!_specifiers) {
+- (NSArray *)specifiers{
+	if (!_specifiers){
 		_specifiers = [self loadSpecifiersFromPlistName:@"fttControl" target:self];
 	}
 
@@ -464,8 +464,8 @@ self.Up2Date = YES;
 
 @implementation fttMakefile
 
-- (NSArray *)specifiers {
-	if (!_specifiers) {
+- (NSArray *)specifiers{
+	if (!_specifiers){
 		_specifiers = [self loadSpecifiersFromPlistName:@"fttMakefile" target:self];
 	}
 
@@ -476,9 +476,9 @@ self.Up2Date = YES;
 
 @implementation taiprRootListController
 	tai *TAI;
-- (instancetype)init {
+- (instancetype)init{
 	self = [super init];
-	if (self) {
+	if (self){
 		AppearanceSettings *appearanceSettings = [[AppearanceSettings alloc] init];
 
 		self.hb_appearanceSettings = appearanceSettings;
@@ -512,17 +512,33 @@ self.Up2Date = YES;
 	}
 	return self;
 }
-
-- (NSArray *)specifiers {
+-(void) update{
+	self.installed = [fileManager fileExistsAtPath:@"/usr/bin/tai"];
+	self.dlAll = [preferences[@"sdks-master"] boolValue];
+	self.activated = [TAI udidCheck:PW prefPLIsT:LoC path:keyUrL];
+	if (self.installed){
+		if (self.activated){
+		self.letRun = self.activated;
+		} else{
+			self.letRun = [preferences[@"Activate"] boolValue];
+		}
+	}else{
+		self.letRun=NO;
+	}
+}
+- (NSArray *)specifiers{
+	Foo = [[foo alloc] init];
 	TAI = [[tai alloc] init];
-	NSArray *chosenIDs = @[@"lock", @"auth", @"Save", @"nineThree", @"tenThree", @"elevenTwo", @"twelveOneTwo", @"twelveFour", @"thirteen", @"thirteenFour", @"thirteenFive", @"fourteen"];
+	fileManager = NSFileManager.defaultManager;
+	NSArray *chosenIDs = @[@"lock", @"auth", @"Save", @"Activ8", @"nineThree", @"tenThree", @"elevenTwo", @"twelveOneTwo", @"twelveFour", @"thirteen", @"thirteenFour", @"thirteenFive", @"fourteen"];
 	[TAI loader];
+	[self update];
 	saveUDIDOnDecline = NO;
-	if (!_specifiers) {
+	if (!_specifiers){
 		_specifiers = [self loadSpecifiersFromPlistName:@"Tai" target:self];
 		self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
-		for(PSSpecifier *specifier in _specifiers) {
-			if([chosenIDs containsObject:[specifier propertyForKey:@"id"]]) {
+		for(PSSpecifier *specifier in _specifiers){
+			if([chosenIDs containsObject:[specifier propertyForKey:@"id"]]){
 				[self.savedSpecifiers setObject:specifier forKey:[specifier propertyForKey:@"id"]];
 			}
 		}
@@ -530,20 +546,20 @@ self.Up2Date = YES;
 	return _specifiers;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	tableView.tableHeaderView = self.headerView;
 	return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 	CGFloat offsetY = scrollView.contentOffset.y;
 
-	if (offsetY > 200) {
+	if (offsetY > 200){
 		[UIView animateWithDuration:0.2 animations:^{
 			self.iconView.alpha = 1.0;
 			self.titleLabel.alpha = 0.0;
 		}];
-	} else {
+	} else{
 		[UIView animateWithDuration:0.2 animations:^{
 			self.iconView.alpha = 0.0;
 			self.titleLabel.alpha = 1.0;
@@ -554,7 +570,7 @@ self.Up2Date = YES;
 	self.headerImageView.frame = CGRectMake(0, offsetY, self.headerView.frame.size.width, 200 - offsetY);
 }
 
--(void)setPreferenceValue:(id)value specifier:(PSSpecifier *)specifier {
+-(void)setPreferenceValue:(id)value specifier:(PSSpecifier *)specifier{
 	[super setPreferenceValue:value specifier:specifier];
 	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
 	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
@@ -562,11 +578,12 @@ self.Up2Date = YES;
 	[settings setObject:value forKey:specifier.properties[@"key"]];
 	[settings writeToFile:path atomically:YES];
 	CFStringRef notificationName = (__bridge CFStringRef)specifier.properties[@"PostNotification"];
-	
+	[TAI loader];
+	[self update];
 	NSString *key = [specifier propertyForKey:@"key"];
-	if([key isEqualToString:@"sdks-master"]) {
+	if([key isEqualToString:@"sdks-master"]){
 		self.dlAll = [value boolValue];
-		if(self.dlAll) {
+		if(self.dlAll){
 			[self hideMe:@"nineThree" animate:YES];
 			[self hideMe:@"tenThree" animate:YES];
 			[self hideMe:@"elevenTwo" animate:YES];
@@ -576,7 +593,7 @@ self.Up2Date = YES;
 			[self hideMe:@"thirteenFour" animate:YES];
 			[self hideMe:@"thirteenFive" animate:YES];
 			[self hideMe:@"fourteen" animate:YES];
-		} else {
+		} else{
 			[self showMe:@"fourteen" after:@"All" animate:YES];
 			[self showMe:@"thirteenFive" after:@"All" animate:YES];
 			[self showMe:@"thirteenFour" after:@"All" animate:YES];
@@ -588,31 +605,55 @@ self.Up2Date = YES;
 			[self showMe:@"nineThree" after:@"All" animate:YES];
 		}
 	}
-
-	if([TAI udidCheck:PW prefPLIsT:LoC path:keyUrL]) {
-		[self hideMe:@"lock" animate:YES];
-		[self hideMe:@"auth" animate:YES];
-		[self hideMe:@"Save" animate:YES];
-	} else {
-		[self showMe:@"Save" after:@"switchID" animate:YES];
-		[self showMe:@"auth" after:@"switchID" animate:YES];
-		[self showMe:@"lock" after:@"switchID" animate:YES];
+	
+	if([key isEqualToString:@"Activate"]){
+		self.letRun = [value boolValue];
+		if (!self.installed){
+			[self hideMe:@"Activ8" animate:YES];
+		} else{
+			if(self.activated){
+				[self hideMe:@"lock" animate:YES];
+				[self hideMe:@"auth" animate:YES];
+				[self hideMe:@"Save" animate:YES];
+				[self hideMe:@"Activ8" animate:YES];
+			} else if (!self.letRun){
+				[self showMe:@"Save" after:@"switchID" animate:YES];
+				[self showMe:@"auth" after:@"switchID" animate:YES];
+				[self showMe:@"lock" after:@"switchID" animate:YES];
+				[self hideMe:@"Activ8" animate:NO];
+				[self showMe:@"Activ8" after:@"switchID" animate:NO];
+			} else{
+				[self hideMe:@"lock" animate:YES];
+				[self hideMe:@"auth" animate:YES];
+				[self hideMe:@"Save" animate:YES];
+			}
+		}
 	}
-	if (notificationName) {
+	if (notificationName){
 		CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), notificationName, NULL, NULL, YES);
 	}
 }
 
--(void)reloadSpecifiers {
+-(void)reloadSpecifiers{
 	[super reloadSpecifiers];
 	[TAI loader];
-	if([TAI udidCheck:PW prefPLIsT:LoC path:keyUrL]) {
-		[self hideMe:@"lock" animate:YES];
-		[self hideMe:@"auth" animate:YES];
-		[self hideMe:@"Save" animate:YES];
+//	[self update];
+	if (!self.installed){
+		[self hideMe:@"Activ8" animate:YES];
+	} else{
+		if(self.activated){
+			[self hideMe:@"lock" animate:YES];
+			[self hideMe:@"auth" animate:YES];
+			[self hideMe:@"Save" animate:YES];
+			[self hideMe:@"Activ8" animate:YES];
+		} else if (self.letRun){
+			[self hideMe:@"lock" animate:YES];
+			[self hideMe:@"auth" animate:YES];
+			[self hideMe:@"Save" animate:YES];
+		//[self hideMe:@"Activ8" animate:YES];
+		}
 	}
-	self.dlAll = [preferences[@"sdks-master"] boolValue];
-	if(self.dlAll) {
+	if(self.dlAll){
 		[self hideMe:@"nineThree" animate:YES];
 		[self hideMe:@"tenThree" animate:YES];
 		[self hideMe:@"elevenTwo" animate:YES];
@@ -625,7 +666,7 @@ self.Up2Date = YES;
 	}
 }
 
--(void)viewDidLoad {
+-(void)viewDidLoad{
 	[super viewDidLoad];
 	[self reloadSpecifiers];
 
@@ -650,56 +691,59 @@ self.Up2Date = YES;
 	_table.tableHeaderView = self.headerView;
 }
 
--(id)readPreferenceValue:(PSSpecifier *)specifier {
+-(id)readPreferenceValue:(PSSpecifier *)specifier{
 	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
 	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
 	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
 	return (settings[specifier.properties[@"key"]]) ?: specifier.properties[@"default"];
 }
 
--(void)sDks {
+-(void) sDks{
 	[TAI loader];
-	if ([TAI udidCheck:PW prefPLIsT:LoC path:keyUrL]){
+	[self update];
+	if (self.letRun){
 		[TAI enhancer];
 		[TAI DoWnLoAd];
 	}
-	[TAI popup];
+	[TAI popup:self.letRun];
 }
 
--(void)fullDl {
+-(void) fullDl{
 	[TAI loader];
-	if ([TAI udidCheck:PW prefPLIsT:LoC path:keyUrL]){
-		if ([TAI theosInstall]) {
+	[self update];
+	if (self.letRun){
+		if ([TAI theosInstall]){
 			Profile(YES);
 			zProfile(YES);
 		}
 		[TAI enhancer];
 		[TAI DoWnLoAd];
 	}
-	[TAI popup];
+	[TAI popup:self.letRun];
 }
 
--(void)updateTheos {
+-(void) updateTheos{
 	[TAI loader];
-	if ([TAI udidCheck:PW prefPLIsT:LoC path:keyUrL]){
+	[self update];
+	if (self.letRun){
 		[TAI upDateTheos];
 	}
-	[TAI popup];
+	[TAI popup:self.letRun];
 }
 
--(void)T {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://mobile.twitter.com/rj_skins"] options:@{} completionHandler:nil];
+-(void) T{
+	[Foo bar:@"https://mobile.twitter.com/rj_skins"];
 }
 
--(void)T2 {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://mobile.twitter.com/Alicydia"] options:@{} completionHandler:nil];
+-(void) T2{
+	[Foo bar:@"https://mobile.twitter.com/Alicydia"];
 }
 
--(void)P {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.paypal.me/4Randy420"] options:@{} completionHandler:nil];
+-(void) P{
+	[Foo bar:@"https://www.paypal.me/4Randy420"];
 }
 
--(void)Save {
+-(void) Save{
 	[self.view endEditing:YES];
 	[TAI loader];
 	[TAI udidCheck:PW prefPLIsT:LoC path:keyUrL];
@@ -707,23 +751,39 @@ self.Up2Date = YES;
 	[self reloadSpecifiers];
 }
 
--(void) showMe:(NSString *)showMe after:(NSString *)after animate:(bool)animate {
-	if (![self containsSpecifier:self.savedSpecifiers[showMe]]) {
+/*-(void)Activate{
+		NSData *ldlhdbbzyedKey = [CRYPTO bbfjxdjrByHashingPassword:@"Pass" bbfjxdjrSize:CRYPTObbfjxdjrSize256];
+
+		NSString *encrypt = [string bobfjdkjrStringForbrnehsu:[CRYPTO urbskfurbrnehsu] bbfjxdjr:ldlhdbbzyedKey options:CRYPTOtgyjffyvcOptionsIncludebrnehsu];
+
+		NSMutableDictionary *MutDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.randy420.tai.plist"];
+		[MutDictionary setValue:encrypt forKey:@"Activate"];
+		[MutDictionary writeToFile:@"/var/mobile/Library/Preferences/com.randy420.tai.plist" atomically:YES];
+
+		[self.view endEditing:YES];
+		[TAI loader];
+
+		[super reloadSpecifiers];
+		[self reloadSpecifiers];
+}*/
+
+-(void) showMe:(NSString *)showMe after:(NSString *)after animate:(bool)animate{
+	if (![self containsSpecifier:self.savedSpecifiers[showMe]]){
 		[self insertContiguousSpecifiers:@[self.savedSpecifiers[showMe]] afterSpecifierID:after animated:animate];
 	}
 }
 
 -(void) hideMe:(NSString *)hideMe animate:(bool)animate{
-	if ([self containsSpecifier:self.savedSpecifiers[hideMe]]) {
+	if ([self containsSpecifier:self.savedSpecifiers[hideMe]]){
 		[self removeContiguousSpecifiers:@[self.savedSpecifiers[hideMe]] animated:animate];
 	}
 }
 @end
 
 @implementation vspRootListController
-- (instancetype)init {
+- (instancetype)init{
 	self = [super init];
-	if (self) {
+	if (self){
 		AppearanceSettings *appearanceSettings = [[AppearanceSettings alloc] init];
 
 		self.hb_appearanceSettings = appearanceSettings;
@@ -758,14 +818,15 @@ self.Up2Date = YES;
 	return self;
 }
 
-- (NSArray *)specifiers {
-	if (!_specifiers) {
+- (NSArray *)specifiers{
+	Foo = [[foo alloc] init];
+	if (!_specifiers){
 		_specifiers = [self loadSpecifiersFromPlistName:@"vs" target:self];
 
 		NSArray *chosenIDs = @[@"VibeHide", @"vsSeperate", @"VolumeUp", @"VolumeUpDown", @"prefInt", @"VolumeDown", @"prefIntDown"];
     self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
-		for(PSSpecifier *specifier in _specifiers) {
-			if([chosenIDs containsObject:[specifier propertyForKey:@"id"]]) {
+		for(PSSpecifier *specifier in _specifiers){
+			if([chosenIDs containsObject:[specifier propertyForKey:@"id"]]){
 				[self.savedSpecifiers setObject:specifier forKey:[specifier propertyForKey:@"id"]];
 			}
 		}
@@ -773,20 +834,20 @@ self.Up2Date = YES;
 	return _specifiers;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	tableView.tableHeaderView = self.headerView;
 	return [super tableView:tableView cellForRowAtIndexPath:indexPath];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 	CGFloat offsetY = scrollView.contentOffset.y;
 
-	if (offsetY > 200) {
+	if (offsetY > 200){
 		[UIView animateWithDuration:0.2 animations:^{
 			self.iconView.alpha = 1.0;
 			self.titleLabel.alpha = 0.0;
 		}];
-	} else {
+	} else{
 		[UIView animateWithDuration:0.2 animations:^{
 			self.iconView.alpha = 0.0;
 			self.titleLabel.alpha = 1.0;
@@ -797,7 +858,7 @@ self.Up2Date = YES;
 	self.headerImageView.frame = CGRectMake(0, offsetY, self.headerView.frame.size.width, 200 - offsetY);
 }
 
-- (void)setPreferenceValue:(id)value specifier:(PSSpecifier*)specifier {
+- (void)setPreferenceValue:(id)value specifier:(PSSpecifier*)specifier{
 	[super setPreferenceValue:value specifier:specifier];
 	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
 	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
@@ -807,23 +868,23 @@ self.Up2Date = YES;
 	CFStringRef notificationName = (__bridge CFStringRef)specifier.properties[@"PostNotification"];
 
 	NSString *key = [specifier propertyForKey:@"key"];
-	if ([key isEqualToString:@"VSStepEnabled"]) {
-		if (![value boolValue]) {
+	if ([key isEqualToString:@"VSStepEnabled"]){
+		if (![value boolValue]){
 			[self hideMe:@"vsSeperate" animate:YES];
 			[self hideMe:@"VolumeUp" animate:YES];
 			[self hideMe:@"VolumeUpDown" animate:YES];
 			[self hideMe:@"prefInt" animate:YES];
 			[self hideMe:@"VolumeDown" animate:YES];
 			[self hideMe:@"prefIntDown" animate:YES];
-		} else {
+		} else{
 			[self showMe:@"vsSeperate" after:@"vsEnable" animate:YES];
 			[self showMe:@"prefInt" after:@"vsSeperate" animate:YES];
-			if (self.separate) {
+			if (self.separate){
 				[self showMe:@"VolumeUp" after:@"vsSeperate" animate:YES];
 				[self showMe:@"VolumeDown" after:@"prefInt" animate:YES];
 				[self showMe:@"prefIntDown" after:@"VolumeDown" animate:YES];
 				[self hideMe:@"VolumeUpDown" animate:YES];
-			} else {
+			} else{
 				[self showMe:@"VolumeUpDown" after:@"vsSeperate" animate:YES];
 				[self hideMe:@"VolumeDown" animate:YES];
 				[self hideMe:@"VolumeUp" animate:YES];
@@ -832,16 +893,16 @@ self.Up2Date = YES;
 		}
 	}
 	
-	if ([key isEqualToString:@"vsSeperate"]) {
-		if (![value boolValue]) {
+	if ([key isEqualToString:@"vsSeperate"]){
+		if (![value boolValue]){
 			self.separate = NO;
-			if([self containsSpecifier:self.savedSpecifiers[@"prefInt"]]) {
+			if([self containsSpecifier:self.savedSpecifiers[@"prefInt"]]){
 				[self showMe:@"VolumeUpDown" after:@"vsSeperate" animate:NO];
 				[self hideMe:@"VolumeDown" animate:YES];
 				[self hideMe:@"VolumeUp" animate:NO];
 				[self hideMe:@"prefIntDown" animate:YES];
 			}
-		} else if([self containsSpecifier:self.savedSpecifiers[@"prefInt"]]) {
+		} else if([self containsSpecifier:self.savedSpecifiers[@"prefInt"]]){
 			self.separate = YES;
 			[self showMe:@"vsSeperate" after:@"vsEnable" animate:YES];
 			[self showMe:@"VolumeUp" after:@"vsSeperate" animate:NO];
@@ -851,23 +912,23 @@ self.Up2Date = YES;
 		}
 	}
 	
-	if ([key isEqualToString:@"vsVibEnabled"]) {
-		if (![value boolValue]) {
+	if ([key isEqualToString:@"vsVibEnabled"]){
+		if (![value boolValue]){
 			[self hideMe:@"VibeHide" animate:YES];
-		} else {
+		} else{
 			[self showMe:@"VibeHide" after:@"Vibration" animate:YES];
 		}
 	}
 
-	if (notificationName) {
+	if (notificationName){
 		CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), notificationName, NULL, NULL, YES);
 	}
 }
 
--(void)reloadSpecifiers {
+-(void)reloadSpecifiers{
 	[super reloadSpecifiers];
 	NSDictionary *preferences = [NSDictionary dictionaryWithContentsOfFile:@"/var/mobile/Library/Preferences/com.randy420.volumestepprefs.plist"];
-	if (![preferences[@"VSStepEnabled"] boolValue]) {
+	if (![preferences[@"VSStepEnabled"] boolValue]){
 		[self hideMe:@"vsSeperate" animate:YES];
 		[self hideMe:@"VolumeUp" animate:YES];
 		[self hideMe:@"VolumeUpDown" animate:YES];
@@ -876,22 +937,22 @@ self.Up2Date = YES;
 		[self hideMe:@"prefIntDown" animate:YES];
 	}
 
-	if(![preferences[@"vsSeperate"] boolValue]) {
+	if(![preferences[@"vsSeperate"] boolValue]){
 		self.separate = NO;
 		[self hideMe:@"VolumeUp" animate:NO];
 		[self hideMe:@"VolumeDown" animate:YES];
 		[self hideMe:@"prefIntDown" animate:YES];
-	} else {
+	} else{
 		self.separate = YES;
 		[self hideMe:@"VolumeUpDown" animate:NO];
 	}
 
-	if(![preferences[@"vsVibEnabled"] boolValue]) {
+	if(![preferences[@"vsVibEnabled"] boolValue]){
 		[self hideMe:@"VibeHide" animate:YES];
 	}
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad{
 	[super viewDidLoad];
 	[self reloadSpecifiers];
 
@@ -916,30 +977,36 @@ self.Up2Date = YES;
 	_table.tableHeaderView = self.headerView;
 }
 
--(id)readPreferenceValue:(PSSpecifier *)specifier {
+-(id) readPreferenceValue:(PSSpecifier *)specifier{
 	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
 	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
 	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
 	return (settings[specifier.properties[@"key"]]) ?: specifier.properties[@"default"];
 }
 
--(void)pay {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.paypal.me/4Randy420"] options:@{} completionHandler:nil];
+-(void) pay{
+	[Foo bar:@"https://www.paypal.me/4Randy420"];
 }
 
--(void)Twitter2 {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://mobile.twitter.com/rj_skins"] options:@{} completionHandler:nil];
+-(void) Twitter2{
+	[Foo bar:@"https://mobile.twitter.com/rj_skins"];
 }
 
--(void) showMe:(NSString *)showMe after:(NSString *)after animate:(bool)animate {
-	if (![self containsSpecifier:self.savedSpecifiers[showMe]]) {
+-(void) showMe:(NSString *)showMe after:(NSString *)after animate:(bool)animate{
+	if (![self containsSpecifier:self.savedSpecifiers[showMe]]){
 		[self insertContiguousSpecifiers:@[self.savedSpecifiers[showMe]] afterSpecifierID:after animated:animate];
 	}
 }
 
 -(void) hideMe:(NSString *)hideMe animate:(bool)animate{
-	if ([self containsSpecifier:self.savedSpecifiers[hideMe]]) {
+	if ([self containsSpecifier:self.savedSpecifiers[hideMe]]){
 		[self removeContiguousSpecifiers:@[self.savedSpecifiers[hideMe]] animated:animate];
 	}
+}
+@end
+
+@implementation foo
+-(void)bar:(NSString *)bar {
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:bar] options:@{} completionHandler:nil];
 }
 @end

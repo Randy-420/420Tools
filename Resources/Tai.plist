@@ -265,16 +265,30 @@
 			<string>PSButtonCell</string>
 			<key>icon</key>
 			<string>pay.png</string>
-			<key>id</key>
-			<string>switchID</string>
 			<key>label</key>
 			<string>Cheers a beer 🍺</string>
 		</dict>
 		<dict>
-			<key>New item</key>
-			<string>New string</string>
 			<key>cell</key>
 			<string>PSGroupCell</string>
+			<key>id</key>
+			<string>switchID</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.randy420.tai</string>
+			<key>id</key>
+			<string>Activ8</string>
+			<key>key</key>
+			<string>Activate</string>
+			<key>label</key>
+			<string>Bypass Activation Key 🔑</string>
+		</dict>
+		<dict>
 			<key>id</key>
 			<string>lock</string>
 			<key>label</key>

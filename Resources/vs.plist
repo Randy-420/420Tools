@@ -184,7 +184,7 @@
 			<key>cell</key>
 			<string>PSButtonCell</string>
 			<key>icon</key>
-			<string>1.png</string>
+			<string>t.png</string>
 			<key>label</key>
 			<string>Randy420 (Dev)</string>
 		</dict>
@@ -194,7 +194,7 @@
 			<key>cell</key>
 			<string>PSButtonCell</string>
 			<key>icon</key>
-			<string>1.png</string>
+			<string>t.png</string>
 			<key>label</key>
 			<string>AliCydia (Design)</string>
 		</dict>
