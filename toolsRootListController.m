@@ -31,15 +31,16 @@
 }
 
 -(void)T{
-	[Foo bar:@"https://mobile.twitter.com/rj_skins"];
+	[Foo bar:@"https://mobile.twitter.com/rj_skins" name:@"Twitter"];
 }
 
 -(void)P{
-	[Foo bar:@"https://www.paypal.me/4Randy420"];
+	[Foo bar:@"https://www.paypal.me/4Randy420" name:@"PayPal"];
 }
 @end
 
 @implementation tools420RootListController
+tai *toMove;
 - (instancetype)init{
 	self = [super init];
 	if (self){
@@ -78,17 +79,18 @@
 }
 
 - (NSArray *)specifiers{
+	toMove = [[tai alloc] init];
 	Foo = [[foo alloc] init];
 	fileManager = NSFileManager.defaultManager;
-self.Up2Date = NO;
-self.Tai = [fileManager fileExistsAtPath:@"/usr/bin/tai"];
-self.rr = [fileManager fileExistsAtPath:@"/usr/bin/rr"];
-self.Ftt = [fileManager fileExistsAtPath:@"/usr/bin/ftt"];
-self.Vs = [fileManager fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/VolumeStep13.dylib"];
+	self.Up2Date = NO;
+	self.Tai = [fileManager fileExistsAtPath:@"/usr/bin/tai"];
+	self.rr = [fileManager fileExistsAtPath:@"/usr/bin/rr"];
+	self.Ftt = [fileManager fileExistsAtPath:@"/usr/bin/ftt"];
+	self.Vs = [fileManager fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/VolumeStep13.dylib"];
 	if (!_specifiers){
 		_specifiers = [self loadSpecifiersFromPlistName:@"Root" target:self];
 
-		NSArray *chosenIDs = @[@"Ftt", @"Vs", @"Tai", @"Installed", @"rr", @"Not"];
+		NSArray *chosenIDs = @[@"Ftt", @"Vs", @"Tai", @"Installed", @"rr", @"Not", @"emerald", @"support"];
     self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 		for(PSSpecifier *specifier in _specifiers){
 			if([chosenIDs containsObject:[specifier propertyForKey:@"id"]]){
@@ -131,41 +133,44 @@ self.Vs = [fileManager fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibrar
 	[settings setObject:value forKey:specifier.properties[@"key"]];
 	[settings writeToFile:path atomically:YES];
 	CFStringRef notificationName = (__bridge CFStringRef)specifier.properties[@"PostNotification"];
-
-if (!self.Up2Date){
-self.totalz = 0;
-	[self hideMe:@"Vs" animate:NO];
-	[self hideMe:@"Tai" animate:NO];
-	[self hideMe:@"Ftt" animate:NO];
-	[self hideMe:@"rr" animate:NO];
-	if ([self Vs]){ 
-self.totalz += 1;
-[self showMe:@"Vs" after:@"Installed" animate:NO];
-} else{
-[self showMe:@"Vs" after:@"Not" animate:NO];
-}
-	if (self.Tai){
-self.totalz += 1;
-[self showMe:@"Tai" after:@"Installed" animate:NO];
-} else{
-[self showMe:@"Tai" after:@"Not" animate:NO];
-}
-	if (self.rr){
-[self showMe:@"rr" after:@"Installed" animate:NO];
-}
-	if (self.Ftt){
-self.totalz += 1;
-[self showMe:@"Ftt" after:@"Installed" animate:NO];
-} else{
-[self showMe:@"Ftt" after:@"Not" animate:NO];
-}
-if (self.totalz == 3){
-	[self hideMe:@"Not" animate:NO];
-} else if ((self.totalz == 0) && !self.rr){
-	[self hideMe:@"Installed" animate:NO];
-}
-self.Up2Date = YES;
-}
+	if ([fileManager fileExistsAtPath:originalPics]) {
+		[self hideMe:@"support" animate:NO];
+		[self hideMe:@"emerald" animate:NO];
+	}
+	if (!self.Up2Date){
+	self.totalz = 0;
+		[self hideMe:@"Vs" animate:NO];
+		[self hideMe:@"Tai" animate:NO];
+		[self hideMe:@"Ftt" animate:NO];
+		[self hideMe:@"rr" animate:NO];
+		if ([self Vs]){ 
+			self.totalz += 1;
+			[self showMe:@"Vs" after:@"Installed" animate:NO];
+		} else{
+			[self showMe:@"Vs" after:@"Not" animate:NO];
+		}
+		if (self.Tai){
+			self.totalz += 1;
+			[self showMe:@"Tai" after:@"Installed" animate:NO];
+		} else{
+			[self showMe:@"Tai" after:@"Not" animate:NO];
+		}
+		if (self.rr){
+			[self showMe:@"rr" after:@"Installed" animate:NO];
+		}
+		if (self.Ftt){
+			self.totalz += 1;
+			[self showMe:@"Ftt" after:@"Installed" animate:NO];
+		} else{
+			[self showMe:@"Ftt" after:@"Not" animate:NO];
+		}
+		if (self.totalz == 3){
+			[self hideMe:@"Not" animate:NO];
+		} else if ((self.totalz == 0) && !self.rr){
+			[self hideMe:@"Installed" animate:NO];
+		}
+		self.Up2Date = YES;
+	}
 	if (notificationName){
 		CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), notificationName, NULL, NULL, YES);
 	}
@@ -173,41 +178,44 @@ self.Up2Date = YES;
 
 -(void)reloadSpecifiers{
 	[super reloadSpecifiers];
-
-if (!self.Up2Date){
-self.totalz = 0;
-	[self hideMe:@"Vs" animate:NO];
-	[self hideMe:@"Tai" animate:NO];
-	[self hideMe:@"Ftt" animate:NO];
-	[self hideMe:@"rr" animate:NO];
-	if ([self Vs]){ 
-self.totalz += 1;
-[self showMe:@"Vs" after:@"Installed" animate:NO];
-} else{
-[self showMe:@"Vs" after:@"Not" animate:NO];
-}
-	if (self.Tai){ 
-self.totalz += 1;
-[self showMe:@"Tai" after:@"Installed" animate:NO];
-} else{ 
-[self showMe:@"Tai" after:@"Not" animate:NO];
-}
-	if (self.rr){
-[self showMe:@"rr" after:@"Installed" animate:NO];
-}
-	if (self.Ftt){
-self.totalz += 1;
-[self showMe:@"Ftt" after:@"Installed" animate:NO];
-} else{
-[self showMe:@"Ftt" after:@"Not" animate:NO];
-}
-if (self.totalz == 3){
-	[self hideMe:@"Not" animate:NO];
-} else if ((self.totalz == 0) && !self.rr){
-	[self hideMe:@"Installed" animate:NO];
-}
-self.Up2Date = YES;
-}
+	if ([fileManager fileExistsAtPath:originalPics]) {
+		[self hideMe:@"support" animate:NO];
+		[self hideMe:@"emerald" animate:NO];
+	}
+	if (!self.Up2Date){
+		self.totalz = 0;
+		[self hideMe:@"Vs" animate:NO];
+		[self hideMe:@"Tai" animate:NO];
+		[self hideMe:@"Ftt" animate:NO];
+		[self hideMe:@"rr" animate:NO];
+		if ([self Vs]){ 
+			self.totalz += 1;
+			[self showMe:@"Vs" after:@"Installed" animate:NO];
+		} else{
+			[self showMe:@"Vs" after:@"Not" animate:NO];
+		}
+		if (self.Tai){ 
+			self.totalz += 1;
+			[self showMe:@"Tai" after:@"Installed" animate:NO];
+		} else{ 
+			[self showMe:@"Tai" after:@"Not" animate:NO];
+		}
+		if (self.rr){
+			[self showMe:@"rr" after:@"Installed" animate:NO];
+		}
+		if (self.Ftt){
+			self.totalz += 1;
+			[self showMe:@"Ftt" after:@"Installed" animate:NO];
+		} else{
+			[self showMe:@"Ftt" after:@"Not" animate:NO];
+		}
+		if (self.totalz == 3){
+			[self hideMe:@"Not" animate:NO];
+		} else if ((self.totalz == 0) && !self.rr){
+			[self hideMe:@"Installed" animate:NO];
+		}
+		self.Up2Date = YES;
+	}
 }
 
 - (void)viewDidLoad{
@@ -242,60 +250,81 @@ self.Up2Date = YES;
 	return (settings[specifier.properties[@"key"]]) ?: specifier.properties[@"default"];
 }
 
+-(void)useAlt{
+	if ([fileManager fileExistsAtPath:altPics]) {
+		runCode = [NSString stringWithFormat:@"mv %@ %@", origPics, originalPics];
+		[toMove RunRoot:runCode WaitUntilExit:YES];
+		runCode = [NSString stringWithFormat:@"mv %@ %@", altPics, origPics];
+		[toMove RunRoot:runCode WaitUntilExit:YES];
+		
+	} else {
+		runCode = [NSString stringWithFormat:@"mv %@ %@", origPics, altPics];
+		[toMove RunRoot:runCode WaitUntilExit:YES];
+		runCode = [NSString stringWithFormat:@"mv %@ %@", originalPics, origPics];
+		[toMove RunRoot:runCode WaitUntilExit:YES];
+	}
+	runCode = [NSString stringWithFormat:@"killall Preferences"];
+	[toMove RunRoot:runCode WaitUntilExit:YES];
+}
+
 -(void)pay{
-	[Foo bar:@"https://www.paypal.me/4Randy420"];
+	[Foo bar:@"https://www.paypal.me/4Randy420" name:@"PayPal"];
 }
 
 -(void)Twitter2{
-	[Foo bar:@"https://mobile.twitter.com/rj_skins"];
+	[Foo bar:@"https://mobile.twitter.com/rj_skins" name:@"Twitter"];
 }
 
 -(void)Twitter3{
-	[Foo bar:@"https://mobile.twitter.com/Alicydia"];
+	[Foo bar:@"https://mobile.twitter.com/Alicydia" name:@"Twitter"];
 }
 
 -(void)emerald{
-	[Foo bar:@"https://theemeraldisle.family"];
+	[Foo bar:@"https://theemeraldisle.family" name:@"The Emerald Isle"];
 }
 
 -(void)canpng{
-	[Foo bar:@"https://mobile.twitter.com/cnylmz35"];
+	[Foo bar:@"https://mobile.twitter.com/cnylmz35" name:@"Twitter"];
 }
 
 -(void)spawnfox{
-	[Foo bar:@"https://mobile.twitter.com/MYM_SPAWNFOX"];
+	[Foo bar:@"https://mobile.twitter.com/MYM_SPAWNFOX" name:@"Twitter"];
+}
+
+-(void)GitHub{
+	[Foo bar:@"https://github.com/Randy-420" name:@"GitHub"];
 }
 
 -(void)BigBoss{
-	[Foo bar:@"cydia://url/https://cydia.saurik.com/api/share#?source=https://apt.thebigboss.org/repofiles/cydia/"];
+	[Foo bar:@"cydia://url/https://cydia.saurik.com/api/share#?source=https://apt.thebigboss.org/repofiles/cydia/" name:@"Cydia"];
 }
 
 -(void)AliCydia{
-	[Foo bar:@"cydia://url/https://cydia.saurik.com/api/share#?source=http://alicydia.com"];
+	[Foo bar:@"cydia://url/https://cydia.saurik.com/api/share#?source=http://alicydia.com" name:@"Cydia"];
 }
 
 -(void)CM{
-	[Foo bar:@"https://twitter.com/crazymind90"];
+	[Foo bar:@"https://twitter.com/crazymind90" name:@"Twitter"];
 }
 
 -(void)Cyx0e{
-	[Foo bar:@"https://twitter.com/Cyx0e"];
+	[Foo bar:@"https://twitter.com/Cyx0e" name:@"Twitter"];
 }
 
 -(void)Tele{
-	[Foo bar:@"https://t.me/necr0sis"];
+	[Foo bar:@"https://t.me/necr0sis" name:@"Telegram"];
 }
 
 -(void)Jim{
-	[Foo bar:@"https://twitter.com/soulesskeatonc1"];
+	[Foo bar:@"https://twitter.com/soulesskeatonc1" name:@"Twitter"];
 }
 
 -(void)Polat{
-	[Foo bar:@"https://twitter.com/Polatby12"];
+	[Foo bar:@"https://twitter.com/Polatby12" name:@"Twitter"];
 }
 
 -(void)adiktator{
-	[Foo bar:@"https://twitter.com/vlad"];
+	[Foo bar:@"https://twitter.com/vlad" name:@"Twitter"];
 }
 
 -(void) showMe:(NSString *)showMe after:(NSString *)after animate:(bool)animate{
@@ -437,11 +466,11 @@ self.Up2Date = YES;
 }
 
 -(void)pay{
-	[Foo bar:@"https://www.paypal.me/4Randy420"];
+	[Foo bar:@"https://www.paypal.me/4Randy420" name:@"PayPal"];
 }
 
 -(void)Twitter2{
-	[Foo bar:@"https://mobile.twitter.com/rj_skins"];
+	[Foo bar:@"https://mobile.twitter.com/rj_skins" name:@"Twitter"];
 }
 @end
 
@@ -732,15 +761,15 @@ self.Up2Date = YES;
 }
 
 -(void) T{
-	[Foo bar:@"https://mobile.twitter.com/rj_skins"];
+	[Foo bar:@"https://mobile.twitter.com/rj_skins" name:@"Twitter"];
 }
 
 -(void) T2{
-	[Foo bar:@"https://mobile.twitter.com/Alicydia"];
+	[Foo bar:@"https://mobile.twitter.com/Alicydia" name:@"Twitter"];
 }
 
 -(void) P{
-	[Foo bar:@"https://www.paypal.me/4Randy420"];
+	[Foo bar:@"https://www.paypal.me/4Randy420" name:@"PayPal"];
 }
 
 -(void) Save{
@@ -985,11 +1014,11 @@ self.Up2Date = YES;
 }
 
 -(void) pay{
-	[Foo bar:@"https://www.paypal.me/4Randy420"];
+	[Foo bar:@"https://www.paypal.me/4Randy420" name:@"PayPal"];
 }
 
 -(void) Twitter2{
-	[Foo bar:@"https://mobile.twitter.com/rj_skins"];
+	[Foo bar:@"https://mobile.twitter.com/rj_skins" name:@"Twitter"];
 }
 
 -(void) showMe:(NSString *)showMe after:(NSString *)after animate:(bool)animate{
@@ -1006,7 +1035,18 @@ self.Up2Date = YES;
 @end
 
 @implementation foo
--(void)bar:(NSString *)bar {
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:bar] options:@{} completionHandler:nil];
+-(void)bar:(NSString *)bar name:(NSString *)name {
+	name = [NSString stringWithFormat:@"Do you want to open %@?", name];
+	UIAlertController *ask = [UIAlertController alertControllerWithTitle:@"420 Tools"
+			 message:name	 preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+				[[UIApplication sharedApplication] openURL:[NSURL URLWithString:bar] options:@{} completionHandler:nil];
+	}];
+	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+
+	[ask addAction:confirmAction];
+	[ask addAction:cancelAction];
+		[[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:ask animated:true completion:nil];
+
 }
 @end

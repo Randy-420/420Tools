@@ -25,7 +25,7 @@
 @end
 
 @interface foo:NSObject
--(void)bar:(NSString *)bar;
+-(void)bar:(NSString *)bar name:(NSString *)name;
 @end
 
 @interface tools420RootListController : HBListController{

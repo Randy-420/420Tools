@@ -7,6 +7,32 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Install Location:</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSegmentCell</string>
+			<key>default</key>
+			<integer>1</integer>
+			<key>defaults</key>
+			<string>com.randy420.tai</string>
+			<key>key</key>
+			<string>Location</string>
+			<key>validTitles</key>
+			<array>
+				<string>/theos</string>
+				<string>/var/theos</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<string>/theos</string>
+				<string>/var/theos</string>
+			</array>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
 		</dict>
 		<dict>
 			<key>cell</key>
