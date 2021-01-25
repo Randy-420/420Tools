@@ -81,8 +81,6 @@
 }
 @property (nonatomic, assign) BOOL dlAll;
 @property (nonatomic, assign) BOOL installed;
-@property (nonatomic, assign) BOOL letRun;
-@property (nonatomic, assign) BOOL activated;
 @property (nonatomic, retain) UIView *headerView;
 @property (nonatomic, retain) UIImageView *headerImageView;
 @property (nonatomic, retain) UILabel *titleLabel;

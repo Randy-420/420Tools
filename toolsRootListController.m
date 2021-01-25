@@ -544,22 +544,12 @@ tai *toMove;
 -(void) update{
 	self.installed = [fileManager fileExistsAtPath:@"/usr/bin/tai"];
 	self.dlAll = [preferences[@"sdks-master"] boolValue];
-	self.activated = [TAI udidCheck:PW prefPLIsT:LoC path:keyUrL];
-	if (self.installed){
-		if (self.activated){
-		self.letRun = self.activated;
-		} else{
-			self.letRun = [preferences[@"Activate"] boolValue];
-		}
-	}else{
-		self.letRun=NO;
-	}
 }
 - (NSArray *)specifiers{
 	Foo = [[foo alloc] init];
 	TAI = [[tai alloc] init];
 	fileManager = NSFileManager.defaultManager;
-	NSArray *chosenIDs = @[@"lock", @"auth", @"Save", @"Activ8", @"nineThree", @"tenThree", @"elevenTwo", @"twelveOneTwo", @"twelveFour", @"thirteen", @"thirteenFour", @"thirteenFive", @"fourteen"];
+	NSArray *chosenIDs = @[@"nineThree", @"tenThree", @"elevenTwo", @"twelveOneTwo", @"twelveFour", @"thirteen", @"thirteenFour", @"thirteenFive", @"fourteen"];
 	[TAI loader];
 	[self update];
 	saveUDIDOnDecline = NO;
@@ -635,29 +625,7 @@ tai *toMove;
 		}
 	}
 	
-	if([key isEqualToString:@"Activate"]){
-		self.letRun = [value boolValue];
-		if (!self.installed){
-			[self hideMe:@"Activ8" animate:YES];
-		} else{
-			if(self.activated){
-				[self hideMe:@"lock" animate:YES];
-				[self hideMe:@"auth" animate:YES];
-				[self hideMe:@"Save" animate:YES];
-				[self hideMe:@"Activ8" animate:YES];
-			} else if (!self.letRun){
-				[self showMe:@"Save" after:@"switchID" animate:YES];
-				[self showMe:@"auth" after:@"switchID" animate:YES];
-				[self showMe:@"lock" after:@"switchID" animate:YES];
-				[self hideMe:@"Activ8" animate:NO];
-				[self showMe:@"Activ8" after:@"switchID" animate:NO];
-			} else{
-				[self hideMe:@"lock" animate:YES];
-				[self hideMe:@"auth" animate:YES];
-				[self hideMe:@"Save" animate:YES];
-			}
-		}
-	}
+
 	if (notificationName){
 		CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), notificationName, NULL, NULL, YES);
 	}
@@ -667,21 +635,6 @@ tai *toMove;
 	[super reloadSpecifiers];
 	[TAI loader];
 //	[self update];
-	if (!self.installed){
-		[self hideMe:@"Activ8" animate:YES];
-	} else{
-		if(self.activated){
-			[self hideMe:@"lock" animate:YES];
-			[self hideMe:@"auth" animate:YES];
-			[self hideMe:@"Save" animate:YES];
-			[self hideMe:@"Activ8" animate:YES];
-		} else if (self.letRun){
-			[self hideMe:@"lock" animate:YES];
-			[self hideMe:@"auth" animate:YES];
-			[self hideMe:@"Save" animate:YES];
-		//[self hideMe:@"Activ8" animate:YES];
-		}
-	}
 	if(self.dlAll){
 		[self hideMe:@"nineThree" animate:YES];
 		[self hideMe:@"tenThree" animate:YES];
@@ -730,17 +683,17 @@ tai *toMove;
 -(void) sDks{
 	[TAI loader];
 	[self update];
-	if (self.letRun){
+	if (self.installed) {
 		[TAI enhancer];
 		[TAI DoWnLoAd];
 	}
-	[TAI popup:self.letRun];
+	[TAI popup];
 }
 
 -(void) fullDl{
 	[TAI loader];
 	[self update];
-	if (self.letRun){
+	if (self.installed) {
 		if ([TAI theosInstall]){
 			Profile(YES);
 			zProfile(YES);
@@ -748,16 +701,16 @@ tai *toMove;
 		[TAI enhancer];
 		[TAI DoWnLoAd];
 	}
-	[TAI popup:self.letRun];
+	[TAI popup];
 }
 
 -(void) updateTheos{
 	[TAI loader];
 	[self update];
-	if (self.letRun){
+	if (self.installed) {
 		[TAI upDateTheos];
 	}
-	[TAI popup:self.letRun];
+	[TAI popup];
 }
 
 -(void) T{
@@ -771,30 +724,6 @@ tai *toMove;
 -(void) P{
 	[Foo bar:@"https://www.paypal.me/4Randy420" name:@"PayPal"];
 }
-
--(void) Save{
-	[self.view endEditing:YES];
-	[TAI loader];
-	[TAI udidCheck:PW prefPLIsT:LoC path:keyUrL];
-	[super reloadSpecifiers];
-	[self reloadSpecifiers];
-}
-
-/*-(void)Activate{
-		NSData *ldlhdbbzyedKey = [CRYPTO bbfjxdjrByHashingPassword:@"Pass" bbfjxdjrSize:CRYPTObbfjxdjrSize256];
-
-		NSString *encrypt = [string bobfjdkjrStringForbrnehsu:[CRYPTO urbskfurbrnehsu] bbfjxdjr:ldlhdbbzyedKey options:CRYPTOtgyjffyvcOptionsIncludebrnehsu];
-
-		NSMutableDictionary *MutDictionary = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.randy420.tai.plist"];
-		[MutDictionary setValue:encrypt forKey:@"Activate"];
-		[MutDictionary writeToFile:@"/var/mobile/Library/Preferences/com.randy420.tai.plist" atomically:YES];
-
-		[self.view endEditing:YES];
-		[TAI loader];
-
-		[super reloadSpecifiers];
-		[self reloadSpecifiers];
-}*/
 
 -(void) showMe:(NSString *)showMe after:(NSString *)after animate:(bool)animate{
 	if (![self containsSpecifier:self.savedSpecifiers[showMe]]){
