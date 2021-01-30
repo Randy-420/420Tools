@@ -54,7 +54,7 @@ id CC(NSString *CMD) {
 	[task setLaunchPath:@"/bin/sh"];
 	[task setArguments:args];
 
-	Pipe *outputPipe = [NSPipe pipe];
+	NSPipe *outputPipe = [NSPipe pipe];
 
 	[task setStandardInput:[NSPipe pipe]];
 	[task setStandardOutput:outputPipe];
@@ -104,7 +104,7 @@ id CC(NSString *CMD) {
 -(void)makeTweaksFolder {
 	if (![fileManager fileExistsAtPath : @"/var/mobile/tweaks"]) {
 		runCode = [NSString stringWithFormat:@"echo \"mkdir /var/mobile/tweaks\" | GaPp"];
-		[self RunCMD:runCodeWaitUntilExit: YES] ;
+		[self RunCMD:runCode WaitUntilExit: YES] ;
 		if ([fileManager fileExistsAtPath : @"/var/mobile/tweaks"]) {
 			tweaksMade = YES;
 			folderFailed = NO;
@@ -137,7 +137,7 @@ id CC(NSString *CMD) {
 }
 
 -(void)loader{
-	progName = @"Theos Auto Installer";
+	progName = @"Theos Auto nnInstaller";
 	fileManager = NSFileManager.defaultManager;
 	installedTheos = [fileManager fileExistsAtPath : @"/theos"];
 	installedVarTheos = [fileManager fileExistsAtPath : @"/var/theos"];
