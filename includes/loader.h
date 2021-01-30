@@ -1,7 +1,7 @@
 void loader(){
 	CM = [[tai alloc] init];
 	fileManager = NSFileManager.defaultManager;
-	
+
 	deleteall = YES;
 	failure = NO;
 

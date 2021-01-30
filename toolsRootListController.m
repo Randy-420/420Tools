@@ -73,7 +73,7 @@ tai *toMove;
 		[self.iconView.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
 		[self.iconView.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
 		[self.iconView.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
-        ]];
+]];
 	}
 	return self;
 }
@@ -91,7 +91,7 @@ tai *toMove;
 		_specifiers = [self loadSpecifiersFromPlistName:@"Root" target:self];
 
 		NSArray *chosenIDs = @[@"Ftt", @"Vs", @"Tai", @"Installed", @"rr", @"Not", @"emerald", @"support"];
-    self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
+self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 		for(PSSpecifier *specifier in _specifiers){
 			if([chosenIDs containsObject:[specifier propertyForKey:@"id"]]){
 				[self.savedSpecifiers setObject:specifier forKey:[specifier propertyForKey:@"id"]];
@@ -238,7 +238,7 @@ tai *toMove;
 	[self.headerImageView.leadingAnchor constraintEqualToAnchor:self.headerView.leadingAnchor],
 	[self.headerImageView.trailingAnchor constraintEqualToAnchor:self.headerView.trailingAnchor],
 	[self.headerImageView.bottomAnchor constraintEqualToAnchor:self.headerView.bottomAnchor],
-    ]];
+]];
 
 	_table.tableHeaderView = self.headerView;
 }
@@ -378,7 +378,7 @@ tai *toMove;
 		[self.iconView.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
 		[self.iconView.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
 		[self.iconView.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
-        ]];
+]];
 	}
 	return self;
 }
@@ -453,7 +453,7 @@ tai *toMove;
 	[self.headerImageView.leadingAnchor constraintEqualToAnchor:self.headerView.leadingAnchor],
 	[self.headerImageView.trailingAnchor constraintEqualToAnchor:self.headerView.trailingAnchor],
 	[self.headerImageView.bottomAnchor constraintEqualToAnchor:self.headerView.bottomAnchor],
-    ]];
+]];
 
 	_table.tableHeaderView = self.headerView;
 }
@@ -486,7 +486,7 @@ tai *toMove;
 
 -(void)Save
 {
-    [self.view endEditing:YES];
+[self.view endEditing:YES];
 }
 
 @end
@@ -537,7 +537,7 @@ tai *toMove;
 		[self.iconView.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
 		[self.iconView.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
 		[self.iconView.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
-        ]];
+]];
 	}
 	return self;
 }
@@ -552,7 +552,6 @@ tai *toMove;
 	NSArray *chosenIDs = @[@"nineThree", @"tenThree", @"elevenTwo", @"twelveOneTwo", @"twelveFour", @"thirteen", @"thirteenFour", @"thirteenFive", @"fourteen"];
 	[TAI loader];
 	[self update];
-	saveUDIDOnDecline = NO;
 	if (!_specifiers){
 		_specifiers = [self loadSpecifiersFromPlistName:@"Tai" target:self];
 		self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
@@ -668,7 +667,7 @@ tai *toMove;
 	[self.headerImageView.leadingAnchor constraintEqualToAnchor:self.headerView.leadingAnchor],
 	[self.headerImageView.trailingAnchor constraintEqualToAnchor:self.headerView.trailingAnchor],
 	[self.headerImageView.bottomAnchor constraintEqualToAnchor:self.headerView.bottomAnchor],
-    ]];
+]];
 
 	_table.tableHeaderView = self.headerView;
 }
@@ -771,7 +770,7 @@ tai *toMove;
 		[self.iconView.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
 		[self.iconView.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
 		[self.iconView.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
-        ]];
+]];
 	}
 	return self;
 }
@@ -782,7 +781,7 @@ tai *toMove;
 		_specifiers = [self loadSpecifiersFromPlistName:@"vs" target:self];
 
 		NSArray *chosenIDs = @[@"VibeHide", @"vsSeperate", @"VolumeUp", @"VolumeUpDown", @"prefInt", @"VolumeDown", @"prefIntDown"];
-    self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
+self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 		for(PSSpecifier *specifier in _specifiers){
 			if([chosenIDs containsObject:[specifier propertyForKey:@"id"]]){
 				[self.savedSpecifiers setObject:specifier forKey:[specifier propertyForKey:@"id"]];
@@ -930,7 +929,7 @@ tai *toMove;
 	[self.headerImageView.leadingAnchor constraintEqualToAnchor:self.headerView.leadingAnchor],
 	[self.headerImageView.trailingAnchor constraintEqualToAnchor:self.headerView.trailingAnchor],
 	[self.headerImageView.bottomAnchor constraintEqualToAnchor:self.headerView.bottomAnchor],
-    ]];
+]];
 
 	_table.tableHeaderView = self.headerView;
 }

@@ -297,56 +297,6 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
-			<key>id</key>
-			<string>switchID</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSSwitchCell</string>
-			<key>default</key>
-			<false/>
-			<key>defaults</key>
-			<string>com.randy420.tai</string>
-			<key>id</key>
-			<string>Activ8</string>
-			<key>key</key>
-			<string>Activate</string>
-			<key>label</key>
-			<string>Bypass Activation Key 🔑</string>
-		</dict>
-		<dict>
-			<key>id</key>
-			<string>lock</string>
-			<key>label</key>
-			<string>Activation Key 🔐</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSEditTextCell</string>
-			<key>default</key>
-			<string>Enter Auth Key</string>
-			<key>defaults</key>
-			<string>com.randy420.tai</string>
-			<key>id</key>
-			<string>auth</string>
-			<key>key</key>
-			<string>activationKey</string>
-			<key>label</key>
-			<string>Enter tweak activation key:</string>
-		</dict>
-		<dict>
-			<key>action</key>
-			<string>Save</string>
-			<key>cell</key>
-			<string>PSButtonCell</string>
-			<key>id</key>
-			<string>Save</string>
-			<key>label</key>
-			<string>Save</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
 			<key>footerAlignment</key>
 			<string>1</string>
 			<key>footerText</key>
