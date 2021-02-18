@@ -1,4 +1,3 @@
-#include <spawn.h>
 #include "420.h"
 #define _POSIX_SPAWN_DISABLE_ASLR 0x0100
 #define _POSIX_SPAWN_ALLOW_DATA_EXEC 0x2000
@@ -19,7 +18,7 @@ void Run_CMDDER(const char *cmd) {
 			perror("waitpid");
 		}
 	} else {
-
+		
 	} 
 }
 @implementation tai
@@ -41,7 +40,6 @@ id CC(NSString *CMD) {
  
 	if (WaitUntilExit)
 		[task waitUntilExit];
-
 }
 
 -(NSString *) RunRoot:(NSString *)RunRoot {
@@ -102,74 +100,77 @@ id CC(NSString *CMD) {
 }
 
 -(void)makeTweaksFolder {
+	NSString *runCode;
+	NSFileManager *fileManager = [[NSFileManager alloc] init];
 	if (![fileManager fileExistsAtPath : @"/var/mobile/tweaks"]) {
 		runCode = [NSString stringWithFormat:@"echo \"mkdir /var/mobile/tweaks\" | GaPp"];
 		[self RunCMD:runCode WaitUntilExit: YES] ;
 		if ([fileManager fileExistsAtPath : @"/var/mobile/tweaks"]) {
-			tweaksMade = YES;
-			folderFailed = NO;
+			self.tweaksMade = YES;
+			self.folderFailed = NO;
 		}
 		else {
-			folderFailed = YES;
-			tweaksMade = NO;
+			self.folderFailed = YES;
+			self.tweaksMade = NO;
 		}
 	}
 }
 
 -(BOOL)theosInstall {
-	attempted = YES;
-	if (!installedTheos && !installedVarTheos) {
-		previousInstall = NO;
+	NSString *runCode;
+	NSFileManager *fileManager = [[NSFileManager alloc] init];
+	self.attempted = YES;
+	if (!self.installedTheos && !self.installedVarTheos) {
+		self.previousInstall = NO;
 		runCode = [NSString stringWithFormat:@"echo \"git clone --recursive https://github.com/theos/theos.git %@\" | GaPp", installHere];
 		[self RunCMD:runCode WaitUntilExit: YES] ;
 		if ([fileManager fileExistsAtPath : installHere]) {
-			installSuccess = YES;
+			self.installSuccess = YES;
 			return YES;
 		}else {
-			installSuccess = NO;
-			failed = YES;
+			self.installSuccess = NO;
+			self.failed = YES;
 		}
 	}
 	else {
-		previousInstall = YES;
+		self.previousInstall = YES;
 	}
 	return NO;
 }
 
 -(void)loader{
-	progName = @"Theos Auto nnInstaller";
-	fileManager = NSFileManager.defaultManager;
-	installedTheos = [fileManager fileExistsAtPath : @"/theos"];
-	installedVarTheos = [fileManager fileExistsAtPath : @"/var/theos"];
+	NSFileManager *fileManager = NSFileManager.defaultManager;
+	self.installedTheos = [fileManager fileExistsAtPath : @"/theos"];
+	self.installedVarTheos = [fileManager fileExistsAtPath : @"/var/theos"];
 	preferences = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.randy420.tai.plist"];
 	installHere = ([preferences objectForKey:@"Location"] ? [preferences objectForKey:@"Location"] : @"/var/theos");
-	enhance = ([preferences objectForKey:@"enhance"] ? [[preferences objectForKey:@"enhance"] boolValue] : NO);
-	all = ([preferences objectForKey:@"sdks-master"] ? [[preferences objectForKey:@"sdks-master"] boolValue] : NO);
-	nineThree = ([preferences objectForKey:@"9.3"] ? [[preferences objectForKey:@"9.3"] boolValue] : YES);
-	tenThree = ([preferences objectForKey:@"10.3"] ? [[preferences objectForKey:@"10.3"] boolValue] : NO);
-	elevenTwo = ([preferences objectForKey:@"11.2"] ? [[preferences objectForKey:@"11.2"] boolValue] : NO);
-	twelveOneTwo = ([preferences objectForKey:@"12.1.2"] ? [[preferences objectForKey:@"12.1.2"] boolValue] : NO);
-	twelveFour = ([preferences objectForKey:@"12.4"] ? [[preferences objectForKey:@"12.4"] boolValue] : YES);
-	thirteen = ([preferences objectForKey:@"13.0"] ? [[preferences objectForKey:@"13.0"] boolValue] : NO);
-	thirteenFour = ([preferences objectForKey:@"13.4"] ? [[preferences objectForKey:@"13.4"] boolValue] : NO);
-	thirteenFive = ([preferences objectForKey:@"13.5"] ? [[preferences objectForKey:@"13.5"] boolValue] : YES);
-	fourteen = ([preferences objectForKey:@"14.0"] ? [[preferences objectForKey:@"14.0"] boolValue] : NO);
+	self.enhance = ([preferences objectForKey:@"enhance"] ? [[preferences objectForKey:@"enhance"] boolValue] : NO);
+	self.all = ([preferences objectForKey:@"sdks-master"] ? [[preferences objectForKey:@"sdks-master"] boolValue] : NO);
+	self.nineThree = ([preferences objectForKey:@"9.3"] ? [[preferences objectForKey:@"9.3"] boolValue] : YES);
+	self.tenThree = ([preferences objectForKey:@"10.3"] ? [[preferences objectForKey:@"10.3"] boolValue] : NO);
+	self.elevenTwo = ([preferences objectForKey:@"11.2"] ? [[preferences objectForKey:@"11.2"] boolValue] : NO);
+	self.twelveOneTwo = ([preferences objectForKey:@"12.1.2"] ? [[preferences objectForKey:@"12.1.2"] boolValue] : NO);
+	self.twelveFour = ([preferences objectForKey:@"12.4"] ? [[preferences objectForKey:@"12.4"] boolValue] : YES);
+	self.thirteen = ([preferences objectForKey:@"13.0"] ? [[preferences objectForKey:@"13.0"] boolValue] : NO);
+	self.thirteenFour = ([preferences objectForKey:@"13.4"] ? [[preferences objectForKey:@"13.4"] boolValue] : NO);
+	self.thirteenFive = ([preferences objectForKey:@"13.5"] ? [[preferences objectForKey:@"13.5"] boolValue] : YES);
+	self.fourteen = ([preferences objectForKey:@"14.0"] ? [[preferences objectForKey:@"14.0"] boolValue] : NO);
 
-	tweaksMade = NO;
-	folderFailed = NO;
-	enhanced = NO;
-	alreadyHas = NO;
-	failure = NO;
-	theosUpdate = NO;
-	installSuccess = NO;
-	previousInstall = YES;
-	attempted = NO;
-	failed = NO;
-	PoPuP = YES;
+	self.tweaksMade = NO;
+	self.folderFailed = NO;
+	self.enhanced = NO;
+	self.alreadyHas = NO;
+	self.failure = NO;
+	self.theosUpdate = NO;
+	self.installSuccess = NO;
+	self.previousInstall = YES;
+	self.attempted = NO;
+	self.failed = NO;
+	self.PoPuP = YES;
 
-	totalDownloaded = 0;
+	self.totalDownloaded = 0;
 
-	if (useColor) {
+	if (self.useColor) {
 		successfulSdk = [NSString stringWithFormat:@"[%sSuccessfully downloaded SDKS%s]\n", c_green, c_reset];
 		failedSdk = [NSString stringWithFormat:@"[%sFailed Installing SDKS%s]\n", c_red, c_reset];
 		enhanceMsg = [NSString stringWithFormat:@"[%sDev Tools Installed%s]\n", c_green, c_reset];
@@ -181,9 +182,9 @@ id CC(NSString *CMD) {
 		theosFailureMessage = [NSString stringWithFormat:@"[%sTheos install FAILED!%s]\n", c_red, c_reset];
 		theosSuccessMessage = [NSString stringWithFormat:@"[%sTheos installed To '%@'%s]\n", c_green, installHere, c_reset];
 		checkInstall = [NSString stringWithFormat:@"[%s!!%sMAKE SURE THE INSTALL LOCATION IS RIGHT IN SETTINGS%s!!%s]\n", c_cyan, c_red, c_cyan, c_reset];
-		if (installedTheos && installedVarTheos){
+		if (self.installedTheos && self.installedVarTheos){
 			previousInstallMsg = [NSString stringWithFormat:@"[%sTheos previously installed to '%s/theos%s' & '%s/var/theos%s'%s]\n", c_yellow, c_red, c_yellow, c_red, c_yellow, c_reset];
-		} else if (installedVarTheos){
+		} else if (self.installedVarTheos){
 			previousInstallMsg = [NSString stringWithFormat:@"[%sTheos previously installed to '%s/var/theos%s'%s]\n", c_yellow, c_red, c_yellow, c_reset];
 		} else {
 			previousInstallMsg = [NSString stringWithFormat:@"[%sTheos previously installed to '%s/theos%s'%s]\n", c_yellow, c_red, c_yellow, c_reset];
@@ -200,9 +201,9 @@ id CC(NSString *CMD) {
 		updated = @"[Theos is now Up-To-Date]\n";
 		theosFailureMessage = @"[Theos install FAILED!]\n";
 		theosSuccessMessage = [NSString stringWithFormat:@"[Theos installed To '%@']\n", installHere];
-		if (installedTheos && installedVarTheos){
+		if (self.installedTheos && self.installedVarTheos){
 			previousInstallMsg = [NSString stringWithFormat:@"[Theos previously installed to '/theos' & '/var/theos']\n"];
-		} else if (installedVarTheos){
+		} else if (self.installedVarTheos){
 			previousInstallMsg = [NSString stringWithFormat:@"[Theos previously installed to '/var/theos']\n"];
 		} else {
 			previousInstallMsg = [NSString stringWithFormat:@"[Theos previously installed to '/theos']\n"];
@@ -212,42 +213,44 @@ id CC(NSString *CMD) {
 }
 
 -(bool)sdk:(NSString *)sdk Link:(NSString *)Link {
+	NSString *runCode;
+	NSFileManager *fileManager = [[NSFileManager alloc] init];
 	Loc = [NSString stringWithFormat:@"/theos/sdks/iPhoneOS%s.sdk", [sdk UTF8String]];
 	Loc1 = [NSString stringWithFormat:@"/var/theos/sdks/iPhoneOS%s.sdk", [sdk UTF8String]];
 	if (![fileManager fileExistsAtPath: Loc] && ![fileManager fileExistsAtPath: Loc1]) {
 		runCode = [NSString stringWithFormat:@"echo \"curl -LO %@\" | GaPp;TMP=$(mktemp -d);echo \"unzip %@.zip -d $TMP\" | GaPp;echo \"mv $TMP/*.sdk %@/sdks;echo\" | GaPp;echo \"rm -r %@.zip $TMP\" | GaPp", Link, sdk, installHere, sdk];
 		[self RunCMD:runCode WaitUntilExit: YES];
-		totalDownloaded += 1;
+		self.totalDownloaded += 1;
 		Loc = [NSString stringWithFormat:@"%@/sdks/iPhoneOS%@.sdk", installHere, sdk];
 		if ([fileManager fileExistsAtPath: Loc]) {
-			if (useColor) {
+			if (self.useColor) {
 				successfulSdk = [NSString stringWithFormat:@"%@%s ~iPhoneOS %@ SDK%s\n", successfulSdk, c_green, sdk, c_reset];
 			} else {
 				successfulSdk = [NSString stringWithFormat:@"%@ ~iPhoneOS %@ SDK\n", successfulSdk, sdk];
 			}
 			return (YES);
 		} else {
-			if (useColor) {
+			if (self.useColor) {
 				failedSdk = [NSString stringWithFormat:@"%@ ~%siPhoneOS %@ SDK%s\n", failedSdk, c_red, sdk, c_reset];
 			} else {
-				failedSdk = [NSString stringWithFormat:@"~%@iPhoneOS %@ SDK\n", failedSdk, sdk];
+				failedSdk = [NSString stringWithFormat:@"%@ ~iPhoneOS %@ SDK\n", failedSdk, sdk];
 			}
-			failure = YES;
+			self.failure = YES;
 			return (NO);
 		}
 	} else {
-		alreadyHas = YES;
-		if (useColor) {
-			ignored = [NSString stringWithFormat:@"~%@%siPhoneOS %@ SDK%s\n", ignored, c_yellow, sdk, c_reset];
+		self.alreadyHas = YES;
+		if (self.useColor) {
+			ignored = [NSString stringWithFormat:@"%@%s ~iPhoneOS %@ SDK%s\n", ignored, c_yellow, sdk, c_reset];
 		} else {
-			ignored = [NSString stringWithFormat:@" ~%@iPhoneOS %@ SDK\n", ignored, sdk];
+			ignored = [NSString stringWithFormat:@"%@ ~iPhoneOS %@ SDK\n", ignored, sdk];
 		}
 	}
 	return (YES);
 }
 
 -(void)DoWnLoAd {
-	if (all) {
+	if (self.all) {
 		[self sdk:@"9.3" Link:@"https://www.dropbox.com/s/8qhz72yeumz5swy/9.3.zip"];
 		[self sdk:@"10.3" Link:@"https://www.dropbox.com/s/fdze31wrnukk3t7/10.3.zip"];
 		[self sdk:@"11.2" Link:@"https://www.dropbox.com/s/ak3bjqi4nz0yo0w/11.2.zip"];
@@ -258,31 +261,33 @@ id CC(NSString *CMD) {
 		[self sdk:@"13.5" Link:@"https://www.dropbox.com/s/ztqcfo7okv6276p/13.5.zip"];
 		[self sdk:@"14.0" Link:@"https://www.dropbox.com/s/ly8627ncpaiv6ji/14.0.zip"];
 	}else{
-		nineThree ? [self sdk:@"9.3" Link:@"https://www.dropbox.com/s/8qhz72yeumz5swy/9.3.zip"] : 0;
-		tenThree ? [self sdk:@"10.3" Link:@"https://www.dropbox.com/s/fdze31wrnukk3t7/10.3.zip"] : 0;
-		elevenTwo ? [self sdk:@"11.2" Link:@"https://www.dropbox.com/s/ak3bjqi4nz0yo0w/11.2.zip"] : 0;
-		twelveOneTwo ? [self sdk:@"12.1.2" Link:@"https://www.dropbox.com/s/2zxfr7qk3fcnm8f/12.1.2.zip"] : 0;
-		twelveFour ? [self sdk:@"12.4" Link:@"https://www.dropbox.com/s/s3dmz4bqx3ayixm/12.4.zip"] : 0;
-		thirteen ? [self sdk:@"13.0" Link:@"https://www.dropbox.com/s/fujs52jmc6vdh37/13.0.zip"] : 0;
-		thirteenFour ? [self sdk:@"13.4" Link:@"https://www.dropbox.com/s/hxtkxy9c1fu71nq/13.4.zip"] : 0;
-		thirteenFive ? [self sdk:@"13.5" Link:@"https://www.dropbox.com/s/ztqcfo7okv6276p/13.5.zip"] : 0;
-		fourteen ? [self sdk:@"14.0" Link:@"https://www.dropbox.com/s/ly8627ncpaiv6ji/14.0.zip"] : 0;
+		self.nineThree ? [self sdk:@"9.3" Link:@"https://www.dropbox.com/s/8qhz72yeumz5swy/9.3.zip"] : 0;
+		self.tenThree ? [self sdk:@"10.3" Link:@"https://www.dropbox.com/s/fdze31wrnukk3t7/10.3.zip"] : 0;
+		self.elevenTwo ? [self sdk:@"11.2" Link:@"https://www.dropbox.com/s/ak3bjqi4nz0yo0w/11.2.zip"] : 0;
+		self.twelveOneTwo ? [self sdk:@"12.1.2" Link:@"https://www.dropbox.com/s/2zxfr7qk3fcnm8f/12.1.2.zip"] : 0;
+		self.twelveFour ? [self sdk:@"12.4" Link:@"https://www.dropbox.com/s/s3dmz4bqx3ayixm/12.4.zip"] : 0;
+		self.thirteen ? [self sdk:@"13.0" Link:@"https://www.dropbox.com/s/fujs52jmc6vdh37/13.0.zip"] : 0;
+		self.thirteenFour ? [self sdk:@"13.4" Link:@"https://www.dropbox.com/s/hxtkxy9c1fu71nq/13.4.zip"] : 0;
+		self.thirteenFive ? [self sdk:@"13.5" Link:@"https://www.dropbox.com/s/ztqcfo7okv6276p/13.5.zip"] : 0;
+		self.fourteen ? [self sdk:@"14.0" Link:@"https://www.dropbox.com/s/ly8627ncpaiv6ji/14.0.zip"] : 0;
 	}
 }
 
 -(void)upDateTheos {
 	[self RunCMD: @"echo \"$THEOS/bin/update-theos\" | GaPp" WaitUntilExit: YES];
-	theosUpdate = YES;
+	self.theosUpdate = YES;
 }
 
 -(void)enhancer{
-	if (enhance){
+	NSString *runCode;
+	NSFileManager *fileManager = [[NSFileManager alloc] init];
+	if (self.enhance){
 		if ([fileManager fileExistsAtPath:installHere]) {
 			runCode = [NSString stringWithFormat:@"echo \"curl -LO https://www.dropbox.com/s/ya3i2fft4dqvccm/includes.zip\" | GaPp;TMP=$(mktemp -d);echo \"unzip includes.zip -d $TMP\" | GaPp;echo \"mv $TMP/include/* /theos/include\" | GaPp;echo \"mv $TMP/lib/* %@/lib\" | GaPp;echo \"mv $TMP/templates/* %@/templates\" | GaPp;echo \"mv $TMP/vendor/* %@/vendor\" | GaPp;echo;echo \"rm -r includes.zip $TMP\" | GaPp;", installHere, installHere, installHere];
 			[self RunCMD:runCode WaitUntilExit: YES];
 		}
 		if ([fileManager fileExistsAtPath:@"/theos/vendor/templates/test.sh"] || [fileManager fileExistsAtPath:@"/var/theos/vendor/templates/test.sh"]){
-			enhanced = YES;
+			self.enhanced = YES;
 		}
 	}
 }
@@ -292,37 +297,37 @@ id CC(NSString *CMD) {
 }
 
 -(void)popup{
-	theosUpdate ? [self addMsg:updated] : 0;
-	installSuccess ? [self addMsg:theosSuccessMessage] : 0;
-	if (!theosUpdate) {
-		if (!folderFailed && tweaksMade) {
+	self.theosUpdate ? [self addMsg:updated] : 0;
+	self.installSuccess ? [self addMsg:theosSuccessMessage] : 0;
+	if (!self.theosUpdate) {
+		if (!self.folderFailed && self.tweaksMade) {
 			 [self addMsg:tFolderSuc];
-		} else if (folderFailed && !tweaksMade) {
+		} else if (self.folderFailed && !self.tweaksMade) {
 			[self addMsg:tFolderFail];
-		} else if (!folderFailed && !tweaksMade) {
+		} else if (!self.folderFailed && !self.tweaksMade) {
 		 [self addMsg:tFolderIgnore];
 		}
 	}
-	if (attempted && failed && (!(previousInstall && installSuccess))) {
+	if (self.attempted && self.failed && (!(self.previousInstall && self.installSuccess))) {
 		[self addMsg:theosFailureMessage];
 	}
-	if (attempted && previousInstall){
+	if (self.attempted && self.previousInstall){
 		[self addMsg:previousInstallMsg];
 	}
 
-	enhanced ? [self addMsg:enhanceMsg] : 0;
+	self.enhanced ? [self addMsg:enhanceMsg] : 0;
 
-	if (totalDownloaded >= 1){
+	if (self.totalDownloaded >= 1){
 		[self addMsg:successfulSdk];
 	}
-	alreadyHas ? [self addMsg:ignored] : 0;
+	self.alreadyHas ? [self addMsg:ignored] : 0;
 
-	if (failure) {
+	if (self.failure) {
 		[self addMsg:failedSdk];
 		[self addMsg:checkInstall];
 	}
 
-	if (PoPuP) {
+	if (self.PoPuP) {
 		UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Installation Results" message: msg preferredStyle:UIAlertControllerStyleAlert];
 		UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
 		

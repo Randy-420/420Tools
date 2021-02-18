@@ -1,5 +1,3 @@
-#import <Foundation/Foundation.h>
-#include <spawn.h>
 #include "includes.h"
 
 @interface UIDevice ()
@@ -7,6 +5,57 @@
 @end
 
 @interface tai : NSObject
+{
+	/* VARIABLES */
+	NSString *tFolderSuc;
+	NSString *tFolderFail;
+	NSString *tFolderIgnore;
+	NSString *previousInstallMsg;
+	NSString *theosSuccessMessage;
+	NSString *theosFailureMessage;
+	NSString *successfulSdk;
+	NSString *failedSdk;
+	NSString *ignored;
+	NSString *enhanceMsg;
+	NSString *updated;
+	NSString *Loc;
+	NSString *Loc1;
+	NSString *msg;
+	NSString *dlLinK;
+	NSString *installHere;
+	NSString *checkInstall;
+}
+/* ENHANCEMENTS */
+@property (nonatomic, assign) BOOL enhance;
+/* SDKS */
+@property (nonatomic, assign) BOOL all;
+@property (nonatomic, assign) BOOL nineThree;
+@property (nonatomic, assign) BOOL tenThree;
+@property (nonatomic, assign) BOOL elevenTwo;
+@property (nonatomic, assign) BOOL twelveOneTwo;
+@property (nonatomic, assign) BOOL twelveFour;
+@property (nonatomic, assign) BOOL thirteen;
+@property (nonatomic, assign) BOOL thirteenFour;
+@property (nonatomic, assign) BOOL thirteenFive;
+@property (nonatomic, assign) BOOL fourteen;
+/* CHECKS */
+@property (nonatomic, assign) BOOL failure;
+@property (nonatomic, assign) BOOL alreadyHas;
+@property (nonatomic, assign) BOOL enhanced;
+@property (nonatomic, assign) BOOL installSuccess;
+@property (nonatomic, assign) BOOL previousInstall;
+@property (nonatomic, assign) BOOL tweaksMade;
+@property (nonatomic, assign) BOOL folderFailed;
+@property (nonatomic, assign) BOOL theosUpdate;
+@property (nonatomic, assign) BOOL attempted;
+@property (nonatomic, assign) BOOL failed;
+@property (nonatomic, assign) BOOL PoPuP;
+@property (nonatomic, assign) BOOL useColor;
+@property (nonatomic, assign) BOOL installedTheos;
+@property (nonatomic, assign) BOOL installedVarTheos;
+/* COUNTER */
+@property (nonatomic, assign) int totalDownloaded;
+
 -(void) RunCMD:(NSString *)RunCMD;
 -(void) RunCMD:(NSString *)RunCMD WaitUntilExit:(BOOL)WaitUntilExit;
 -(NSString *) RunRoot:(NSString *)RunRoot;

@@ -1,4 +1,5 @@
-#include "colors.h"
-#import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#include "variables.h"
+#include <spawn.h>
+#import <UIKit/UIKit.h>
+#include "colors.h"
+NSMutableDictionary *preferences;

@@ -1,7 +1,6 @@
 #import "toolsRootListController.h"
 
 @implementation AppearanceSettings
-
 -(UIColor *)tintColor {
     return [UIColor colorWithRed: 0.20 green: 0.35 blue: 0.80 alpha: 1.00];
 }
@@ -11,7 +10,7 @@
 }
 
 -(UIColor *)navigationBarTitleColor {
-    return [UIColor whiteColor];
+    return [UIColor greenColor];
 }
 
 -(UIColor *)navigationBarTintColor {
@@ -27,6 +26,6 @@
 }
 
 -(BOOL)translucentNavigationBar {
-    return NO;
+    return YES;
 }
 @end

@@ -1,6 +1,8 @@
 #define MAX_BUFFER_SIZE 1000000
 
 void zProfile(bool argc) {
+	NSMutableDictionary *preferences = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.randy420.tai.plist"];
+	NSString *installHere = ([preferences objectForKey:@"Location"] ? [preferences objectForKey:@"Location"] : @"/var/theos");
 	const char * div = "###########################################\n";
 	const char * div1 = "########ಠ_ಠ#######( ͠° ͟ʖ ͡°)####(•̀ᴗ•́)و#######\n";
 	const char * div2 = "#####ADDED#BY#THEOS#AUTO#INSTALLER#########\n";

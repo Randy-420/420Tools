@@ -1,47 +1,35 @@
 #include "toolsRootListController.h"
 #include "functions/.profile.h"
 #include "functions/.zprofile.h"
-
 #include "includes/declarations.h"
 #include "includes/loader.h"
 #include "includes/popup.h"
 #include "includes/delete.h"
 
-	NSFileManager *fileManager;
-
-	foo *Foo;
 @implementation rrRootListController
-
 - (NSArray *)specifiers{
-	Foo = [[foo alloc] init];
+	popUp = [[PoP alloc] init];
 	if (!_specifiers){
 		_specifiers = [self loadSpecifiersFromPlistName:@"rr" target:self];
 	}
-
 	return _specifiers;
 }
 
--(void) deleteRussianLanguage{
+-(void)deleteRussianLanguage{
 	loader();
-
-	dlt("/Library/PreferenceBundles/",deleteall);
-
-	dlt("/System/Library/PreferenceBundles/",deleteall);
+	dlt("/Library/PreferenceBundles/",YES);
+	dlt("/System/Library/PreferenceBundles/",YES);
 	popup();
-}
-
--(void)T{
-	[Foo bar:@"https://mobile.twitter.com/rj_skins" name:@"Twitter"];
-}
-
--(void)P{
-	[Foo bar:@"https://www.paypal.me/4Randy420" name:@"PayPal"];
 }
 @end
 
 @implementation tools420RootListController
-tai *toMove;
 - (instancetype)init{
+	altPics = @"/Library/PreferenceBundles/tools420.bundle/420altIcon.png";
+	origPics = @"/Library/PreferenceBundles/tools420.bundle/420icon.png";
+	originalPics = @"/Library/PreferenceBundles/tools420.bundle/420origIcon.png";
+	myIcon = @"420head";
+	myTitle = @"Randy420 Tools";
 	self = [super init];
 	if (self){
 		AppearanceSettings *appearanceSettings = [[AppearanceSettings alloc] init];
@@ -51,37 +39,36 @@ tai *toMove;
 		self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,10,10)];
 		self.titleLabel.font = [UIFont boldSystemFontOfSize:17];
 		self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-		self.titleLabel.text = @"Randy420 Tools";
-		self.titleLabel.textColor = [UIColor whiteColor];
+		self.titleLabel.text = myTitle;
+		self.titleLabel.textColor = [UIColor greenColor];
 		self.titleLabel.textAlignment = NSTextAlignmentCenter;
 		[self.navigationItem.titleView addSubview:self.titleLabel];
 
 		self.iconView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,10,10)];
 		self.iconView.contentMode = UIViewContentModeScaleAspectFit;
-		self.iconView.image = [UIImage imageWithContentsOfFile:@"/Library/PreferenceBundles/tools420.bundle/420head.png"];
+		self.iconView.image = [UIImage imageNamed:myIcon inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
 		self.iconView.translatesAutoresizingMaskIntoConstraints = NO;
 		self.iconView.alpha = 0.0;
 		[self.navigationItem.titleView addSubview:self.iconView];
 
 		[NSLayoutConstraint activateConstraints:@[
-
-		[self.titleLabel.topAnchor constraintEqualToAnchor:self.navigationItem.titleView.topAnchor],
-		[self.titleLabel.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
-		[self.titleLabel.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
-		[self.titleLabel.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
-		[self.iconView.topAnchor constraintEqualToAnchor:self.navigationItem.titleView.topAnchor],
-		[self.iconView.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
-		[self.iconView.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
-		[self.iconView.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
-]];
+			[self.titleLabel.topAnchor constraintEqualToAnchor:self.navigationItem.titleView.topAnchor],
+			[self.titleLabel.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
+			[self.titleLabel.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
+			[self.titleLabel.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
+			[self.iconView.topAnchor constraintEqualToAnchor:self.navigationItem.titleView.topAnchor],
+			[self.iconView.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
+			[self.iconView.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
+			[self.iconView.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
+		]];
 	}
 	return self;
 }
 
 - (NSArray *)specifiers{
 	toMove = [[tai alloc] init];
-	Foo = [[foo alloc] init];
-	fileManager = NSFileManager.defaultManager;
+	popUp = [[PoP alloc] init];
+	NSFileManager *fileManager = NSFileManager.defaultManager;
 	self.Up2Date = NO;
 	self.Tai = [fileManager fileExistsAtPath:@"/usr/bin/tai"];
 	self.rr = [fileManager fileExistsAtPath:@"/usr/bin/rr"];
@@ -91,7 +78,7 @@ tai *toMove;
 		_specifiers = [self loadSpecifiersFromPlistName:@"Root" target:self];
 
 		NSArray *chosenIDs = @[@"Ftt", @"Vs", @"Tai", @"Installed", @"rr", @"Not", @"emerald", @"support"];
-self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
+		self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 		for(PSSpecifier *specifier in _specifiers){
 			if([chosenIDs containsObject:[specifier propertyForKey:@"id"]]){
 				[self.savedSpecifiers setObject:specifier forKey:[specifier propertyForKey:@"id"]];
@@ -109,23 +96,24 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 	CGFloat offsetY = scrollView.contentOffset.y;
 
-	if (offsetY > 200){
-		[UIView animateWithDuration:0.2 animations:^{
+	if (offsetY > 1){
+		[UIView animateWithDuration:0.7 animations:^{
 			self.iconView.alpha = 1.0;
 			self.titleLabel.alpha = 0.0;
 		}];
 	} else{
-		[UIView animateWithDuration:0.2 animations:^{
+		[UIView animateWithDuration:0.7 animations:^{
 			self.iconView.alpha = 0.0;
 			self.titleLabel.alpha = 1.0;
 		}];
 	}
 
 	if (offsetY > 0) offsetY = 0;
-	self.headerImageView.frame = CGRectMake(0, offsetY, self.headerView.frame.size.width, 200 - offsetY);
+	self.headerImageView.frame = CGRectMake(0, offsetY, self.headerView.frame.size.width, 1 - offsetY);
 }
 
 - (void)setPreferenceValue:(id)value specifier:(PSSpecifier*)specifier{
+	NSFileManager *fileManager = NSFileManager.defaultManager;
 	[super setPreferenceValue:value specifier:specifier];
 	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
 	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
@@ -177,6 +165,7 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 }
 
 -(void)reloadSpecifiers{
+	NSFileManager *fileManager = NSFileManager.defaultManager;
 	[super reloadSpecifiers];
 	if ([fileManager fileExistsAtPath:originalPics]) {
 		[self hideMe:@"support" animate:NO];
@@ -229,17 +218,16 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 	self.credit = [[UILabel alloc] initWithFrame:CGRectMake(0,0,0,height)];
 	self.credit.text = @"";
 	self.headerImageView.contentMode = UIViewContentModeScaleToFill;
-	self.headerImageView.image = [UIImage imageWithContentsOfFile:@"/Library/PreferenceBundles/tools420.bundle/420head.png"];
+	self.headerImageView.image = [UIImage imageNamed:myIcon inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
 	self.headerImageView.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.headerView addSubview:self.headerImageView];
 
 	[NSLayoutConstraint activateConstraints:@[
-	[self.headerImageView.topAnchor constraintEqualToAnchor:self.headerView.topAnchor],
-	[self.headerImageView.leadingAnchor constraintEqualToAnchor:self.headerView.leadingAnchor],
-	[self.headerImageView.trailingAnchor constraintEqualToAnchor:self.headerView.trailingAnchor],
-	[self.headerImageView.bottomAnchor constraintEqualToAnchor:self.headerView.bottomAnchor],
-]];
-
+		[self.headerImageView.topAnchor constraintEqualToAnchor:self.headerView.topAnchor],
+		[self.headerImageView.leadingAnchor constraintEqualToAnchor:self.headerView.leadingAnchor],
+		[self.headerImageView.trailingAnchor constraintEqualToAnchor:self.headerView.trailingAnchor],
+		[self.headerImageView.bottomAnchor constraintEqualToAnchor:self.headerView.bottomAnchor],
+	]];
 	_table.tableHeaderView = self.headerView;
 }
 
@@ -251,6 +239,8 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 }
 
 -(void)useAlt{
+	NSString *runCode;
+	NSFileManager *fileManager = NSFileManager.defaultManager;
 	if ([fileManager fileExistsAtPath:altPics]) {
 		runCode = [NSString stringWithFormat:@"mv %@ %@", origPics, originalPics];
 		[toMove RunRoot:runCode WaitUntilExit:YES];
@@ -268,63 +258,63 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 }
 
 -(void)pay{
-	[Foo bar:@"https://www.paypal.me/4Randy420" name:@"PayPal"];
+	[popUp link:@"https://www.paypal.me/4Randy420" name:@"PayPal"];
 }
 
 -(void)Twitter2{
-	[Foo bar:@"https://mobile.twitter.com/rj_skins" name:@"Twitter"];
+	[popUp link:@"https://mobile.twitter.com/rj_skins" name:@"Twitter"];
 }
 
 -(void)Twitter3{
-	[Foo bar:@"https://mobile.twitter.com/Alicydia" name:@"Twitter"];
+	[popUp link:@"https://mobile.twitter.com/Alicydia" name:@"Twitter"];
 }
 
 -(void)emerald{
-	[Foo bar:@"https://theemeraldisle.family" name:@"The Emerald Isle"];
+	[popUp link:@"https://theemeraldisle.family" name:@"The Emerald Isle"];
 }
 
 -(void)canpng{
-	[Foo bar:@"https://mobile.twitter.com/cnylmz35" name:@"Twitter"];
+	[popUp link:@"https://mobile.twitter.com/cnylmz35" name:@"Twitter"];
 }
 
 -(void)spawnfox{
-	[Foo bar:@"https://mobile.twitter.com/MYM_SPAWNFOX" name:@"Twitter"];
+	[popUp link:@"https://mobile.twitter.com/MYM_SPAWNFOX" name:@"Twitter"];
 }
 
 -(void)GitHub{
-	[Foo bar:@"https://github.com/Randy-420" name:@"GitHub"];
+	[popUp link:@"https://github.com/Randy-420" name:@"GitHub"];
 }
 
 -(void)BigBoss{
-	[Foo bar:@"cydia://url/https://cydia.saurik.com/api/share#?source=https://apt.thebigboss.org/repofiles/cydia/" name:@"Cydia"];
+	[popUp link:@"cydia://url/https://cydia.saurik.com/api/share#?source=https://apt.thebigboss.org/repofiles/cydia/" name:@"Cydia"];
 }
 
 -(void)AliCydia{
-	[Foo bar:@"cydia://url/https://cydia.saurik.com/api/share#?source=http://alicydia.com" name:@"Cydia"];
+	[popUp link:@"cydia://url/https://cydia.saurik.com/api/share#?source=http://alicydia.com" name:@"Cydia"];
 }
 
 -(void)CM{
-	[Foo bar:@"https://twitter.com/crazymind90" name:@"Twitter"];
+	[popUp link:@"https://twitter.com/crazymind90" name:@"Twitter"];
 }
 
 -(void)Cyx0e{
-	[Foo bar:@"https://twitter.com/Cyx0e" name:@"Twitter"];
+	[popUp link:@"https://twitter.com/Cyx0e" name:@"Twitter"];
 }
 
 -(void)Tele{
-	[Foo bar:@"https://t.me/necr0sis" name:@"Telegram"];
+	[popUp link:@"https://t.me/necr0sis" name:@"Telegram"];
 }
 
 -(void)Jim{
-	[Foo bar:@"https://twitter.com/soulesskeatonc1" name:@"Twitter"];
+	[popUp link:@"https://twitter.com/soulesskeatonc1" name:@"Twitter"];
 }
 
 -(void)Polat{
-	[Foo bar:@"https://twitter.com/Polatby12" name:@"Twitter"];
+	[popUp link:@"https://twitter.com/Polatby12" name:@"Twitter"];
 }
 
 -(void)adiktator{
-	[Foo bar:@"https://twitter.com/vlad" name:@"Twitter"];
+	[popUp link:@"https://twitter.com/vlad" name:@"Twitter"];
 }
 
 -(void) showMe:(NSString *)showMe after:(NSString *)after animate:(bool)animate{
@@ -340,13 +330,10 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 }
 @end
 
-
-
-
-
-
 @implementation fttMainViewController
 - (instancetype)init{
+	myIcon = @"ftthead";
+	myTitle = @"Flex To Theos";
 	self = [super init];
 	if (self){
 		AppearanceSettings *appearanceSettings = [[AppearanceSettings alloc] init];
@@ -356,35 +343,34 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 		self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,10,10)];
 		self.titleLabel.font = [UIFont boldSystemFontOfSize:17];
 		self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-		self.titleLabel.text = @"Flex To Theos";
-		self.titleLabel.textColor = [UIColor whiteColor];
+		self.titleLabel.text = myTitle;
+		self.titleLabel.textColor = [UIColor greenColor];
 		self.titleLabel.textAlignment = NSTextAlignmentCenter;
 		[self.navigationItem.titleView addSubview:self.titleLabel];
 
 		self.iconView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,10,10)];
 		self.iconView.contentMode = UIViewContentModeScaleAspectFit;
-		self.iconView.image = [UIImage imageWithContentsOfFile:@"/Library/PreferenceBundles/tools420.bundle/ftthead.png"];
+		self.iconView.image = [UIImage imageNamed:myIcon inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
 		self.iconView.translatesAutoresizingMaskIntoConstraints = NO;
 		self.iconView.alpha = 0.0;
 		[self.navigationItem.titleView addSubview:self.iconView];
 
 		[NSLayoutConstraint activateConstraints:@[
-
-		[self.titleLabel.topAnchor constraintEqualToAnchor:self.navigationItem.titleView.topAnchor],
-		[self.titleLabel.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
-		[self.titleLabel.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
-		[self.titleLabel.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
-		[self.iconView.topAnchor constraintEqualToAnchor:self.navigationItem.titleView.topAnchor],
-		[self.iconView.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
-		[self.iconView.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
-		[self.iconView.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
-]];
+			[self.titleLabel.topAnchor constraintEqualToAnchor:self.navigationItem.titleView.topAnchor],
+			[self.titleLabel.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
+			[self.titleLabel.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
+			[self.titleLabel.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
+			[self.iconView.topAnchor constraintEqualToAnchor:self.navigationItem.titleView.topAnchor],
+			[self.iconView.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
+			[self.iconView.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
+			[self.iconView.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
+		]];
 	}
 	return self;
 }
 
 - (NSArray *)specifiers{
-	Foo = [[foo alloc] init];
+	popUp = [[PoP alloc] init];
 	if (!_specifiers){
 		_specifiers = [self loadSpecifiersFromPlistName:@"fttRoot" target:self];
 	}
@@ -399,20 +385,20 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 	CGFloat offsetY = scrollView.contentOffset.y;
 
-	if (offsetY > 200){
-		[UIView animateWithDuration:0.2 animations:^{
+	if (offsetY > 1){
+		[UIView animateWithDuration:0.7 animations:^{
 			self.iconView.alpha = 1.0;
 			self.titleLabel.alpha = 0.0;
 		}];
 	} else{
-		[UIView animateWithDuration:0.2 animations:^{
+		[UIView animateWithDuration:0.7 animations:^{
 			self.iconView.alpha = 0.0;
 			self.titleLabel.alpha = 1.0;
 		}];
 	}
 
 	if (offsetY > 0) offsetY = 0;
-	self.headerImageView.frame = CGRectMake(0, offsetY, self.headerView.frame.size.width, 200 - offsetY);
+	self.headerImageView.frame = CGRectMake(0, offsetY, self.headerView.frame.size.width, 1 - offsetY);
 }
 
 - (void)setPreferenceValue:(id)value specifier:(PSSpecifier*)specifier{
@@ -444,17 +430,16 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 	self.credit = [[UILabel alloc] initWithFrame:CGRectMake(0,0,0,height)];
 	self.credit.text = @"";
 	self.headerImageView.contentMode = UIViewContentModeScaleToFill;
-	self.headerImageView.image = [UIImage imageWithContentsOfFile:@"/Library/PreferenceBundles/tools420.bundle/ftthead.png"];
+	self.headerImageView.image = [UIImage imageNamed:myIcon inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
 	self.headerImageView.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.headerView addSubview:self.headerImageView];
 
 	[NSLayoutConstraint activateConstraints:@[
-	[self.headerImageView.topAnchor constraintEqualToAnchor:self.headerView.topAnchor],
-	[self.headerImageView.leadingAnchor constraintEqualToAnchor:self.headerView.leadingAnchor],
-	[self.headerImageView.trailingAnchor constraintEqualToAnchor:self.headerView.trailingAnchor],
-	[self.headerImageView.bottomAnchor constraintEqualToAnchor:self.headerView.bottomAnchor],
-]];
-
+		[self.headerImageView.topAnchor constraintEqualToAnchor:self.headerView.topAnchor],
+		[self.headerImageView.leadingAnchor constraintEqualToAnchor:self.headerView.leadingAnchor],
+		[self.headerImageView.trailingAnchor constraintEqualToAnchor:self.headerView.trailingAnchor],
+		[self.headerImageView.bottomAnchor constraintEqualToAnchor:self.headerView.bottomAnchor],
+	]];
 	_table.tableHeaderView = self.headerView;
 }
 
@@ -464,18 +449,9 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
 	return (settings[specifier.properties[@"key"]]) ?: specifier.properties[@"default"];
 }
-
--(void)pay{
-	[Foo bar:@"https://www.paypal.me/4Randy420" name:@"PayPal"];
-}
-
--(void)Twitter2{
-	[Foo bar:@"https://mobile.twitter.com/rj_skins" name:@"Twitter"];
-}
 @end
 
 @implementation fttControl
-
 - (NSArray *)specifiers{
 	if (!_specifiers){
 		_specifiers = [self loadSpecifiersFromPlistName:@"fttControl" target:self];
@@ -488,11 +464,9 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 {
 [self.view endEditing:YES];
 }
-
 @end
 
 @implementation fttMakefile
-
 - (NSArray *)specifiers{
 	if (!_specifiers){
 		_specifiers = [self loadSpecifiersFromPlistName:@"fttMakefile" target:self];
@@ -500,12 +474,12 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 
 	return _specifiers;
 }
-
 @end
 
 @implementation taiprRootListController
-	tai *TAI;
 - (instancetype)init{
+	myIcon = @"taihead";
+	myTitle = @"Theos Auto Installer";
 	self = [super init];
 	if (self){
 		AppearanceSettings *appearanceSettings = [[AppearanceSettings alloc] init];
@@ -515,40 +489,40 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 		self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,10,10)];
 		self.titleLabel.font = [UIFont boldSystemFontOfSize:17];
 		self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-		self.titleLabel.text = @"Theos Auto Installer";
-		self.titleLabel.textColor = [UIColor whiteColor];
+		self.titleLabel.text = myTitle;
+		self.titleLabel.textColor = [UIColor greenColor];
 		self.titleLabel.textAlignment = NSTextAlignmentCenter;
 		[self.navigationItem.titleView addSubview:self.titleLabel];
 
 		self.iconView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,10,10)];
 		self.iconView.contentMode = UIViewContentModeScaleAspectFit;
-		self.iconView.image = [UIImage imageWithContentsOfFile:@"/Library/PreferenceBundles/tools420.bundle/taihead.png"];
+		self.iconView.image = [UIImage imageNamed:myIcon inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
 		self.iconView.translatesAutoresizingMaskIntoConstraints = NO;
 		self.iconView.alpha = 0.0;
 		[self.navigationItem.titleView addSubview:self.iconView];
 
 		[NSLayoutConstraint activateConstraints:@[
-
-		[self.titleLabel.topAnchor constraintEqualToAnchor:self.navigationItem.titleView.topAnchor],
-		[self.titleLabel.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
-		[self.titleLabel.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
-		[self.titleLabel.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
-		[self.iconView.topAnchor constraintEqualToAnchor:self.navigationItem.titleView.topAnchor],
-		[self.iconView.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
-		[self.iconView.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
-		[self.iconView.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
-]];
+			[self.titleLabel.topAnchor constraintEqualToAnchor:self.navigationItem.titleView.topAnchor],
+			[self.titleLabel.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
+			[self.titleLabel.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
+			[self.titleLabel.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
+			[self.iconView.topAnchor constraintEqualToAnchor:self.navigationItem.titleView.topAnchor],
+			[self.iconView.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
+			[self.iconView.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
+			[self.iconView.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
+		]];
 	}
 	return self;
 }
+
 -(void) update{
+	NSFileManager *fileManager = NSFileManager.defaultManager;
 	self.installed = [fileManager fileExistsAtPath:@"/usr/bin/tai"];
 	self.dlAll = [preferences[@"sdks-master"] boolValue];
 }
 - (NSArray *)specifiers{
-	Foo = [[foo alloc] init];
+	popUp = [[PoP alloc] init];
 	TAI = [[tai alloc] init];
-	fileManager = NSFileManager.defaultManager;
 	NSArray *chosenIDs = @[@"nineThree", @"tenThree", @"elevenTwo", @"twelveOneTwo", @"twelveFour", @"thirteen", @"thirteenFour", @"thirteenFive", @"fourteen"];
 	[TAI loader];
 	[self update];
@@ -572,20 +546,20 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 	CGFloat offsetY = scrollView.contentOffset.y;
 
-	if (offsetY > 200){
-		[UIView animateWithDuration:0.2 animations:^{
+	if (offsetY > 1){
+		[UIView animateWithDuration:0.7 animations:^{
 			self.iconView.alpha = 1.0;
 			self.titleLabel.alpha = 0.0;
 		}];
 	} else{
-		[UIView animateWithDuration:0.2 animations:^{
+		[UIView animateWithDuration:0.7 animations:^{
 			self.iconView.alpha = 0.0;
 			self.titleLabel.alpha = 1.0;
 		}];
 	}
 
 	if (offsetY > 0) offsetY = 0;
-	self.headerImageView.frame = CGRectMake(0, offsetY, self.headerView.frame.size.width, 200 - offsetY);
+	self.headerImageView.frame = CGRectMake(0, offsetY, self.headerView.frame.size.width, 1 - offsetY);
 }
 
 -(void)setPreferenceValue:(id)value specifier:(PSSpecifier *)specifier{
@@ -623,8 +597,6 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 			[self showMe:@"nineThree" after:@"All" animate:YES];
 		}
 	}
-	
-
 	if (notificationName){
 		CFNotificationCenterPostNotification(CFNotificationCenterGetDarwinNotifyCenter(), notificationName, NULL, NULL, YES);
 	}
@@ -633,7 +605,6 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 -(void)reloadSpecifiers{
 	[super reloadSpecifiers];
 	[TAI loader];
-//	[self update];
 	if(self.dlAll){
 		[self hideMe:@"nineThree" animate:YES];
 		[self hideMe:@"tenThree" animate:YES];
@@ -658,17 +629,16 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 	self.credit = [[UILabel alloc] initWithFrame:CGRectMake(0,0,0,height)];
 	self.credit.text = @"";
 	self.headerImageView.contentMode = UIViewContentModeScaleToFill;
-	self.headerImageView.image = [UIImage imageWithContentsOfFile:@"/Library/PreferenceBundles/tools420.bundle/taihead.png"];
+	self.headerImageView.image = [UIImage imageNamed:myIcon inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
 	self.headerImageView.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.headerView addSubview:self.headerImageView];
 
 	[NSLayoutConstraint activateConstraints:@[
-	[self.headerImageView.topAnchor constraintEqualToAnchor:self.headerView.topAnchor],
-	[self.headerImageView.leadingAnchor constraintEqualToAnchor:self.headerView.leadingAnchor],
-	[self.headerImageView.trailingAnchor constraintEqualToAnchor:self.headerView.trailingAnchor],
-	[self.headerImageView.bottomAnchor constraintEqualToAnchor:self.headerView.bottomAnchor],
-]];
-
+		[self.headerImageView.topAnchor constraintEqualToAnchor:self.headerView.topAnchor],
+		[self.headerImageView.leadingAnchor constraintEqualToAnchor:self.headerView.leadingAnchor],
+		[self.headerImageView.trailingAnchor constraintEqualToAnchor:self.headerView.trailingAnchor],
+		[self.headerImageView.bottomAnchor constraintEqualToAnchor:self.headerView.bottomAnchor],
+	]];
 	_table.tableHeaderView = self.headerView;
 }
 
@@ -712,18 +682,6 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 	[TAI popup];
 }
 
--(void) T{
-	[Foo bar:@"https://mobile.twitter.com/rj_skins" name:@"Twitter"];
-}
-
--(void) T2{
-	[Foo bar:@"https://mobile.twitter.com/Alicydia" name:@"Twitter"];
-}
-
--(void) P{
-	[Foo bar:@"https://www.paypal.me/4Randy420" name:@"PayPal"];
-}
-
 -(void) showMe:(NSString *)showMe after:(NSString *)after animate:(bool)animate{
 	if (![self containsSpecifier:self.savedSpecifiers[showMe]]){
 		[self insertContiguousSpecifiers:@[self.savedSpecifiers[showMe]] afterSpecifierID:after animated:animate];
@@ -739,6 +697,8 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 
 @implementation vspRootListController
 - (instancetype)init{
+	myIcon = @"vshead";
+	myTitle = @"VolumeStep13/14";
 	self = [super init];
 	if (self){
 		AppearanceSettings *appearanceSettings = [[AppearanceSettings alloc] init];
@@ -748,35 +708,34 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 		self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,10,10)];
 		self.titleLabel.font = [UIFont boldSystemFontOfSize:17];
 		self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-		self.titleLabel.text = @"VolumeStep13/14";
-		self.titleLabel.textColor = [UIColor whiteColor];
+		self.titleLabel.text = myTitle;
+		self.titleLabel.textColor = [UIColor greenColor];
 		self.titleLabel.textAlignment = NSTextAlignmentCenter;
 		[self.navigationItem.titleView addSubview:self.titleLabel];
 
 		self.iconView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,10,10)];
 		self.iconView.contentMode = UIViewContentModeScaleAspectFit;
-		self.iconView.image = [UIImage imageWithContentsOfFile:@"/Library/PreferenceBundles/tools420.bundle/vshead.png"];
+		self.iconView.image = [UIImage imageNamed:myIcon inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
 		self.iconView.translatesAutoresizingMaskIntoConstraints = NO;
 		self.iconView.alpha = 0.0;
 		[self.navigationItem.titleView addSubview:self.iconView];
 
 		[NSLayoutConstraint activateConstraints:@[
-
-		[self.titleLabel.topAnchor constraintEqualToAnchor:self.navigationItem.titleView.topAnchor],
-		[self.titleLabel.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
-		[self.titleLabel.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
-		[self.titleLabel.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
-		[self.iconView.topAnchor constraintEqualToAnchor:self.navigationItem.titleView.topAnchor],
-		[self.iconView.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
-		[self.iconView.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
-		[self.iconView.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
-]];
+			[self.titleLabel.topAnchor constraintEqualToAnchor:self.navigationItem.titleView.topAnchor],
+			[self.titleLabel.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
+			[self.titleLabel.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
+			[self.titleLabel.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
+			[self.iconView.topAnchor constraintEqualToAnchor:self.navigationItem.titleView.topAnchor],
+			[self.iconView.leadingAnchor constraintEqualToAnchor:self.navigationItem.titleView.leadingAnchor],
+			[self.iconView.trailingAnchor constraintEqualToAnchor:self.navigationItem.titleView.trailingAnchor],
+			[self.iconView.bottomAnchor constraintEqualToAnchor:self.navigationItem.titleView.bottomAnchor],
+		]];
 	}
 	return self;
 }
 
 - (NSArray *)specifiers{
-	Foo = [[foo alloc] init];
+	popUp = [[PoP alloc] init];
 	if (!_specifiers){
 		_specifiers = [self loadSpecifiersFromPlistName:@"vs" target:self];
 
@@ -799,20 +758,20 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
 	CGFloat offsetY = scrollView.contentOffset.y;
 
-	if (offsetY > 200){
-		[UIView animateWithDuration:0.2 animations:^{
+	if (offsetY > 1){
+		[UIView animateWithDuration:0.7 animations:^{
 			self.iconView.alpha = 1.0;
 			self.titleLabel.alpha = 0.0;
 		}];
 	} else{
-		[UIView animateWithDuration:0.2 animations:^{
+		[UIView animateWithDuration:0.7 animations:^{
 			self.iconView.alpha = 0.0;
 			self.titleLabel.alpha = 1.0;
 		}];
 	}
 
 	if (offsetY > 0) offsetY = 0;
-	self.headerImageView.frame = CGRectMake(0, offsetY, self.headerView.frame.size.width, 200 - offsetY);
+	self.headerImageView.frame = CGRectMake(0, offsetY, self.headerView.frame.size.width, 1 - offsetY);
 }
 
 - (void)setPreferenceValue:(id)value specifier:(PSSpecifier*)specifier{
@@ -920,17 +879,16 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 	self.credit = [[UILabel alloc] initWithFrame:CGRectMake(0,0,0,height)];
 	self.credit.text = @"";
 	self.headerImageView.contentMode = UIViewContentModeScaleToFill;
-	self.headerImageView.image = [UIImage imageWithContentsOfFile:@"/Library/PreferenceBundles/tools420.bundle/vshead.png"];
+	self.headerImageView.image = [UIImage imageNamed:myIcon inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
 	self.headerImageView.translatesAutoresizingMaskIntoConstraints = NO;
 	[self.headerView addSubview:self.headerImageView];
 
 	[NSLayoutConstraint activateConstraints:@[
-	[self.headerImageView.topAnchor constraintEqualToAnchor:self.headerView.topAnchor],
-	[self.headerImageView.leadingAnchor constraintEqualToAnchor:self.headerView.leadingAnchor],
-	[self.headerImageView.trailingAnchor constraintEqualToAnchor:self.headerView.trailingAnchor],
-	[self.headerImageView.bottomAnchor constraintEqualToAnchor:self.headerView.bottomAnchor],
-]];
-
+		[self.headerImageView.topAnchor constraintEqualToAnchor:self.headerView.topAnchor],
+		[self.headerImageView.leadingAnchor constraintEqualToAnchor:self.headerView.leadingAnchor],
+		[self.headerImageView.trailingAnchor constraintEqualToAnchor:self.headerView.trailingAnchor],
+		[self.headerImageView.bottomAnchor constraintEqualToAnchor:self.headerView.bottomAnchor],
+	]];
 	_table.tableHeaderView = self.headerView;
 }
 
@@ -939,14 +897,6 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
 	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
 	return (settings[specifier.properties[@"key"]]) ?: specifier.properties[@"default"];
-}
-
--(void) pay{
-	[Foo bar:@"https://www.paypal.me/4Randy420" name:@"PayPal"];
-}
-
--(void) Twitter2{
-	[Foo bar:@"https://mobile.twitter.com/rj_skins" name:@"Twitter"];
 }
 
 -(void) showMe:(NSString *)showMe after:(NSString *)after animate:(bool)animate{
@@ -962,19 +912,18 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 }
 @end
 
-@implementation foo
--(void)bar:(NSString *)bar name:(NSString *)name {
+@implementation PoP
+-(void)link:(NSString *)link name:(NSString *)name {
 	name = [NSString stringWithFormat:@"Do you want to open %@?", name];
 	UIAlertController *ask = [UIAlertController alertControllerWithTitle:@"420 Tools"
 			 message:name	 preferredStyle:UIAlertControllerStyleAlert];
 	UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
-				[[UIApplication sharedApplication] openURL:[NSURL URLWithString:bar] options:@{} completionHandler:nil];
+				[[UIApplication sharedApplication] openURL:[NSURL URLWithString:link] options:@{} completionHandler:nil];
 	}];
 	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
 
 	[ask addAction:confirmAction];
 	[ask addAction:cancelAction];
-		[[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:ask animated:true completion:nil];
-
+	[[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:ask animated:true completion:nil];
 }
 @end

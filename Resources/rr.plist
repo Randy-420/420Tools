@@ -18,34 +18,6 @@
 			<key>label</key>
 			<string>Remove Russian Language</string>
 		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>label</key>
-			<string>Contact 🌎</string>
-		</dict>
-		<dict>
-			<key>action</key>
-			<string>T</string>
-			<key>cell</key>
-			<string>PSButtonCell</string>
-			<key>icon</key>
-			<string>t.png</string>
-			<key>label</key>
-			<string>Randy420 (Dev)</string>
-		</dict>
-		<dict>
-			<key>action</key>
-			<string>P</string>
-			<key>cell</key>
-			<string>PSButtonCell</string>
-			<key>icon</key>
-			<string>pay.png</string>
-			<key>id</key>
-			<string>switchID</string>
-			<key>label</key>
-			<string>Cheers a beer 🍺</string>
-		</dict>
 	</array>
 	<key>title</key>
 	<string>Remove Russian Language</string>

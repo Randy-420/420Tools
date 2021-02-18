@@ -261,42 +261,6 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
-			<key>label</key>
-			<string>Contact 🌎</string>
-		</dict>
-		<dict>
-			<key>action</key>
-			<string>T</string>
-			<key>cell</key>
-			<string>PSButtonCell</string>
-			<key>icon</key>
-			<string>t.png</string>
-			<key>label</key>
-			<string>Randy420 (Dev)</string>
-		</dict>
-		<dict>
-			<key>action</key>
-			<string>T2</string>
-			<key>cell</key>
-			<string>PSButtonCell</string>
-			<key>icon</key>
-			<string>t.png</string>
-			<key>label</key>
-			<string>AliCydia (Designer)</string>
-		</dict>
-		<dict>
-			<key>action</key>
-			<string>P</string>
-			<key>cell</key>
-			<string>PSButtonCell</string>
-			<key>icon</key>
-			<string>pay.png</string>
-			<key>label</key>
-			<string>Cheers a beer 🍺</string>
-		</dict>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
 			<key>footerAlignment</key>
 			<string>1</string>
 			<key>footerText</key>
