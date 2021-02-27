@@ -54,7 +54,15 @@
 	PoP *popUp;
 	NSString *myIcon;
 	NSString *myTitle;
+	NSString *successfulDelete;
+	NSString *failedDelete;
 }
+@property (nonatomic, assign) BOOL rrfailure;
+@property int total;
+@property int deleted;
+-(void) popup;
+-(void)loader;
+-(void)Dlt:(NSString *)Dlt deleteall:(bool)deleteall;
 @end
 
 @interface fttMainViewController : HBListController

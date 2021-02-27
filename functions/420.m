@@ -3,6 +3,18 @@
 #define _POSIX_SPAWN_ALLOW_DATA_EXEC 0x2000
 extern char **environ;
 
+static NSString *GetNSString(NSString *pkey, NSString *defaultValue, NSString *plst){
+	NSMutableDictionary *Dict = [NSMutableDictionary dictionaryWithDictionary:[NSMutableDictionary dictionaryWithContentsOfFile:[NSString stringWithFormat:@"/var/mobile/Library/Preferences/%@.plist",plst]]];
+
+	return [Dict objectForKey:pkey] ? [Dict objectForKey:pkey] : defaultValue;
+}
+
+static BOOL GetBool(NSString *pkey, BOOL defaultValue, NSString *plst) {
+	NSMutableDictionary *Dict = [NSMutableDictionary dictionaryWithDictionary:[NSMutableDictionary dictionaryWithContentsOfFile:[NSString stringWithFormat:@"/var/mobile/Library/Preferences/%@.plist",plst]]];
+
+	return [Dict objectForKey:pkey] ? [[Dict objectForKey:pkey] boolValue] : defaultValue;
+}
+
 void Run_CMDDER(const char *cmd) {
 	pid_t pid;
 	const char *argv[] = {"sh", "-c", cmd, NULL};
@@ -21,6 +33,7 @@ void Run_CMDDER(const char *cmd) {
 		
 	} 
 }
+
 @implementation tai
 id CC(NSString *CMD) {
 	return [NSString stringWithFormat:@"echo \"%@\" | GaPp",CMD];
@@ -64,6 +77,7 @@ id CC(NSString *CMD) {
  
 	return outputString; 
 }
+
 -(void) RunCMD:(NSString *)RunCMD WaitUntilExit:(BOOL)WaitUntilExit { 
 	if (WaitUntilExit) {
 		NSString *SSHGetFlex = [NSString stringWithFormat:@"%@",RunCMD];
@@ -142,19 +156,18 @@ id CC(NSString *CMD) {
 	NSFileManager *fileManager = NSFileManager.defaultManager;
 	self.installedTheos = [fileManager fileExistsAtPath : @"/theos"];
 	self.installedVarTheos = [fileManager fileExistsAtPath : @"/var/theos"];
-	preferences = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.randy420.tai.plist"];
-	installHere = ([preferences objectForKey:@"Location"] ? [preferences objectForKey:@"Location"] : @"/var/theos");
-	self.enhance = ([preferences objectForKey:@"enhance"] ? [[preferences objectForKey:@"enhance"] boolValue] : NO);
-	self.all = ([preferences objectForKey:@"sdks-master"] ? [[preferences objectForKey:@"sdks-master"] boolValue] : NO);
-	self.nineThree = ([preferences objectForKey:@"9.3"] ? [[preferences objectForKey:@"9.3"] boolValue] : YES);
-	self.tenThree = ([preferences objectForKey:@"10.3"] ? [[preferences objectForKey:@"10.3"] boolValue] : NO);
-	self.elevenTwo = ([preferences objectForKey:@"11.2"] ? [[preferences objectForKey:@"11.2"] boolValue] : NO);
-	self.twelveOneTwo = ([preferences objectForKey:@"12.1.2"] ? [[preferences objectForKey:@"12.1.2"] boolValue] : NO);
-	self.twelveFour = ([preferences objectForKey:@"12.4"] ? [[preferences objectForKey:@"12.4"] boolValue] : YES);
-	self.thirteen = ([preferences objectForKey:@"13.0"] ? [[preferences objectForKey:@"13.0"] boolValue] : NO);
-	self.thirteenFour = ([preferences objectForKey:@"13.4"] ? [[preferences objectForKey:@"13.4"] boolValue] : NO);
-	self.thirteenFive = ([preferences objectForKey:@"13.5"] ? [[preferences objectForKey:@"13.5"] boolValue] : YES);
-	self.fourteen = ([preferences objectForKey:@"14.0"] ? [[preferences objectForKey:@"14.0"] boolValue] : NO);
+	installHere = GetNSString(@"Location", @"/var/theos", @"com.randy420.tai");
+	self.enhance = GetBool(@"enhance", NO, @"com.randy420.tai");
+	self.all = GetBool(@"sdks-master", NO, @"com.randy420.tai");
+	self.nineThree = GetBool(@"9.3", YES, @"com.randy420.tai");
+	self.tenThree = GetBool(@"10.3", NO, @"com.randy420.tai");
+	self.elevenTwo = GetBool(@"11.2", NO, @"com.randy420.tai");
+	self.twelveOneTwo = GetBool(@"12.1.2", NO, @"com.randy420.tai");
+	self.twelveFour = GetBool(@"12.4", YES, @"com.randy420.tai");
+	self.thirteen = GetBool(@"13.0", NO, @"com.randy420.tai");
+	self.thirteenFour = GetBool(@"13.4", NO, @"com.randy420.tai");
+	self.thirteenFive = GetBool(@"13.5", YES, @"com.randy420.tai");
+	self.fourteen = GetBool(@"14.0", NO, @"com.randy420.tai");
 
 	self.tweaksMade = NO;
 	self.folderFailed = NO;

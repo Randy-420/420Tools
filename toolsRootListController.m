@@ -1,10 +1,12 @@
 #include "toolsRootListController.h"
 #include "functions/.profile.h"
 #include "functions/.zprofile.h"
-#include "includes/declarations.h"
-#include "includes/loader.h"
-#include "includes/popup.h"
-#include "includes/delete.h"
+
+static BOOL GetBool(NSString *pkey, BOOL defaultValue, NSString *plst) {
+	NSMutableDictionary *Dict = [NSMutableDictionary dictionaryWithDictionary:[NSMutableDictionary dictionaryWithContentsOfFile:[NSString stringWithFormat:@"/var/mobile/Library/Preferences/%@.plist",plst]]];
+
+	return [Dict objectForKey:pkey] ? [[Dict objectForKey:pkey] boolValue] : defaultValue;
+}
 
 @implementation rrRootListController
 - (NSArray *)specifiers{
@@ -15,11 +17,73 @@
 	return _specifiers;
 }
 
+-(void)loader{
+	self.rrfailure = NO;
+
+	self.deleted = 0;
+	self.total = 0;
+
+	successfulDelete = @"[Successfully Deleted]\n";
+	failedDelete = @"[Failed To Delete]\n";
+}
+
+-(void)popup{
+	NSString *Title = @"";
+	NSString *rrmsg = @"";
+	NSString *myProgName = @"[Remove Russian Language\nby: Randy420]\n\n";
+	if (self.deleted + self.total == 0){
+		Title = [NSString stringWithFormat:@"%@\n[No Russian Packs Installed]\n", myProgName];
+	}else{
+		Title = [NSString stringWithFormat:@"%@\n%d/%d Language Packs Deleted\n", myProgName, self.deleted, self.total];
+		if (self.deleted >= 1){
+			rrmsg = [NSString stringWithFormat:@"%@%@\n", rrmsg, successfulDelete];
+		}
+		if (self.rrfailure){
+			rrmsg = [NSString stringWithFormat:@"%@%@\n", rrmsg, failedDelete];
+		}
+	}
+	UIAlertController *alert = [UIAlertController alertControllerWithTitle:Title message: rrmsg preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+	}];
+	[alert addAction:action];
+	[[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:true completion:nil];
+}
+
+-(void)Dlt:(NSString *)Dlt deleteall:(bool)deleteall{
+	const char *dir = [Dlt UTF8String];
+	NSFileManager *fileManager = NSFileManager.defaultManager;
+	tai *CM = [[tai alloc] init];
+	struct dirent* de;
+
+	DIR* dr = opendir(dir);
+	if (!(dr == NULL)) {
+
+		while ((de = readdir(dr)) != NULL) {
+			NSString *Dir = [NSString stringWithUTF8String:dir];
+			NSString *path = [NSString stringWithFormat:@"%@%s/ru.lproj", Dir, de->d_name];
+			if ([fileManager fileExistsAtPath:path]) {
+				self.total+=1;
+				if (deleteall) {
+					[CM RunRoot:[NSString stringWithFormat:@"rm -rf %@", path] WaitUntilExit:YES];
+				}
+				if (![fileManager fileExistsAtPath:path]) {
+					self.deleted += 1;
+					successfulDelete = [NSString stringWithFormat:@"%s%s/ru.lproj\n", [successfulDelete UTF8String], de->d_name];
+				}else{
+					failedDelete = [NSString stringWithFormat:@"%s%s/ru.lproj\n", [failedDelete UTF8String], de->d_name];
+					self.rrfailure = YES;
+				}
+			}
+		}
+		closedir(dr);
+	}
+}
+
 -(void)deleteRussianLanguage{
-	loader();
-	dlt("/Library/PreferenceBundles/",YES);
-	dlt("/System/Library/PreferenceBundles/",YES);
-	popup();
+	[self loader];
+	[self Dlt:@"/Library/PreferenceBundles/" deleteall:YES];
+	[self Dlt:@"/System/Library/PreferenceBundles/" deleteall:YES];
+	[self popup];
 }
 @end
 
@@ -518,7 +582,7 @@
 -(void) update{
 	NSFileManager *fileManager = NSFileManager.defaultManager;
 	self.installed = [fileManager fileExistsAtPath:@"/usr/bin/tai"];
-	self.dlAll = [preferences[@"sdks-master"] boolValue];
+	self.dlAll = GetBool(@"sdks-master", NO, @"com.randy420.tai");
 }
 - (NSArray *)specifiers{
 	popUp = [[PoP alloc] init];
@@ -808,7 +872,7 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 			}
 		}
 	}
-	
+
 	if ([key isEqualToString:@"vsSeperate"]){
 		if (![value boolValue]){
 			self.separate = NO;
@@ -826,9 +890,7 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 			[self showMe:@"prefIntDown" after:@"VolumeDown" animate:YES];
 			[self hideMe:@"VolumeUpDown" animate:NO];
 		}
-	}
-	
-	if ([key isEqualToString:@"vsVibEnabled"]){
+	}	if ([key isEqualToString:@"vsVibEnabled"]){
 		if (![value boolValue]){
 			[self hideMe:@"VibeHide" animate:YES];
 		} else{
@@ -843,8 +905,8 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 
 -(void)reloadSpecifiers{
 	[super reloadSpecifiers];
-	NSDictionary *preferences = [NSDictionary dictionaryWithContentsOfFile:@"/var/mobile/Library/Preferences/com.randy420.volumestepprefs.plist"];
-	if (![preferences[@"VSStepEnabled"] boolValue]){
+	NSString *local = @"com.randy420.volumestepprefs";
+	if (!GetBool(@"VSStepEnabled", YES, local)){
 		[self hideMe:@"vsSeperate" animate:YES];
 		[self hideMe:@"VolumeUp" animate:YES];
 		[self hideMe:@"VolumeUpDown" animate:YES];
@@ -853,7 +915,7 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 		[self hideMe:@"prefIntDown" animate:YES];
 	}
 
-	if(![preferences[@"vsSeperate"] boolValue]){
+	if(!GetBool(@"vsSeperate", NO, local)){
 		self.separate = NO;
 		[self hideMe:@"VolumeUp" animate:NO];
 		[self hideMe:@"VolumeDown" animate:YES];
@@ -863,7 +925,7 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 		[self hideMe:@"VolumeUpDown" animate:NO];
 	}
 
-	if(![preferences[@"vsVibEnabled"] boolValue]){
+	if(!GetBool(@"vsVibEnabled", YES, local)){
 		[self hideMe:@"VibeHide" animate:YES];
 	}
 }
@@ -916,9 +978,9 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 -(void)link:(NSString *)link name:(NSString *)name {
 	name = [NSString stringWithFormat:@"Do you want to open %@?", name];
 	UIAlertController *ask = [UIAlertController alertControllerWithTitle:@"420 Tools"
-			 message:name	 preferredStyle:UIAlertControllerStyleAlert];
+	 message:name	 preferredStyle:UIAlertControllerStyleAlert];
 	UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
-				[[UIApplication sharedApplication] openURL:[NSURL URLWithString:link] options:@{} completionHandler:nil];
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:link] options:@{} completionHandler:nil];
 	}];
 	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
 

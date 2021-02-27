@@ -4,8 +4,7 @@
 - (id)_deviceInfoForKey:(NSString *)key;  
 @end
 
-@interface tai : NSObject
-{
+@interface tai : NSObject{
 	/* VARIABLES */
 	NSString *tFolderSuc;
 	NSString *tFolderFail;

@@ -24,12 +24,13 @@ void zProfile(bool argc) {
 ///////////////////////////////////////
 	if (!(fp == NULL)) {
 		while (fgets(chunk, sizeof(chunk), fp) != NULL) {
-			if (!(((((((((((strcmp(chunk, div) == 0) || (strcmp(chunk, div1) == 0)) || (strcmp(chunk, div2) == 0)) || (strcmp(chunk, div3) == 0)) || (strcmp(chunk, ttheos) == 0)) || (strcmp(chunk, nic) == 0)) || (strcmp(chunk, cd) == 0)) || (strcmp(chunk, mmake) == 0)) || (strcmp(chunk, old)==0)) || (strcmp(chunk, varTtheos)==0)) || (strcmp(chunk, varNic)==0))) {
+			if (!(strcmp(chunk, div)==0) || (strcmp(chunk, div1)==0)	|| (strcmp(chunk, div2)==0) || (strcmp(chunk, div3)==0) || (strcmp(chunk, ttheos)==0) || (strcmp(chunk, nic)==0) || (strcmp(chunk, cd)==0) || (strcmp(chunk, mmake)==0) || (strcmp(chunk, old)==0) || (strcmp(chunk, varTtheos)==0) || (strcmp(chunk, varNic)==0)) {
 				fputs(chunk, fw);
 			}
 		}
 	}
 	if (argc) {
+		fputs(div3, fw);
 		fputs(div, fw);
 		fputs(div1, fw);
 		fputs(div2, fw);
@@ -49,6 +50,7 @@ void zProfile(bool argc) {
 		fputs(div2, fw);
 		fputs(div1, fw);
 		fputs(div, fw);
+		fputs(div3, fw);
 	}
 	fclose(fp);
 	fclose(fw);
