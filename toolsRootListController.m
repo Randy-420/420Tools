@@ -3,9 +3,13 @@
 #include "functions/.zprofile.h"
 
 static BOOL GetBool(NSString *pkey, BOOL defaultValue, NSString *plst) {
-	NSMutableDictionary *Dict = [NSMutableDictionary dictionaryWithDictionary:[NSMutableDictionary dictionaryWithContentsOfFile:[NSString stringWithFormat:@"/var/mobile/Library/Preferences/%@.plist",plst]]];
+NSDictionary *Dict = [NSDictionary dictionaryWithContentsOfFile:[NSString stringWithFormat:@"/var/mobile/Library/Preferences/%@.plist",plst]];
 
 	return [Dict objectForKey:pkey] ? [[Dict objectForKey:pkey] boolValue] : defaultValue;
+}
+
+static id CC(NSString *CMD) {
+	return [NSString stringWithFormat:@"echo \"%@\" | gap",CMD];
 }
 
 @implementation rrRootListController
@@ -64,7 +68,7 @@ static BOOL GetBool(NSString *pkey, BOOL defaultValue, NSString *plst) {
 			if ([fileManager fileExistsAtPath:path]) {
 				self.total+=1;
 				if (deleteall) {
-					[CM RunRoot:[NSString stringWithFormat:@"rm -rf %@", path] WaitUntilExit:YES];
+					[CM RunCMD:[NSString stringWithFormat:@"rm -rf %@", CC(path)] WaitUntilExit:YES];
 				}
 				if (![fileManager fileExistsAtPath:path]) {
 					self.deleted += 1;
@@ -306,19 +310,19 @@ static BOOL GetBool(NSString *pkey, BOOL defaultValue, NSString *plst) {
 	NSString *runCode;
 	NSFileManager *fileManager = NSFileManager.defaultManager;
 	if ([fileManager fileExistsAtPath:altPics]) {
-		runCode = [NSString stringWithFormat:@"mv %@ %@", origPics, originalPics];
-		[toMove RunRoot:runCode WaitUntilExit:YES];
-		runCode = [NSString stringWithFormat:@"mv %@ %@", altPics, origPics];
-		[toMove RunRoot:runCode WaitUntilExit:YES];
+		runCode = CC([NSString stringWithFormat:@"mv %@ %@", origPics, originalPics]);
+		[toMove RunCMD:runCode WaitUntilExit:YES];
+		runCode = CC([NSString stringWithFormat:@"mv %@ %@", altPics, origPics]);
+		[toMove RunCMD:runCode WaitUntilExit:YES];
 		
 	} else {
-		runCode = [NSString stringWithFormat:@"mv %@ %@", origPics, altPics];
-		[toMove RunRoot:runCode WaitUntilExit:YES];
-		runCode = [NSString stringWithFormat:@"mv %@ %@", originalPics, origPics];
-		[toMove RunRoot:runCode WaitUntilExit:YES];
+		runCode = CC([NSString stringWithFormat:@"mv %@ %@", origPics, altPics]);
+		[toMove RunCMD:runCode WaitUntilExit:YES];
+		runCode = CC([NSString stringWithFormat:@"mv %@ %@", originalPics, origPics]);
+		[toMove RunCMD:runCode WaitUntilExit:YES];
 	}
-	runCode = [NSString stringWithFormat:@"killall Preferences"];
-	[toMove RunRoot:runCode WaitUntilExit:YES];
+	runCode = CC([NSString stringWithFormat:@"killall Preferences"]);
+	[toMove RunCMD:runCode WaitUntilExit:YES];
 }
 
 -(void)pay{
@@ -925,7 +929,7 @@ self.savedSpecifiers = (_savedSpecifiers) ?: [[NSMutableDictionary alloc] init];
 		[self hideMe:@"VolumeUpDown" animate:NO];
 	}
 
-	if(!GetBool(@"vsVibEnabled", YES, local)){
+	if(!GetBool(@"vsVibEnabled", NO, local)){
 		[self hideMe:@"VibeHide" animate:YES];
 	}
 }

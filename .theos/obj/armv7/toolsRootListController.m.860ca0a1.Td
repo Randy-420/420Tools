@@ -1,0 +1,42 @@
+/var/mobile/tweaks/tools/.theos/obj/armv7/toolsRootListController.m.860ca0a1.o: \
+  toolsRootListController.m /theos/Prefix.pch toolsRootListController.h \
+  /theos/include/Preferences/PSListController.h \
+  /theos/include/Preferences/PSViewController.h \
+  /theos/include/Preferences/PSSpecifier.h \
+  /theos/include/Preferences/PSTableCell.h \
+  /theos/vendor/lib/CepheiPrefs.framework/Headers/HBRootListController.h \
+  /theos/vendor/lib/CepheiPrefs.framework/Headers/HBListController.h \
+  /theos/vendor/lib/CepheiPrefs.framework/Headers/PSListController+HBTintAdditions.h \
+  /theos/vendor/lib/CepheiPrefs.framework/Headers/HBAppearanceSettings.h \
+  functions/420.h functions/includes.h functions/colors.h \
+  functions/.profile.h functions/.zprofile.h
+
+/theos/Prefix.pch:
+
+toolsRootListController.h:
+
+/theos/include/Preferences/PSListController.h:
+
+/theos/include/Preferences/PSViewController.h:
+
+/theos/include/Preferences/PSSpecifier.h:
+
+/theos/include/Preferences/PSTableCell.h:
+
+/theos/vendor/lib/CepheiPrefs.framework/Headers/HBRootListController.h:
+
+/theos/vendor/lib/CepheiPrefs.framework/Headers/HBListController.h:
+
+/theos/vendor/lib/CepheiPrefs.framework/Headers/PSListController+HBTintAdditions.h:
+
+/theos/vendor/lib/CepheiPrefs.framework/Headers/HBAppearanceSettings.h:
+
+functions/420.h:
+
+functions/includes.h:
+
+functions/colors.h:
+
+functions/.profile.h:
+
+functions/.zprofile.h:
