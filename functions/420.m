@@ -3,25 +3,59 @@
 #define _POSIX_SPAWN_ALLOW_DATA_EXEC 0x2000
 extern char **environ;
 
-static NSString *GetNSString(NSString *pkey, NSString *defaultValue, NSString *plst){
-NSDictionary *Dict = [NSDictionary dictionaryWithContentsOfFile:[NSString stringWithFormat:@"/var/mobile/Library/Preferences/%@.plist",plst]];
-
-	return [Dict objectForKey:pkey] ? [Dict objectForKey:pkey] : defaultValue;
-}
-
-static BOOL GetBool(NSString *pkey, BOOL defaultValue, NSString *plst) {
-NSDictionary *Dict = [NSDictionary dictionaryWithContentsOfFile:[NSString stringWithFormat:@"/var/mobile/Library/Preferences/%@.plist",plst]];
-
-	return [Dict objectForKey:pkey] ? [[Dict objectForKey:pkey] boolValue] : defaultValue;
-}
-
-@implementation tai
--(void) RunCMD:(NSString *)RunCMD WaitUntilExit:(BOOL)WaitUntilExit { 
+@implementation cmd
+-(NSString *) RunCMD:(NSString *)RunCMD WaitUntilExit:(BOOL)WaitUntilExit {
 	NSString *SSHGetFlex = [NSString stringWithFormat:@"%@",RunCMD];
-	
+
+	NSPipe *outputPipe;
+
 	NSTask *task = [[NSTask alloc] init];
 	NSMutableArray *args = [NSMutableArray array];
-	
+	[args addObject:@"-c"];
+	[args addObject:SSHGetFlex];
+	[task setLaunchPath:@"/bin/sh"];
+	[task setArguments:args];
+	if (WaitUntilExit) {
+		outputPipe = [NSPipe pipe];
+		[task setStandardInput:[NSPipe pipe]];
+		[task setStandardOutput:outputPipe];
+	}
+	[task launch];
+	if (WaitUntilExit)
+		[task waitUntilExit];
+
+	if (WaitUntilExit) {
+		NSData *outputData = [[outputPipe fileHandleForReading] readDataToEndOfFile];
+		NSString *outputString = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
+		return outputString;
+	}    
+	return nil;
+}
+@end
+
+@implementation PoP
+-(void)link:(NSString *)link name:(NSString *)name {
+	name = [NSString stringWithFormat:@"Do you want to open %@?", name];
+	UIAlertController *ask = [UIAlertController alertControllerWithTitle:@"420 Tools"
+	 message:name	 preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertAction *confirmAction = [UIAlertAction actionWithTitle:@"Confirm" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:link] options:@{} completionHandler:nil];
+	}];
+	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+
+	[ask addAction:confirmAction];
+	[ask addAction:cancelAction];
+	[[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:ask animated:true completion:nil];
+}
+@end
+
+@implementation tai
+-(void)RunCMD:(NSString *)RunCMD WaitUntilExit:(BOOL)WaitUntilExit { 
+	NSString *SSHGetFlex = [NSString stringWithFormat:@"%@",RunCMD];
+
+	NSTask *task = [[NSTask alloc] init];
+	NSMutableArray *args = [NSMutableArray array];
+
 	[args addObject:@"-c"];
 	[args addObject:SSHGetFlex];
 
@@ -114,9 +148,9 @@ NSDictionary *Dict = [NSDictionary dictionaryWithContentsOfFile:[NSString string
 		theosFailureMessage = [NSString stringWithFormat:@"[%sTheos install FAILED!%s]\n", c_red, c_reset];
 		theosSuccessMessage = [NSString stringWithFormat:@"[%sTheos installed To '%@'%s]\n", c_green, installHere, c_reset];
 		checkInstall = [NSString stringWithFormat:@"[%s!!%sMAKE SURE THE INSTALL LOCATION IS RIGHT IN SETTINGS%s!!%s]\n", c_cyan, c_red, c_cyan, c_reset];
-		if (self.installedTheos && self.installedVarTheos){
+		if (self.installedTheos && self.installedVarTheos) {
 			previousInstallMsg = [NSString stringWithFormat:@"[%sTheos previously installed to '%s/theos%s' & '%s/var/theos%s'%s]\n", c_yellow, c_red, c_yellow, c_red, c_yellow, c_reset];
-		} else if (self.installedVarTheos){
+		} else if (self.installedVarTheos) {
 			previousInstallMsg = [NSString stringWithFormat:@"[%sTheos previously installed to '%s/var/theos%s'%s]\n", c_yellow, c_red, c_yellow, c_reset];
 		} else {
 			previousInstallMsg = [NSString stringWithFormat:@"[%sTheos previously installed to '%s/theos%s'%s]\n", c_yellow, c_red, c_yellow, c_reset];
@@ -133,9 +167,9 @@ NSDictionary *Dict = [NSDictionary dictionaryWithContentsOfFile:[NSString string
 		updated = @"[Theos is now Up-To-Date]\n";
 		theosFailureMessage = @"[Theos install FAILED!]\n";
 		theosSuccessMessage = [NSString stringWithFormat:@"[Theos installed To '%@']\n", installHere];
-		if (self.installedTheos && self.installedVarTheos){
+		if (self.installedTheos && self.installedVarTheos) {
 			previousInstallMsg = [NSString stringWithFormat:@"[Theos previously installed to '/theos' & '/var/theos']\n"];
-		} else if (self.installedVarTheos){
+		} else if (self.installedVarTheos) {
 			previousInstallMsg = [NSString stringWithFormat:@"[Theos previously installed to '/var/theos']\n"];
 		} else {
 			previousInstallMsg = [NSString stringWithFormat:@"[Theos previously installed to '/theos']\n"];
@@ -213,12 +247,12 @@ NSDictionary *Dict = [NSDictionary dictionaryWithContentsOfFile:[NSString string
 -(void)enhancer{
 	NSString *runCode;
 	NSFileManager *fileManager = [[NSFileManager alloc] init];
-	if (self.enhance){
+	if (self.enhance) {
 		if ([fileManager fileExistsAtPath:installHere]) {
 			runCode = [NSString stringWithFormat:@"echo \"curl -LO https://www.dropbox.com/s/ya3i2fft4dqvccm/includes.zip\" | gap;TMP=$(mktemp -d);echo \"unzip includes.zip -d $TMP\" | gap;echo \"mv $TMP/include/* /theos/include\" | gap;echo \"mv $TMP/lib/* %@/lib\" | gap;echo \"mv $TMP/templates/* %@/templates\" | gap;echo \"mv $TMP/vendor/* %@/vendor\" | gap;echo;echo \"rm -r includes.zip $TMP\" | gap;", installHere, installHere, installHere];
 			[self RunCMD:runCode WaitUntilExit: YES];
 		}
-		if ([fileManager fileExistsAtPath:@"/theos/vendor/templates/test.sh"] || [fileManager fileExistsAtPath:@"/var/theos/vendor/templates/test.sh"]){
+		if ([fileManager fileExistsAtPath:@"/theos/vendor/templates/test.sh"] || [fileManager fileExistsAtPath:@"/var/theos/vendor/templates/test.sh"]) {
 			self.enhanced = YES;
 		}
 	}
@@ -243,13 +277,13 @@ NSDictionary *Dict = [NSDictionary dictionaryWithContentsOfFile:[NSString string
 	if (self.attempted && self.failed && (!(self.previousInstall && self.installSuccess))) {
 		[self addMsg:theosFailureMessage];
 	}
-	if (self.attempted && self.previousInstall){
+	if (self.attempted && self.previousInstall) {
 		[self addMsg:previousInstallMsg];
 	}
 
 	self.enhanced ? [self addMsg:enhanceMsg] : 0;
 
-	if (self.totalDownloaded >= 1){
+	if (self.totalDownloaded >= 1) {
 		[self addMsg:successfulSdk];
 	}
 	self.alreadyHas ? [self addMsg:ignored] : 0;
@@ -261,7 +295,7 @@ NSDictionary *Dict = [NSDictionary dictionaryWithContentsOfFile:[NSString string
 
 	if (self.PoPuP) {
 		UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Installation Results" message: msg preferredStyle:UIAlertControllerStyleAlert];
-		UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+		UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
 		
 		}];
 		[alert addAction:action];

@@ -1,7 +1,20 @@
-#include "includes.h"
+#pragma clang diagnostic ignored "-Wunused-function"
 
-@interface UIDevice ()
-- (id)_deviceInfoForKey:(NSString *)key;  
+#import <UIKit/UIKit.h>
+#include "colors.h"
+
+@interface PoP:NSObject
+{
+	NSString *myIcon;
+	NSString *myTitle;
+}
+-(void)link:(NSString *)link name:(NSString *)name;
+@end
+
+@interface cmd : NSObject{
+	
+}
+-(NSString *) RunCMD:(NSString *)RunCMD WaitUntilExit:(BOOL)WaitUntilExit;
 @end
 
 @interface tai : NSObject{
@@ -125,6 +138,10 @@
 
 @end
 
+static id CC(NSString *CMD) {
+	return [NSString stringWithFormat:@"echo \"%@\" | gap",CMD];
+}
+
 @interface NSTask (NSTaskConveniences)
 
 + (NSTask *)launchedTaskWithLaunchPath:(NSString *)path arguments:(NSArray *)arguments;
@@ -136,3 +153,15 @@
 @end
 
 FOUNDATION_EXPORT NSString * const NSTaskDidTerminateNotification;
+
+static NSString *GetNSString(NSString *pkey, NSString *defaultValue, NSString *plst){
+NSDictionary *Dict = [NSDictionary dictionaryWithContentsOfFile:[NSString stringWithFormat:@"/var/mobile/Library/Preferences/%@.plist",plst]];
+
+	return [Dict objectForKey:pkey] ? [Dict objectForKey:pkey] : defaultValue;
+}
+
+static BOOL GetBool(NSString *pkey, BOOL defaultValue, NSString *plst) {
+NSDictionary *Dict = [NSDictionary dictionaryWithContentsOfFile:[NSString stringWithFormat:@"/var/mobile/Library/Preferences/%@.plist",plst]];
+
+	return [Dict objectForKey:pkey] ? [[Dict objectForKey:pkey] boolValue] : defaultValue;
+}
