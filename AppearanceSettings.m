@@ -41,7 +41,7 @@
 	return [UIColor blackColor];
 }
 
-/*-(UIColor *)tableViewCellTextColor {
+-(UIColor *)tableViewCellTextColor {
 	return [UIColor whiteColor];
-}*/
+}
 @end
