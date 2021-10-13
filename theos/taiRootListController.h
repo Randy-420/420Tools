@@ -15,7 +15,6 @@
 	NSString *enhanceMsg;
 	NSString *updated;
 	NSString *Loc;
-	NSString *Loc1;
 	NSString *msg;
 	NSString *dlLinK;
 	NSString *installHere;

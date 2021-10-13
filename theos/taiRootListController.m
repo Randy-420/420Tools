@@ -361,13 +361,12 @@
 
 -(bool)sdk:(NSString *)sdk Link:(NSString *)Link {
 	NSFileManager *fm = [[NSFileManager alloc] init];
-	Loc = [NSString stringWithFormat:@"/theos/sdks/iPhoneOS%s.sdk", [sdk UTF8String]];
-	Loc1 = [NSString stringWithFormat:@"/var/theos/sdks/iPhoneOS%s.sdk", [sdk UTF8String]];
-	if (!self.previousInstall) {
+	Link = [NSString stringWithFormat:@"https://dropbox.com/s/%@", Link];
+	Loc = [NSString stringWithFormat:@"%@/sdks/iPhoneOS%@.sdk", installHere, sdk];
+	if (![fm fileExistsAtPath:Loc]) {
 		runCode = [NSString stringWithFormat:@"echo \"curl -LO %@\" | gap;TMP=$(mktemp -d);echo \"unzip %@.zip -d $TMP\" | gap;echo \"mv $TMP/*.sdk %@/sdks;echo\" | gap;echo \"rm -r %@.zip $TMP\" | gap", Link, sdk, installHere, sdk];
 		[self RunCMD:runCode WaitUntilExit: YES];
 		self.totalDownloaded += 1;
-		Loc = [NSString stringWithFormat:@"%@/sdks/iPhoneOS%@.sdk", installHere, sdk];
 		if ([fm fileExistsAtPath: Loc]) {
 			if (self.useColor) {
 				successfulSdk = [NSString stringWithFormat:@"%@%s ~iPhoneOS %@ SDK%s\n", successfulSdk, c_green, sdk, c_reset];
