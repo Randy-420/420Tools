@@ -6,7 +6,7 @@ BUNDLE_NAME = tools420
 
 export ARCHS = armv7 armv7s arm64 arm64e
 
-tools420_FILES = $(wildcard *.m) $(wildcard functions/*.m)
+tools420_FILES = $(wildcard *.m) $(wildcard */*.m)
 tools420_INSTALL_PATH = /Library/PreferenceBundles
 tools420_FRAMEWORKS = UIKit
 tools420_PRIVATE_FRAMEWORKS = Preferences

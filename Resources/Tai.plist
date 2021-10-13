@@ -72,6 +72,22 @@
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.randy420.tai</string>
+			<key>icon</key>
+			<string>00.png</string>
+			<key>id</key>
+			<string>eightFour</string>
+			<key>key</key>
+			<string>8.4</string>
+			<key>label</key>
+			<string>8.4 SDKS</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
 			<true/>
 			<key>defaults</key>
 			<string>com.randy420.tai</string>
@@ -83,6 +99,22 @@
 			<string>9.3</string>
 			<key>label</key>
 			<string>9.3 SDKS</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.randy420.tai</string>
+			<key>icon</key>
+			<string>00.png</string>
+			<key>id</key>
+			<string>ten</string>
+			<key>key</key>
+			<string>10.0</string>
+			<key>label</key>
+			<string>10.0 SDKS</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -108,6 +140,38 @@
 			<key>defaults</key>
 			<string>com.randy420.tai</string>
 			<key>icon</key>
+			<string>00.png</string>
+			<key>id</key>
+			<string>eleven</string>
+			<key>key</key>
+			<string>11.0</string>
+			<key>label</key>
+			<string>11.0 SDKS</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.randy420.tai</string>
+			<key>icon</key>
+			<string>00.png</string>
+			<key>id</key>
+			<string>elevenOne</string>
+			<key>key</key>
+			<string>11.1</string>
+			<key>label</key>
+			<string>11.1 SDKS</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.randy420.tai</string>
+			<key>icon</key>
 			<string>3.png</string>
 			<key>id</key>
 			<string>elevenTwo</string>
@@ -124,6 +188,38 @@
 			<key>defaults</key>
 			<string>com.randy420.tai</string>
 			<key>icon</key>
+			<string>00.png</string>
+			<key>id</key>
+			<string>elevenThree</string>
+			<key>key</key>
+			<string>11.3</string>
+			<key>label</key>
+			<string>11.3 SDKS</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.randy420.tai</string>
+			<key>icon</key>
+			<string>00.png</string>
+			<key>id</key>
+			<string>elevenFour</string>
+			<key>key</key>
+			<string>11.4</string>
+			<key>label</key>
+			<string>11.4 SDKS</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.randy420.tai</string>
+			<key>icon</key>
 			<string>4.png</string>
 			<key>id</key>
 			<string>twelveOneTwo</string>
@@ -131,6 +227,22 @@
 			<string>12.1.2</string>
 			<key>label</key>
 			<string>12.1.2 SDKS</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.randy420.tai</string>
+			<key>icon</key>
+			<string>00.png</string>
+			<key>id</key>
+			<string>twelveTwo</string>
+			<key>key</key>
+			<string>12.2</string>
+			<key>label</key>
+			<string>12.2 SDKS</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -163,6 +275,22 @@
 			<string>13.0</string>
 			<key>label</key>
 			<string>13.0 SDKS</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.randy420.tai</string>
+			<key>icon</key>
+			<string>00.png</string>
+			<key>id</key>
+			<string>thirteenTwo</string>
+			<key>key</key>
+			<string>13.2</string>
+			<key>label</key>
+			<string>13.2 SDKS</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -214,6 +342,86 @@
 		</dict>
 		<dict>
 			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.randy420.tai</string>
+			<key>icon</key>
+			<string>00.png</string>
+			<key>id</key>
+			<string>fourteenOne</string>
+			<key>key</key>
+			<string>14.1</string>
+			<key>label</key>
+			<string>14.1 SDKS</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.randy420.tai</string>
+			<key>icon</key>
+			<string>00.png</string>
+			<key>id</key>
+			<string>fourteenTwo</string>
+			<key>key</key>
+			<string>14.2</string>
+			<key>label</key>
+			<string>14.2 SDKS</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.randy420.tai</string>
+			<key>icon</key>
+			<string>00.png</string>
+			<key>id</key>
+			<string>fourteenThree</string>
+			<key>key</key>
+			<string>14.3</string>
+			<key>label</key>
+			<string>14.3 SDKS</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.randy420.tai</string>
+			<key>icon</key>
+			<string>00.png</string>
+			<key>id</key>
+			<string>fourteenFour</string>
+			<key>key</key>
+			<string>14.4</string>
+			<key>label</key>
+			<string>14.4 SDKS</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.randy420.tai</string>
+			<key>icon</key>
+			<string>00.png</string>
+			<key>id</key>
+			<string>fourteenFive</string>
+			<key>key</key>
+			<string>14.5</string>
+			<key>label</key>
+			<string>14.5 SDKS</string>
+		</dict>
+		<dict>
+			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>footerAlignment</key>
 			<string>0</string>
@@ -235,6 +443,8 @@
 			<string>PSButtonCell</string>
 			<key>icon</key>
 			<string>SDKS.png</string>
+			<key>id</key>
+			<string>Sdks</string>
 			<key>label</key>
 			<string>Get Dev Tools &amp; SDKS</string>
 		</dict>
@@ -245,6 +455,8 @@
 			<string>PSButtonCell</string>
 			<key>icon</key>
 			<string>Full.png</string>
+			<key>id</key>
+			<string>Full</string>
 			<key>label</key>
 			<string>Install Theos</string>
 		</dict>
@@ -255,8 +467,34 @@
 			<string>PSButtonCell</string>
 			<key>icon</key>
 			<string>update.png</string>
+			<key>id</key>
+			<string>Update</string>
 			<key>label</key>
 			<string>Update Theos</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSpinnerCell</string>
+			<key>id</key>
+			<string>load</string>
+			<key>label</key>
+			<string>Downloading files...</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGiantCell</string>
+			<key>id</key>
+			<string>top</string>
+			<key>label</key>
+			<string>🛑 DO NOT LEAVE THE SETTINGS PAGE ⛔️</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGiantCell</string>
+			<key>id</key>
+			<string>bottom</string>
+			<key>label</key>
+			<string>🛑 WAIT UNTIL FINISHED ⛔️</string>
 		</dict>
 		<dict>
 			<key>cell</key>
