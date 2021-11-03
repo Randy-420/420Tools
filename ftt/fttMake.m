@@ -1,15 +1,15 @@
-#include "fttMainRootListController.h"
+#include "fttMake.h"
 
-@implementation fttMainViewController
+@implementation fttMakefile
 - (instancetype)init{
 	myIcon = @"ftthead";
-	myTitle = @"Flex To Theos";
+	myTitle = @"Flex To Theos Makefile Handling";
 	self = [super init];
 	return self;
 }
 
 - (NSArray *)specifiers {
-	self.plistName = @"fttRoot";
+	self.plistName = @"fttMakefile";
 	return [super specifiers];
 }
 

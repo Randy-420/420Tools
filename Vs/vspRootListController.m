@@ -54,13 +54,13 @@
 	if ([key isEqualToString:@"vsSeperate"]){
 		if (![value boolValue]){
 			self.separate = NO;
-			if([self containsSpecifier:self.savedSpecifiers[@"prefInt"]]){
+			if ([self containsSpecifier:self.savedSpecifiers[@"prefInt"]]){
 				[self showMe:@"VolumeUpDown" after:@"vsSeperate" animate:NO];
 				[self hideMe:@"VolumeDown" animate:YES];
 				[self hideMe:@"VolumeUp" animate:NO];
 				[self hideMe:@"prefIntDown" animate:YES];
 			}
-		} else if([self containsSpecifier:self.savedSpecifiers[@"prefInt"]]){
+		} else if ([self containsSpecifier:self.savedSpecifiers[@"prefInt"]]){
 			self.separate = YES;
 			[self showMe:@"vsSeperate" after:@"vsEnable" animate:YES];
 			[self showMe:@"VolumeUp" after:@"vsSeperate" animate:NO];
@@ -89,7 +89,7 @@
 		[self hideMe:@"prefIntDown" animate:YES];
 	}
 
-	if(!GetBool(@"vsSeperate", NO, local)){
+	if (!GetBool(@"vsSeperate", NO, local)){
 		self.separate = NO;
 		[self hideMe:@"VolumeUp" animate:YES];
 		[self hideMe:@"VolumeDown" animate:YES];
@@ -108,6 +108,6 @@
 }
 
 -(id) readPreferenceValue:(PSSpecifier *)specifier{
-	return [self readPrefsValue:specifier path:[NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]]];
+	return [super readPreferenceValue:specifier];//[self readPrefsValue:specifier path:[NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]]];
 }
 @end

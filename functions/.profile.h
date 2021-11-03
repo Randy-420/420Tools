@@ -10,7 +10,7 @@ void Profile(bool argc) {
 ///////////////////////////////////////
 	if (fp) {
 		while (fgets(chunk, sizeof(chunk), fp) != NULL) {
-			if (!(strcmp(chunk, divider) == 0 || strcmp(chunk, divider1) == 0 || strcmp(chunk, divider2) == 0 || strcmp(chunk, divider3) == 0 || strcmp(chunk, ttheos) == 0 || strcmp(chunk, nic) == 0 || strcmp(chunk, cd) == 0 || strcmp(chunk, mmake) == 0 || strcmp(chunk, old)==0 || strcmp(chunk, varTtheos)==0 || strcmp(chunk, varNic)==0)) {
+			if (!(strcmp(chunk, divider)==0 || strcmp(chunk, divider1)==0 || strcmp(chunk, divider2)==0 || strcmp(chunk, divider3)==0 || strcmp(chunk, ttheos)==0 || strcmp(chunk, nic)==0 || strcmp(chunk, cd)==0 || strcmp(chunk, mmake)==0 || strcmp(chunk, old)==0 || strcmp(chunk, varTtheos)==0 || strcmp(chunk, varNic)==0)) {
 				fputs(chunk, fw);
 			}
 		}

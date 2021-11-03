@@ -65,6 +65,6 @@
 }
 
 -(id) readPreferenceValue:(PSSpecifier *)specifier{
-	return [self readPrefsValue:specifier path:[NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]]];
+	return [super readPreferenceValue:specifier];//[self readPrefsValue:specifier path:[NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]]];
 }
 @end

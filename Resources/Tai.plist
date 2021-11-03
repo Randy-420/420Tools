@@ -14,9 +14,11 @@
 			<key>cell</key>
 			<string>PSSegmentCell</string>
 			<key>default</key>
-			<integer>1</integer>
+			<string>/var/theos</string>
 			<key>defaults</key>
 			<string>com.randy420.tai</string>
+			<key>id</key>
+			<string>installLoc</string>
 			<key>key</key>
 			<string>Location</string>
 			<key>validTitles</key>
@@ -29,6 +31,22 @@
 				<string>/theos</string>
 				<string>/var/theos</string>
 			</array>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSStaticTextCell</string>
+			<key>id</key>
+			<string>theos</string>
+			<key>label</key>
+			<string>Theos is currently installed to /theos</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSStaticTextCell</string>
+			<key>id</key>
+			<string>varTheos</string>
+			<key>label</key>
+			<string>Theos is currently installed to /var/theos</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -435,6 +453,8 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
+			<key>id</key>
+			<string>Note</string>
 		</dict>
 		<dict>
 			<key>action</key>

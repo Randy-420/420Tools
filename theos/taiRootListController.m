@@ -11,18 +11,12 @@
 	return self;
 }
 
--(void) update{
-	NSFileManager *fileManager = NSFileManager.defaultManager;
-	self.installed = [fileManager fileExistsAtPath:@"/usr/bin/tai"];
-	self.dlAll = GetBool(@"sdks-master", NO, @"com.randy420.tai");
-}
-
 - (NSArray *)specifiers {
+	fm = [[NSFileManager alloc] init];
 	TAI = [[tai alloc] init];
 	self.plistName = @"Tai";
-	self.chosenIDs = @[@"eightFour", @"nineThree", @"ten", @"tenThree", @"eleven", @"elevenOne", @"elevenTwo", @"elevenThree", @"elevenFour", @"twelveOneTwo", @"twelveTwo", @"twelveFour", @"thirteen", @"thirteenTwo", @"thirteenFour", @"thirteenFive", @"fourteen", @"fourteenOne", @"fourteenTwo", @"fourteenThree", @"fourteenFour", @"fourteenFive", @"bottom", @"top", @"load", @"Full", @"Update", @"Sdks"];
+	self.chosenIDs = @[@"eightFour", @"nineThree", @"ten", @"tenThree", @"eleven", @"elevenOne", @"elevenTwo", @"elevenThree", @"elevenFour", @"twelveOneTwo", @"twelveTwo", @"twelveFour", @"thirteen", @"thirteenTwo", @"thirteenFour", @"thirteenFive", @"fourteen", @"fourteenOne", @"fourteenTwo", @"fourteenThree", @"fourteenFour", @"fourteenFive", @"bottom", @"top", @"load", @"Full", @"Update", @"Sdks", @"installLoc", @"theos", @"varTheos", @"Note"];
 	[TAI loader];
-	[self update];
 	return [super specifiers];
 }
 
@@ -37,17 +31,32 @@
 -(void)setPreferenceValue:(id)value specifier:(PSSpecifier *)specifier{
 	[super setPreferenceValue:value specifier:specifier];
 	[TAI loader];
-	[self update];
+
 	NSString *key = [specifier propertyForKey:@"key"];
 
 	[self hideMe:@"top" animate:NO];
 	[self hideMe:@"bottom" animate:NO];
 	[self hideMe:@"load" animate:NO];
 
-	if([key isEqualToString:@"sdks-master"]){
-		self.dlAll = [value boolValue];
+	if ([key isEqualToString:@"Location"]){
+		NSMutableDictionary *preferences;
+		if ([fm fileExistsAtPath:@"/var/mobile/Library/Preferences/com.randy420.tai.plist"]) {
+			preferences = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.randy420.tai.plist"];
+		} else {
+			preferences = [[NSMutableDictionary alloc] init];
+		}
+		if ([TAI installedTheos]){
+			[preferences setObject:@"/theos" forKey: @"Location"];
+		} else if ([TAI installedVarTheos]){
+			[preferences setObject:@"/var/theos" forKey: @"Location"];
+		}
+		[preferences writeToFile:@"/var/mobile/Library/Preferences/com.randy420.tai.plist" atomically:YES];
 
-		if(self.dlAll){
+		[self reloadSpecifiers];
+	}
+
+	if([key isEqualToString:@"sdks-master"]){
+		if([value boolValue]){
 			[self hideMe:@"eightFour" animate:YES];
 			[self hideMe:@"nineThree" animate:YES];
 			[self hideMe:@"ten" animate:YES];
@@ -101,11 +110,31 @@
 	[super reloadSpecifiers];
 	[TAI loader];
 
+		NSMutableDictionary *preferences;
+		if ([fm fileExistsAtPath:@"/var/mobile/Library/Preferences/com.randy420.tai.plist"]) {
+			preferences = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.randy420.tai.plist"];
+		} else {
+			preferences = [[NSMutableDictionary alloc] init];
+		}
+		if ([TAI installedTheos]){
+			[preferences setObject:@"/theos" forKey: @"Location"];
+			[preferences writeToFile:@"/var/mobile/Library/Preferences/com.randy420.tai.plist" atomically:YES];
+		} else if ([TAI installedVarTheos]){
+			[preferences setObject:@"/var/theos" forKey: @"Location"];
+			[preferences writeToFile:@"/var/mobile/Library/Preferences/com.randy420.tai.plist" atomically:YES];
+		}
+
 	[self hideMe:@"top" animate:NO];
 	[self hideMe:@"bottom" animate:NO];
 	[self hideMe:@"load" animate:NO];
 
-	if(self.dlAll){
+	if (![fm fileExistsAtPath:@"/theos"])
+		[self hideMe:@"theos" animate:NO];
+
+	if (![fm fileExistsAtPath:@"/var/theos"])
+		[self hideMe:@"varTheos" animate:NO];
+
+	if(TAI.all){
 		[self hideMe:@"eightFour" animate:YES];
 		[self hideMe:@"nineThree" animate:YES];
 		[self hideMe:@"ten" animate:YES];
@@ -163,62 +192,79 @@
 }
 
 -(void) sDks{
-	[self showMe:@"top" after:@"Sdks" animate:NO];
-	[self showMe:@"load" after:@"top" animate:NO];
-	[self showMe:@"bottom" after:@"load" animate:NO];
-	[self hideMe:@"Sdks" animate:NO];
-	[TAI loader];
-	[self update];
-
-	if (self.installed) {
-		[TAI enhancer];
-		[TAI DoWnLoAd];
-	}
-	[self showMe:@"Sdks" after:@"top" animate:NO];
-	[self hideMe:@"top" animate:NO];
-	[self hideMe:@"bottom" animate:NO];
-	[self hideMe:@"load" animate:NO];
-	[TAI popup];
+	[self pOpup:@"SDKS & HEADERS" cmd:1];
 }
 
 -(void) fullDl{
-	[self showMe:@"top" after:@"Full" animate:NO];
-	[self showMe:@"load" after:@"top" animate:NO];
-	[self showMe:@"bottom" after:@"load" animate:NO];
-	[self hideMe:@"Full" animate:NO];
-	[TAI loader];
-	[self update];
-
-	if (self.installed) {
-
-		if ([TAI theosInstall]){
-			Profile(YES);
-			zProfile(YES);
-		}
-		![TAI tweaksExists] ? [TAI makeTweaksFolder] : 0;
-		[TAI enhancer];
-		[TAI DoWnLoAd];
-	}
-	[self showMe:@"Full" after:@"Sdks" animate:NO];
-	[self hideMe:@"top" animate:NO];
-	[self hideMe:@"bottom" animate:NO];
-	[self hideMe:@"load" animate:NO];
-	[TAI popup];
+	[self pOpup:@"FULL THEOS INSTALL" cmd:2];
 }
 
 -(void) updateTheos{
-	[self showMe:@"top" after:@"Update" animate:NO];
-	[self showMe:@"load" after:@"top" animate:NO];
-	[self showMe:@"bottom" after:@"load" animate:NO];
-	[self hideMe:@"Update" animate:NO];
-	[TAI loader];
-	[self update];
-	self.installed ? [TAI upDateTheos] : 0;
-	[self showMe:@"Update" after:@"Full" animate:NO];
-	[self hideMe:@"top" animate:NO];
-	[self hideMe:@"bottom" animate:NO];
-	[self hideMe:@"load" animate:NO];
-	[TAI popup];
+	[self pOpup:@"UPDATE THEOS" cmd:3];
+}
+
+-(void)pOpup:(NSString *)pOpup cmd:(int)cmd{
+	pOpup = [NSString stringWithFormat:@"%@\n\nThis action requires an internet connection! Due to the amount of possible data usage, it is recommended to connect to WIFI for this.", pOpup];
+	UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Theos Auto Installer" message: pOpup preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertAction *action = [UIAlertAction actionWithTitle:@"Later" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+		
+	}];
+	[alert addAction:action];
+	action = [UIAlertAction actionWithTitle:@"Continue" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+		[TAI loader];
+		int CMD = cmd;
+		if (![TAI toolsInstalled]){
+			[TAI addMsg:@"[Please install Theos Auto Installer from BigBoss repo to use this feature.]"];
+			CMD = 0;
+		}
+		if (CMD == 1){
+			[self showMe:@"top" after:@"Note" animate:NO];
+			[self showMe:@"load" after:@"top" animate:NO];
+			[self showMe:@"bottom" after:@"load" animate:NO];
+			[self hideMe:@"Sdks" animate:NO];
+			[TAI enhancer];
+			[TAI DoWnLoAd];
+			[self showMe:@"Sdks" after:@"Note" animate:NO];
+			[self hideMe:@"top" animate:NO];
+			[self hideMe:@"bottom" animate:NO];
+			[self hideMe:@"load" animate:NO];
+		}
+
+		if (CMD == 2){
+			[self showMe:@"top" after:@"Full" animate:NO];
+			[self showMe:@"load" after:@"top" animate:NO];
+			[self showMe:@"bottom" after:@"load" animate:NO];
+			[self hideMe:@"Full" animate:NO];
+
+			if ([TAI theosInstall]){
+				Profile(YES);
+				zProfile(YES);
+			}
+			![TAI tweaksExists] ? [TAI makeTweaksFolder] : 0;
+			[TAI enhancer];
+			[TAI DoWnLoAd];
+			[self showMe:@"Full" after:@"Sdks" animate:NO];
+			[self hideMe:@"top" animate:NO];
+			[self hideMe:@"bottom" animate:NO];
+			[self hideMe:@"load" animate:NO];
+		}
+
+		if (CMD ==3){
+			[self showMe:@"top" after:@"Update" animate:NO];
+			[self showMe:@"load" after:@"top" animate:NO];
+			[self showMe:@"bottom" after:@"load" animate:NO];
+			[self hideMe:@"Update" animate:NO];
+			[TAI upDateTheos];
+			[self showMe:@"Update" after:@"Full" animate:NO];
+			[self hideMe:@"top" animate:NO];
+			[self hideMe:@"bottom" animate:NO];
+			[self hideMe:@"load" animate:NO];
+		}
+		[TAI popup];
+	}];
+	[alert addAction:action];
+
+	[[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:true completion:nil];
 }
 @end
 
@@ -253,14 +299,11 @@
 }
 
 -(BOOL)theosInstall {
-	NSFileManager *fm = [[NSFileManager alloc] init];
 	self.attempted = YES;
-	self.previousInstall = (self.installedTheos || self.installedVarTheos);
-
 	if (!self.previousInstall) {
 		runCode = [NSString stringWithFormat:@"echo \"git clone --recursive https://github.com/theos/theos.git %@\" | gap", installHere];
 		[self RunCMD:runCode WaitUntilExit: YES] ;
-		self.installSuccess = [fm fileExistsAtPath:installHere];
+		self.installSuccess = [[NSFileManager defaultManager] fileExistsAtPath:installHere];
 
 		if (self.installSuccess)
 			return YES;
@@ -303,6 +346,7 @@
 	self.installedTheos = [fm fileExistsAtPath:@"/theos"];
 	self.installedVarTheos = [fm fileExistsAtPath:@"/var/theos"];
 	self.tweaksExists = [fm fileExistsAtPath:@"/var/mobile/tweaks"];
+	self.toolsInstalled = [fm fileExistsAtPath:@"/usr/bin/tai"];
 
 	self.tweaksMade = NO;
 	self.folderFailed = NO;
@@ -359,7 +403,7 @@
 	msg = @"";
 }
 
--(bool)sdk:(NSString *)sdk Link:(NSString *)Link {
+-(void)sdk:(NSString *)sdk Link:(NSString *)Link {
 	NSFileManager *fm = [[NSFileManager alloc] init];
 	Link = [NSString stringWithFormat:@"https://dropbox.com/s/%@/%@.zip", Link, sdk];
 	Loc = [NSString stringWithFormat:@"%@/sdks/iPhoneOS%@.sdk", installHere, sdk];
@@ -373,7 +417,6 @@
 			} else {
 				successfulSdk = [NSString stringWithFormat:@"%@ ~iPhoneOS %@ SDK\n", successfulSdk, sdk];
 			}
-			return (YES);
 		} else {
 			if (self.useColor) {
 				failedSdk = [NSString stringWithFormat:@"%@ ~%siPhoneOS %@ SDK%s\n", failedSdk, c_red, sdk, c_reset];
@@ -381,13 +424,11 @@
 				failedSdk = [NSString stringWithFormat:@"%@ ~iPhoneOS %@ SDK\n", failedSdk, sdk];
 			}
 			self.failure = YES;
-			return (NO);
 		}
 	} else {
 		self.alreadyHas = YES;
 		ignored = self.useColor ? [NSString stringWithFormat:@"%@%s ~iPhoneOS %@ SDK%s\n", ignored, c_yellow, sdk, c_reset] : [NSString stringWithFormat:@"%@ ~iPhoneOS %@ SDK\n", ignored, sdk];
 	}
-	return (YES);
 }
 
 -(void)DoWnLoAd {
@@ -449,7 +490,8 @@
 	NSFileManager *fm = [[NSFileManager alloc] init];
 	if (self.enhance) {
 		if ([fm fileExistsAtPath:installHere]) {
-			runCode = [NSString stringWithFormat:@"echo \"curl -LO https://www.dropbox.com/s/ya3i2fft4dqvccm/includes.zip\" | gap;TMP=$(mktemp -d);echo \"unzip includes.zip -d $TMP\" | gap;echo \"mv $TMP/include/* %@/include\" | gap;echo \"mv $TMP/lib/* %@/lib\" | gap;echo \"mv $TMP/templates/* %@/templates\" | gap;echo \"mv $TMP/vendor/* %@/vendor\" | gap;echo;echo \"rm -r includes.zip $TMP\" | gap;", installHere, installHere, installHere, installHere];
+			runCode = [NSString stringWithFormat:@"echo \"curl -LO https://www.dropbox.com/s/ya3i2fft4dqvccm/includes.zip\" | gap;TMP=$(mktemp -d);echo \"unzip includes.zip -d $TMP\" | gap;echo \"cp -rf $TMP/include/* %@/include\" | gap;echo \"cp -rf $TMP/lib/* %@/lib\" | gap;echo \"cp -rf $TMP/templates/* %@/templates\" | gap;echo \"cp -rf $TMP/vendor/* %@/vendor\" | gap;echo;echo \"rm -r includes.zip $TMP\" | gap;", installHere, installHere, installHere, installHere];
+
 			[self RunCMD:runCode WaitUntilExit: YES];
 		}
 		if ([fm fileExistsAtPath:@"/theos/vendor/templates/test.sh"] || [fm fileExistsAtPath:@"/var/theos/vendor/templates/test.sh"]) {
@@ -465,12 +507,10 @@
 -(void)popup{
 	self.theosUpdate ? [self addMsg:updated] : 0;
 	self.installSuccess ? [self addMsg:theosSuccessMessage] : 0;
-	if (self.tweaksExists){
+	if (self.tweaksExists && self.toolsInstalled){
 		[self addMsg:tFolderIgnore];
-	}else{
-		if (!self.theosUpdate) {
+	}else if (!self.theosUpdate && self.toolsInstalled) {
 			self.tweaksMade ? [self addMsg:tFolderSuc] : (self.folderFailed ? [self addMsg:tFolderFail] : 0);
-		}
 	}
 	(self.attempted && self.failed && (!(self.previousInstall && self.installSuccess))) ? [self addMsg:theosFailureMessage] : 0;
 

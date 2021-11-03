@@ -1,16 +1,21 @@
-#include "fttMainRootListController.h"
+#include "fttControl.h"
 
-@implementation fttMainViewController
+@implementation fttControl
 - (instancetype)init{
 	myIcon = @"ftthead";
-	myTitle = @"Flex To Theos";
+	myTitle = @"Flex To Theos Control File Handling";
 	self = [super init];
 	return self;
 }
 
 - (NSArray *)specifiers {
-	self.plistName = @"fttRoot";
+	self.plistName = @"fttControl";
 	return [super specifiers];
+}
+
+-(void)Save
+{
+[self.view endEditing:YES];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

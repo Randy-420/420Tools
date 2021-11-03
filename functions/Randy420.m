@@ -61,7 +61,13 @@ extern char **environ;
 	[self containsSpecifier:self.savedSpecifiers[hideMe]] ? [self removeContiguousSpecifiers:@[self.savedSpecifiers[hideMe]] animated:animate] : 0;
 }
 
-- (id)readPrefsValue:(PSSpecifier *)specifier path:(NSString *)path {
+/*- (id)readPrefsValue:(PSSpecifier *)specifier path:(NSString *)path {
+	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
+	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
+	return (settings[specifier.properties[@"key"]]) ?: specifier.properties[@"default"];
+}*/
+-(id)readPreferenceValue:(PSSpecifier *)specifier{
+	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
 	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
 	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
 	return (settings[specifier.properties[@"key"]]) ?: specifier.properties[@"default"];
@@ -135,6 +141,10 @@ extern char **environ;
 
 	if (offsetY > 0) offsetY = 0;
 	self.headerImageView.frame = CGRectMake(0, offsetY, self.headerView.frame.size.width, 1 - offsetY);
+}
+
+-(void)reloadSpecifiers{
+	[super reloadSpecifiers];
 }
 
 - (void)viewDidLoad{

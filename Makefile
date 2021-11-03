@@ -10,9 +10,9 @@ tools420_FILES = $(wildcard *.m) $(wildcard */*.m)
 tools420_INSTALL_PATH = /Library/PreferenceBundles
 tools420_FRAMEWORKS = UIKit
 tools420_PRIVATE_FRAMEWORKS = Preferences
-$(BUNDLE_NAME)_EXTRA_FRAMEWORKS += Cephei CepheiPrefs
+tools420_EXTRA_FRAMEWORKS += Cephei CepheiPrefs
 
-$(BUNDLE_NAME)_CFLAGS = -fobjc-arc
+tools420_CFLAGS = -fobjc-arc
 
 include $(THEOS_MAKE_PATH)/bundle.mk
 

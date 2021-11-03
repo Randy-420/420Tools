@@ -1,6 +1,6 @@
 #include "../functions/Randy420.h"
 
-@interface fttMainViewController : randy420
+@interface fttMakefile : randy420
 {
 }
 @end

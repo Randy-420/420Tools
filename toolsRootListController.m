@@ -19,137 +19,140 @@
 	self.rr = [fileManager fileExistsAtPath:@"/usr/bin/rr"];
 	self.Ftt = [fileManager fileExistsAtPath:@"/usr/bin/ftt"];
 	self.Vs = [fileManager fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/VolumeStep13_14.dylib"];
+	self.fixCydia = [fileManager fileExistsAtPath:@"/usr/bin/fixCydia"];
 
 	self.plistName = @"Root";
-	self.chosenIDs = @[@"Ftt", @"Vs", @"Tai", @"Installed", @"rr", @"Not", @"emerald", @"support"];
+	self.chosenIDs = @[@"Ftt", @"Vs", @"Tai", @"Installed", @"rr", @"Not", @"emerald", @"support", @"fixCydia"];
 
-	//return [super specifiers];
 	if (!_specifiers) {
 		NSMutableArray *mutableSpecifiers = [NSMutableArray new];
 		PSSpecifier *specifier;
-		
+
 		specifier = groupSpec(@"");
-		[mutableSpecifiers addObject:specifier];
 		addSpec;
-		
+
 		specifier = groupSpec(@"  ✅ Installed:");
 		setId(@"Installed");
 		addSpec;
-		
+
 		specifier = groupSpec(@"  ❌  Not Installed:");
 		setId(@"Not");
 		addSpec;
-		
-		specifier = linkCellWithName(@"Theos Auto Installer", @"taiprRootListController");
+
+		specifier = linkCell(@"Theos Auto Installer", @"taiprRootListController");
 		setId(@"Tai");
 		setImg(@"taiicon");
 		addSpec;
-		//[specifier setProperty:@"" forKey:@""];
-		
-		specifier = linkCellWithName(@"VolumeStep13/14", @"vspRootListController");
+
+		specifier = linkCell(@"VolumeStep13/14", @"vspRootListController");
 		setId(@"Vs");
 		setImg(@"vsicon");
 		addSpec;
-		
-		specifier = linkCellWithName(@"Flex to Theos", @"fttMainViewController");
+
+		specifier = linkCell(@"fixCydia", @"fixCydiaRootListController");
+		setId(@"fixCydia");
+		setImg(@"cydiaicon");
+		addSpec;
+
+		specifier = linkCell(@"Flex to Theos", @"fttMainViewController");
 		setId(@"Ftt");
 		setImg(@"ftticon");
 		addSpec;
-		
-		specifier = linkCellWithName(@"Remove Russian Language", @"rrRootListController");
+
+		specifier = linkCell(@"Remove Russian Language", @"rrRootListController");
 		setId(@"rr");
 		setImg(@"rricon");
 		addSpec;
-		
+
 		specifier = groupSpec(@"");
 		addSpec;
-		
+
 		specifier = buttonCell(@"Use Alternative Icons");
 		specifier->action = @selector(useAlt);
 		setImg(@"00");
 		addSpec;
-		
+
 		specifier = groupSpec(@"  🌎  Contact:");
 		addSpec;
-		
+
 		specifier = buttonCell(@"Randy420 (Dev)");
 		specifier->action = @selector(Twitter2);
 		setImg(@"t");
 		addSpec;
-		
+
 		specifier = buttonCell(@"Randy420 (Telegram)");
 		specifier->action = @selector(Tele);
 		setImg(@"teleicon");
 		addSpec;
-		
+
 		specifier = buttonCell(@"Cheers a beer 🍺");
 		specifier->action = @selector(pay);
 		setImg(@"pay");
 		addSpec;
-		
+
 		specifier = groupSpec(@"  Support Canadian Business🇨🇦");
 		setId(@"support");
 		addSpec;
-		
+
 		specifier = buttonCell(@"  🇨🇦  The Emerald Isle  🇨🇦");
 		specifier->action = @selector(emerald);
 		setImg(@"420icon");
 		addSpec;
-		
+
 		specifier = groupSpec(@"Find my tweaks:");
 		addSpec;
-		
+
 		specifier = buttonCell(@"BigBoss");
 		specifier->action = @selector(BigBoss);
 		setImg(@"cydiaicon");
 		addSpec;
-		
+
 		specifier = buttonCell(@"Randy420 GitHub");
 		specifier->action = @selector(GitHub);
 		setImg(@"giticon");
 		addSpec;
-		
+
 		specifier = groupSpec(@"  🙏  Special Thanks:");
 		addSpec;
-	
+
 		specifier = buttonCell(@"AliCydia");
 		specifier->action = @selector(Twitter);
 		setImg(@"t");
 		addSpec;
-		
+
 		specifier = buttonCell(@"CrazyMind");
 		specifier->action = @selector(CM);
 		setImg(@"t");
 		addSpec;
-		
+
 		specifier = groupSpec(@"Translation Credits");
 		addSpec;
-		
+
 		specifier = buttonCell(@"Canpng");
 		specifier->action = @selector(canpng);
 		setImg(@"t");
 		addSpec;
-		
+
 		specifier = buttonCell(@"Polatby12");
 		specifier->action = @selector(Polat);
 		setImg(@"t");
 		addSpec;
-		
+
 		specifier = buttonCell(@"Vlad");
 		specifier->action = @selector(adiktator);
 		setImg(@"t");
 		addSpec;
-		
+
 		specifier = buttonCell(@"LailaAzmi");
 		specifier->action = @selector(dilfa);
 		setImg(@"t");
 		addSpec;
-		
+
 		specifier = buttonCell(@"SpawnFox");
 		specifier->action = @selector(spawnfox);
 		setImg(@"t");
 		addSpec;
-		
+
 		/*specifier = [PSSpecifier preferenceSpecifierNamed:nil target:nil set:nil get:nil detail:nil cell:PSButtonCell edit:nil];
 		specifier.properties[@"cellClass"] = @"HBTwitterCell";
 		specifier.properties[@"label"] = @"test";
@@ -160,14 +163,14 @@
 		//[specifier setProperty:@"rj_skins" forKey:@"user"];
 		//[specifier setProperty:@"Randy420" forKey:@"label"];
 		//addSpec;
-		
+
 		_specifiers = [mutableSpecifiers copy];
-		
-		
+
+
 		//specifier->action = @selector(advGen);
 		//specifier->cellClass = @selector(HBTwitterCell);//??
-		
-		
+
+
 		self.savedSpecifiers = [NSMutableDictionary dictionary];
 		for(PSSpecifier *specifier in _specifiers){
 			if([self.chosenIDs containsObject:[specifier propertyForKey:@"id"]]){
@@ -199,26 +202,31 @@
 		[self hideMe:@"Tai" animate:NO];
 		[self hideMe:@"Ftt" animate:NO];
 		[self hideMe:@"rr" animate:NO];
-		if ([self Vs]){ 
-			self.totalz += 1;
+		[self hideMe:@"fixCydia" animate:NO];
+		if (self.fixCydia){			self.totalz++;
+			[self showMe:@"fixCydia" after:@"Installed" animate:NO];
+		} else{
+			[self showMe:@"fixCydia" after:@"Not" animate:NO];
+		}
+		if (self.Vs){			self.totalz++;
 			[self showMe:@"Vs" after:@"Installed" animate:NO];
 		} else{
 			[self showMe:@"Vs" after:@"Not" animate:NO];
 		}
 		if (self.Tai){
-			self.totalz += 1;
+			self.totalz++;
 			[self showMe:@"Tai" after:@"Installed" animate:NO];
 		} else{
 			[self showMe:@"Tai" after:@"Not" animate:NO];
 		}
 		self.rr ? [self showMe:@"rr" after:@"Installed" animate:NO] :0;
 		if (self.Ftt){
-			self.totalz += 1;
+			self.totalz++;
 			[self showMe:@"Ftt" after:@"Installed" animate:NO];
 		} else{
 			[self showMe:@"Ftt" after:@"Not" animate:NO];
 		}
-		if (self.totalz == 3){
+		if (self.totalz == 4){
 			[self hideMe:@"Not" animate:NO];
 		} else if ((self.totalz == 0) && !self.rr){
 			[self hideMe:@"Installed" animate:NO];
@@ -240,26 +248,30 @@
 		[self hideMe:@"Tai" animate:NO];
 		[self hideMe:@"Ftt" animate:NO];
 		[self hideMe:@"rr" animate:NO];
-		if ([self Vs]){ 
-			self.totalz += 1;
+		[self hideMe:@"fixCydia" animate: NO];
+		if ([self fixCydia]){
+			self.totalz++;
+			[self showMe:@"fixCydia" after:@"Installed" animate:NO];
+		} else{
+			[self showMe:@"fixCydia" after:@"Not" animate:NO];
+		}
+		if ([self Vs]){			self.totalz++;
 			[self showMe:@"Vs" after:@"Installed" animate:NO];
 		} else{
 			[self showMe:@"Vs" after:@"Not" animate:NO];
 		}
-		if (self.Tai){ 
-			self.totalz += 1;
+		if (self.Tai){			self.totalz++;
 			[self showMe:@"Tai" after:@"Installed" animate:NO];
-		} else{ 
-			[self showMe:@"Tai" after:@"Not" animate:NO];
+		} else{			[self showMe:@"Tai" after:@"Not" animate:NO];
 		}
 		self.rr ? [self showMe:@"rr" after:@"Installed" animate:NO] : 0;
 		if (self.Ftt){
-			self.totalz += 1;
+			self.totalz++;
 			[self showMe:@"Ftt" after:@"Installed" animate:NO];
 		} else{
 			[self showMe:@"Ftt" after:@"Not" animate:NO];
 		}
-		if (self.totalz == 3){
+		if (self.totalz == 4){
 			[self hideMe:@"Not" animate:NO];
 		} else if ((self.totalz == 0) && !self.rr){
 			[self hideMe:@"Installed" animate:NO];
@@ -284,7 +296,7 @@
 }
 
 -(id)readPreferenceValue:(PSSpecifier *)specifier{
-	return [self readPrefsValue:specifier path:[NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]]];
+	return [super readPreferenceValue:specifier];//[self readPrefsValue:specifier path:[NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]]];
 }
 
 -(void)useAlt{
