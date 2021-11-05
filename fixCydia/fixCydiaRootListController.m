@@ -53,6 +53,15 @@
 		setFooter(@"Restart iPhone");
 		addSpec;
 
+		specifier = groupSpec(@"");
+		addSpec;
+		addSpec;
+
+		specifier = buttonCell(@"fixCydia Source Code");
+		specifier->action = @selector(source);
+		setImg(@"giticon");
+		addSpec;
+
 		_specifiers = [mutableSpecifiers copy];
 	}
 	return _specifiers;
@@ -147,5 +156,9 @@
 		[self popUp:@"Are you sure you want to RESPRING?"];
 	}
 	[self popUp:@"Please install this deb from BigBoss"];
+}
+
+-(void)source{
+	[self link:@"https://github.com/Randy-420/fixCydia" name:@"Github fixCydia Source-Code"];
 }
 @end

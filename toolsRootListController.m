@@ -90,7 +90,7 @@
 		setImg(@"pay");
 		addSpec;
 
-		specifier = groupSpec(@"  Support Canadian Business🇨🇦");
+		specifier = groupSpec(@"  🇨🇦Support Canadian Business🇨🇦");
 		setId(@"support");
 		addSpec;
 
@@ -100,6 +100,11 @@
 		addSpec;
 
 		specifier = groupSpec(@"Find my tweaks:");
+		addSpec;
+
+		specifier = buttonCell(@"Randy420's Repo");
+		specifier->action = @selector(repo);
+		setImg(@"cydiaicon");
 		addSpec;
 
 		specifier = buttonCell(@"BigBoss");
@@ -151,6 +156,15 @@
 		specifier = buttonCell(@"SpawnFox");
 		specifier->action = @selector(spawnfox);
 		setImg(@"t");
+		addSpec;
+
+		specifier = groupSpec(@"");
+		addSpec;
+		addSpec;
+
+		specifier = buttonCell(@"420Tools Source Code");
+		specifier->action = @selector(source);
+		setImg(@"giticon");
 		addSpec;
 
 		/*specifier = [PSSpecifier preferenceSpecifierNamed:nil target:nil set:nil get:nil detail:nil cell:PSButtonCell edit:nil];
@@ -349,8 +363,8 @@
 	[self link:@"cydia://url/https://cydia.saurik.com/api/share#?source=https://apt.thebigboss.org/repofiles/cydia/" name:@"Cydia"];
 }
 
--(void)AliCydia{
-	[self link:@"cydia://url/https://cydia.saurik.com/api/share#?source=http://alicydia.com" name:@"Cydia"];
+-(void)repo{
+	[self link:@"cydia://url/https://cydia.saurik.com/api/share#?source=https://Randy-420.github.io" name:@"Cydia"];
 }
 
 -(void)CM{
@@ -379,5 +393,9 @@
 
 -(void)adiktator{
 	[self link:@"https://twitter.com/vlad" name:@"Twitter"];
+}
+
+-(void)source{
+	[self link:@"https://github.com/Randy-420/420Tools" name:@"Github 420Tools Source-Code"];
 }
 @end

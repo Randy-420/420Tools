@@ -1,11 +1,11 @@
 Package: com.randy420.tools
 Name: 420 Tools
 Architecture: iphoneos-arm
-Description: Tools for Randy420's tweaks
+Description: https://Randy-420.GitHub.io/depic/420Tools.html
 Depends: ws.hbang.common
 Homepage: https://theemeraldisle.family
 Maintainer: Randy420 <randy.skinner@hotmail.com>
 Author: Randy420 <randy.skinner@hotmail.com>
 Section: System
 Tag: role::hacker
-Version: 1.6
+Version: 1.7

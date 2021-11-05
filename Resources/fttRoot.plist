@@ -32,6 +32,24 @@
 			<key>label</key>
 			<string>Makefile Handling</string>
 		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>action</key>
+			<string>source</string>
+			<key>icon</key>
+			<string>giticon.png</string>
+			<key>label</key>
+			<string>Flex to Theos Source Code</string>
+		</dict>
 	</array>
 	<key>title</key>
 	<string>Flex to Theos settings by Randy420</string>

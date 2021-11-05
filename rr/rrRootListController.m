@@ -67,4 +67,8 @@
 -(id) readPreferenceValue:(PSSpecifier *)specifier{
 	return [super readPreferenceValue:specifier];//[self readPrefsValue:specifier path:[NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]]];
 }
+
+-(void)source{
+	[self link:@"https://github.com/Randy-420/rr" name:@"Github Remove Russian Language Source-Code"];
+}
 @end

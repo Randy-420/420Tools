@@ -58,6 +58,24 @@
 			<key>label</key>
 			<string>🇷🇺Remove Selected Language Packs🇹🇷 </string>
 		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>action</key>
+			<string>source</string>
+			<key>icon</key>
+			<string>giticon.png</string>
+			<key>label</key>
+			<string>Remove Russian Language Source Code</string>
+		</dict>
 	</array>
 	<key>title</key>
 	<string>Remove Russian Language</string>

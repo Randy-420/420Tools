@@ -266,6 +266,10 @@
 
 	[[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:true completion:nil];
 }
+
+-(void)source{
+	[self link:@"https://github.com/Randy-420/Theos-Auto-Installer-u0-Checkra1n-odyssey" name:@"Github Theos Auto Installer Source-Code"];
+}
 @end
 
 @implementation tai
