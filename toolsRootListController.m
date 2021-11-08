@@ -19,10 +19,10 @@
 	self.rr = [fm fileExistsAtPath:@"/usr/bin/rr"];
 	self.Ftt = [fm fileExistsAtPath:@"/usr/bin/ftt"];
 	self.Vs = [fm fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/VolumeStep13_14.dylib"];
-	self.fixCydia = [fm fileExistsAtPath:@"/usr/bin/fixCydia"];
+	self.aptFix = [fm fileExistsAtPath:@"/usr/bin/aptFix"];
 
 	self.plistName = @"Root";
-	self.chosenIDs = @[@"Ftt", @"Vs", @"Tai", @"Installed", @"rr", @"Not", @"emerald", @"support", @"fixCydia"];
+	self.chosenIDs = @[@"Ftt", @"Vs", @"Tai", @"Installed", @"rr", @"Not", @"emerald", @"support", @"aptFix"];
 
 	if (!_specifiers) {
 		NSMutableArray *mutableSpecifiers = [NSMutableArray new];
@@ -49,8 +49,8 @@
 		setImg(@"vsicon");
 		addSpec;
 
-		specifier = linkCell(@"fixCydia", @"fixCydiaRootListController");
-		setId(@"fixCydia");
+		specifier = linkCell(@"aptFix", @"aptFixRootListController");
+		setId(@"aptFix");
 		setImg(@"cydiaicon");
 		addSpec;
 
@@ -216,11 +216,11 @@
 		[self hideMe:@"Tai" animate:NO];
 		[self hideMe:@"Ftt" animate:NO];
 		[self hideMe:@"rr" animate:NO];
-		[self hideMe:@"fixCydia" animate:NO];
-		if (self.fixCydia){			self.totalz++;
-			[self showMe:@"fixCydia" after:@"Installed" animate:NO];
+		[self hideMe:@"aptFix" animate:NO];
+		if (self.aptFix){			self.totalz++;
+			[self showMe:@"aptFix" after:@"Installed" animate:NO];
 		} else{
-			[self showMe:@"fixCydia" after:@"Not" animate:NO];
+			[self showMe:@"aptFix" after:@"Not" animate:NO];
 		}
 		if (self.Vs){			self.totalz++;
 			[self showMe:@"Vs" after:@"Installed" animate:NO];
@@ -262,12 +262,12 @@
 		[self hideMe:@"Tai" animate:NO];
 		[self hideMe:@"Ftt" animate:NO];
 		[self hideMe:@"rr" animate:NO];
-		[self hideMe:@"fixCydia" animate: NO];
-		if ([self fixCydia]){
+		[self hideMe:@"aptFix" animate: NO];
+		if ([self aptFix]){
 			self.totalz++;
-			[self showMe:@"fixCydia" after:@"Installed" animate:NO];
+			[self showMe:@"aptFix" after:@"Installed" animate:NO];
 		} else{
-			[self showMe:@"fixCydia" after:@"Not" animate:NO];
+			[self showMe:@"aptFix" after:@"Not" animate:NO];
 		}
 		if ([self Vs]){			self.totalz++;
 			[self showMe:@"Vs" after:@"Installed" animate:NO];

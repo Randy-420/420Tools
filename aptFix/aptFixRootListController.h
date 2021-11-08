@@ -1,6 +1,6 @@
 #import "../functions/Randy420.h" 
 
-@interface fixCydiaRootListController : randy420
+@interface aptFixRootListController : randy420
 {
 	NSString *runCode;
 	BOOL installed;

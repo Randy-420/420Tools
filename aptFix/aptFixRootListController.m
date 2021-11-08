@@ -1,10 +1,10 @@
-#include "fixCydiaRootListController.h"
+#include "aptFixRootListController.h"
 
-@implementation fixCydiaRootListController
+@implementation aptFixRootListController
 -(instancetype)init{
-	installed = [[NSFileManager defaultManager] fileExistsAtPath:@"/usr/bin/fixCydia"];
-	myIcon = @"fixCydia";
-	myTitle = @"fixCydia";
+	installed = [[NSFileManager defaultManager] fileExistsAtPath:@"/usr/bin/aptFix"];
+	myIcon = @"aptFix";
+	myTitle = @"aptFix";
 	self = [super init];
 	return self;
 }
@@ -18,11 +18,11 @@
 		addSpec;
 		addSpec;
 
-		specifier = groupSpec(@"  fixCydia");
+		specifier = groupSpec(@"  aptFix");
 		addSpec;
 
-		specifier = buttonCell(@"fixCydia");
-		specifier->action = @selector(fixCydia);
+		specifier = buttonCell(@"aptFix");
+		specifier->action = @selector(aptFix);
 		setImg(@"cydiaicon");
 		setFooter(@"ONLY USE THIS IF YOU'RE HAVING ISSUES WITH CYDIA!");
 		addSpec;
@@ -57,7 +57,7 @@
 		addSpec;
 		addSpec;
 
-		specifier = buttonCell(@"fixCydia Source Code");
+		specifier = buttonCell(@"aptFix Source Code");
 		specifier->action = @selector(source);
 		setImg(@"giticon");
 		addSpec;
@@ -101,7 +101,7 @@
 }
 
 -(void) popUp:(NSString *)popUp{
-	UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"fixCydia" message: popUp preferredStyle:UIAlertControllerStyleAlert];
+	UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"aptFix" message: popUp preferredStyle:UIAlertControllerStyleAlert];
 	UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
 		if (installed)
 			[self RunCMD:CC(runCode) WaitUntilExit:YES];
@@ -117,13 +117,13 @@
 	[[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:true completion:nil];
 }
 
--(void)fixCydia{
+-(void)aptFix{
 	if (installed) {
 		runCode = @"killall Cydia;killall apt apt-get;rm -rf /var/log/apt;mkdir /var/log/apt;rm -f /var/lib/apt/lists/lock;rm -f /var/lib/dpkg/lock-frontend;rm -f /var/cache/apt/archives/lock;rm -f /var/lib/dpkg/lock;dpkg --configureu -a";
-		[self popUp:@"Only run if you're unable to fix cydia yourself."];
+		[self popUp:@"Only run if you're unable to fix the errors yourself."];
 		return;
 	}
-	[self popUp:@"Please install \"fixCydia\" from BigBoss"];
+	[self popUp:@"Please install \"aptFix\" from BigBoss"];
 }
 
 -(void)safeMode{
@@ -131,7 +131,7 @@
 		runCode = @"killall -SEGV SpringBoard";
 		[self popUp:@"Are you sure you want to launch into SAFEMODE?"];
 	}
-	[self popUp:@"Please install \"fixCydia\" from BigBoss"];
+	[self popUp:@"Please install \"aptFix\" from BigBoss"];
 }
 
 -(void)Reboot{
@@ -139,7 +139,7 @@
 		runCode = @"reboot";
 		[self popUp:@"Are you sure you want to REBOOT?"];
 	}
-	[self popUp:@"Please install \"fixCydia\" from BigBoss"];
+	[self popUp:@"Please install \"aptFix\" from BigBoss"];
 }
 
 -(void)Ldrestart{
@@ -159,6 +159,6 @@
 }
 
 -(void)source{
-	[self link:@"https://github.com/Randy-420/fixCydia" name:@"Github fixCydia Source-Code"];
+	[self link:@"https://github.com/Randy-420/aptFix" name:@"Github aptFix Source-Code"];
 }
 @end
