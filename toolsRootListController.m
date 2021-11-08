@@ -1,5 +1,5 @@
 #include "toolsRootListController.h"
-#import <objc/runtime.h>
+//#import <objc/runtime.h>
 
 @implementation tools420RootListController
 - (instancetype)init{
@@ -13,13 +13,13 @@
 }
 
 - (NSArray *)specifiers {
-	NSFileManager *fileManager = NSFileManager.defaultManager;
+	NSFileManager *fm  = NSFileManager.defaultManager;
 	self.Up2Date = NO;
-	self.Tai = [fileManager fileExistsAtPath:@"/usr/bin/tai"];
-	self.rr = [fileManager fileExistsAtPath:@"/usr/bin/rr"];
-	self.Ftt = [fileManager fileExistsAtPath:@"/usr/bin/ftt"];
-	self.Vs = [fileManager fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/VolumeStep13_14.dylib"];
-	self.fixCydia = [fileManager fileExistsAtPath:@"/usr/bin/fixCydia"];
+	self.Tai = [fm fileExistsAtPath:@"/usr/bin/tai"];
+	self.rr = [fm fileExistsAtPath:@"/usr/bin/rr"];
+	self.Ftt = [fm fileExistsAtPath:@"/usr/bin/ftt"];
+	self.Vs = [fm fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/VolumeStep13_14.dylib"];
+	self.fixCydia = [fm fileExistsAtPath:@"/usr/bin/fixCydia"];
 
 	self.plistName = @"Root";
 	self.chosenIDs = @[@"Ftt", @"Vs", @"Tai", @"Installed", @"rr", @"Not", @"emerald", @"support", @"fixCydia"];
@@ -204,9 +204,9 @@
 }
 
 - (void)setPreferenceValue:(id)value specifier:(PSSpecifier*)specifier{
-	NSFileManager *fileManager = NSFileManager.defaultManager;
+	NSFileManager *fm  = NSFileManager.defaultManager;
 	[super setPreferenceValue:value specifier:specifier];
-	if ([fileManager fileExistsAtPath:originalPics]) {
+	if ([fm fileExistsAtPath:originalPics]) {
 		[self hideMe:@"support" animate:NO];
 		[self hideMe:@"emerald" animate:NO];
 	}
@@ -250,9 +250,9 @@
 }
 
 -(void)reloadSpecifiers{
-	NSFileManager *fileManager = NSFileManager.defaultManager;
+	NSFileManager *fm  = NSFileManager.defaultManager;
 	[super reloadSpecifiers];
-	if ([fileManager fileExistsAtPath:originalPics]) {
+	if ([fm fileExistsAtPath:originalPics]) {
 		[self hideMe:@"support" animate:NO];
 		[self hideMe:@"emerald" animate:NO];
 	}
@@ -315,8 +315,8 @@
 
 -(void)useAlt{
 	NSString *runCode;
-	NSFileManager *fileManager = NSFileManager.defaultManager;
-	if ([fileManager fileExistsAtPath:altPics]) {
+	NSFileManager *fm  = NSFileManager.defaultManager;
+	if ([fm fileExistsAtPath:altPics]) {
 		runCode = CC([NSString stringWithFormat:@"mv %@ %@", origPics, originalPics]);
 		[self RunCMD:runCode WaitUntilExit:YES];
 		runCode = CC([NSString stringWithFormat:@"mv %@ %@", altPics, origPics]);
