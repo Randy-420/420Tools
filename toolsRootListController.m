@@ -13,13 +13,13 @@
 }
 
 - (NSArray *)specifiers {
-	NSFileManager *fm  = NSFileManager.defaultManager;
+	NSFileManager *fileManager = NSFileManager.defaultManager;
 	self.Up2Date = NO;
-	self.Tai = [fm fileExistsAtPath:@"/usr/bin/tai"];
-	self.rr = [fm fileExistsAtPath:@"/usr/bin/rr"];
-	self.Ftt = [fm fileExistsAtPath:@"/usr/bin/ftt"];
-	self.Vs = [fm fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/VolumeStep13_14.dylib"];
-	self.aptFix = [fm fileExistsAtPath:@"/usr/bin/aptFix"];
+	self.Tai = [fileManager fileExistsAtPath:@"/usr/bin/tai"];
+	self.rr = [fileManager fileExistsAtPath:@"/usr/bin/rr"];
+	self.Ftt = [fileManager fileExistsAtPath:@"/usr/bin/ftt"];
+	self.Vs = [fileManager fileExistsAtPath:@"/Library/MobileSubstrate/DynamicLibraries/VolumeStep13_14.dylib"];
+	self.aptFix = [fileManager fileExistsAtPath:@"/usr/bin/aptFix"];
 
 	self.plistName = @"Root";
 	self.chosenIDs = @[@"Ftt", @"Vs", @"Tai", @"Installed", @"rr", @"Not", @"emerald", @"support", @"aptFix"];
@@ -204,9 +204,9 @@
 }
 
 - (void)setPreferenceValue:(id)value specifier:(PSSpecifier*)specifier{
-	NSFileManager *fm  = NSFileManager.defaultManager;
+	NSFileManager *fileManager = NSFileManager.defaultManager;
 	[super setPreferenceValue:value specifier:specifier];
-	if ([fm fileExistsAtPath:originalPics]) {
+	if ([fileManager fileExistsAtPath:originalPics]) {
 		[self hideMe:@"support" animate:NO];
 		[self hideMe:@"emerald" animate:NO];
 	}
@@ -250,9 +250,9 @@
 }
 
 -(void)reloadSpecifiers{
-	NSFileManager *fm  = NSFileManager.defaultManager;
+	NSFileManager *fileManager = NSFileManager.defaultManager;
 	[super reloadSpecifiers];
-	if ([fm fileExistsAtPath:originalPics]) {
+	if ([fileManager fileExistsAtPath:originalPics]) {
 		[self hideMe:@"support" animate:NO];
 		[self hideMe:@"emerald" animate:NO];
 	}
@@ -315,8 +315,8 @@
 
 -(void)useAlt{
 	NSString *runCode;
-	NSFileManager *fm  = NSFileManager.defaultManager;
-	if ([fm fileExistsAtPath:altPics]) {
+	NSFileManager *fileManager = NSFileManager.defaultManager;
+	if ([fileManager fileExistsAtPath:altPics]) {
 		runCode = CC([NSString stringWithFormat:@"mv %@ %@", origPics, originalPics]);
 		[self RunCMD:runCode WaitUntilExit:YES];
 		runCode = CC([NSString stringWithFormat:@"mv %@ %@", altPics, origPics]);
