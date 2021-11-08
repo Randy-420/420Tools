@@ -17,6 +17,7 @@
 	self.plistName = @"Tai";
 	self.chosenIDs = @[@"eightFour", @"nineThree", @"ten", @"tenThree", @"eleven", @"elevenOne", @"elevenTwo", @"elevenThree", @"elevenFour", @"twelveOneTwo", @"twelveTwo", @"twelveFour", @"thirteen", @"thirteenTwo", @"thirteenFour", @"thirteenFive", @"fourteen", @"fourteenOne", @"fourteenTwo", @"fourteenThree", @"fourteenFour", @"fourteenFive", @"bottom", @"top", @"load", @"Full", @"Update", @"Sdks", @"installLoc", @"theos", @"varTheos", @"Note"];
 	[TAI loader];
+	[self upDate];
 	return [super specifiers];
 }
 
@@ -39,19 +40,7 @@
 	[self hideMe:@"load" animate:NO];
 
 	if ([key isEqualToString:@"Location"]){
-		NSMutableDictionary *preferences;
-		if ([fm fileExistsAtPath:@"/var/mobile/Library/Preferences/com.randy420.tai.plist"]) {
-			preferences = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.randy420.tai.plist"];
-		} else {
-			preferences = [[NSMutableDictionary alloc] init];
-		}
-		if ([TAI installedTheos]){
-			[preferences setObject:@"/theos" forKey: @"Location"];
-		} else if ([TAI installedVarTheos]){
-			[preferences setObject:@"/var/theos" forKey: @"Location"];
-		}
-		[preferences writeToFile:@"/var/mobile/Library/Preferences/com.randy420.tai.plist" atomically:YES];
-
+		[self upDate];
 		[self reloadSpecifiers];
 	}
 
@@ -109,20 +98,7 @@
 -(void)reloadSpecifiers{
 	[super reloadSpecifiers];
 	[TAI loader];
-
-		NSMutableDictionary *preferences;
-		if ([fm fileExistsAtPath:@"/var/mobile/Library/Preferences/com.randy420.tai.plist"]) {
-			preferences = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.randy420.tai.plist"];
-		} else {
-			preferences = [[NSMutableDictionary alloc] init];
-		}
-		if ([TAI installedTheos]){
-			[preferences setObject:@"/theos" forKey: @"Location"];
-			[preferences writeToFile:@"/var/mobile/Library/Preferences/com.randy420.tai.plist" atomically:YES];
-		} else if ([TAI installedVarTheos]){
-			[preferences setObject:@"/var/theos" forKey: @"Location"];
-			[preferences writeToFile:@"/var/mobile/Library/Preferences/com.randy420.tai.plist" atomically:YES];
-		}
+	[self upDate];
 
 	[self hideMe:@"top" animate:NO];
 	[self hideMe:@"bottom" animate:NO];
@@ -265,6 +241,23 @@
 	[alert addAction:action];
 
 	[[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:true completion:nil];
+}
+
+-(void)upDate{
+	NSMutableDictionary *preferences;
+	if ([fm fileExistsAtPath:@"/var/mobile/Library/Preferences/com.randy420.tai.plist"]) {
+		preferences = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/var/mobile/Library/Preferences/com.randy420.tai.plist"];
+	} else {
+		preferences = [[NSMutableDictionary alloc] init];
+	}
+	if ([TAI installedTheos]){
+		[preferences setObject:@"/theos" forKey: @"Location"];
+		[preferences writeToFile:@"/var/mobile/Library/Preferences/com.randy420.tai.plist" atomically:YES];
+	} else if ([TAI installedVarTheos]){
+		[preferences setObject:@"/var/theos" forKey: @"Location"];
+		[preferences writeToFile:@"/var/mobile/Library/Preferences/com.randy420.tai.plist" atomically:YES];
+	}
+	[preferences writeToFile:@"/var/mobile/Library/Preferences/com.randy420.tai.plist" atomically:YES];
 }
 
 -(void)source{
