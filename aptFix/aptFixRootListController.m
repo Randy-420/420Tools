@@ -102,9 +102,19 @@
 
 -(void) popUp:(NSString *)popUp{
 	UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"aptFix" message: popUp preferredStyle:UIAlertControllerStyleAlert];
+
+			
 	UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
 		if (installed)
 			[self RunCMD:CC(runCode) WaitUntilExit:YES];
+
+		UIAlertController *cleared = [UIAlertController alertControllerWithTitle:@"aptFix" message:@"Errors should be cleared successfully!" preferredStyle:UIAlertControllerStyleAlert];
+
+		UIAlertAction *clearedAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+			
+		}];
+		[cleared addAction:clearedAction];
+		[[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:cleared animated:true completion:nil];
 	}];
 	[alert addAction:action];
 

@@ -252,10 +252,8 @@
 	}
 	if ([TAI installedTheos]){
 		[preferences setObject:@"/theos" forKey: @"Location"];
-		[preferences writeToFile:@"/var/mobile/Library/Preferences/com.randy420.tai.plist" atomically:YES];
 	} else if ([TAI installedVarTheos]){
 		[preferences setObject:@"/var/theos" forKey: @"Location"];
-		[preferences writeToFile:@"/var/mobile/Library/Preferences/com.randy420.tai.plist" atomically:YES];
 	}
 	[preferences writeToFile:@"/var/mobile/Library/Preferences/com.randy420.tai.plist" atomically:YES];
 }
