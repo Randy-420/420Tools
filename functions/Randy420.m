@@ -53,6 +53,12 @@ extern char **environ;
 	return _specifiers;
 }
 
+/*- (void)shouldEnable:(NSString *)enableMe value:(BOOL)value {
+	if (self containsSpecifier: self.savedSpecifiers[enableMe]]){
+		[self.savedSpecifiers[enableMe]].enabled = value;
+	}
+}*/
+
 - (void)showMe:(NSString *)showMe after: (NSString*)after animate:(bool)animate {
 	![self containsSpecifier: self.savedSpecifiers[showMe]] ? [self insertContiguousSpecifiers:@[self.savedSpecifiers[showMe]] afterSpecifierID: after animated: animate] : 0;
 }
@@ -109,6 +115,27 @@ extern char **environ;
 	}
 	[task launch];
 	return nil;
+}
+
+-(NSString *) RunCMDWithLog:(NSString *)RunCMDWithLog {
+	NSString *RunCC = [NSString stringWithFormat:@"%@",RunCMDWithLog];
+
+	NSTask *task = [[NSTask alloc] init];
+	NSMutableArray *args = [NSMutableArray array];
+	[args addObject:@"-c"];
+	[args addObject:RunCC];
+	[task setLaunchPath:@"/bin/sh"];
+	[task setArguments:args];
+	NSPipe *outputPipe = [NSPipe pipe];
+	[task setStandardInput:[NSPipe pipe]];
+	[task setStandardOutput:outputPipe];
+	[task launch];
+	[task waitUntilExit];
+
+	NSData *outputData = [[outputPipe fileHandleForReading] readDataToEndOfFile];
+	NSString *outputString = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
+
+	return outputString;
 }
 
 - (void)setPreferenceValue:(id)value specifier:(PSSpecifier*)specifier{

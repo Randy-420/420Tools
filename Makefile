@@ -1,12 +1,11 @@
 FINALPACKAGE = 1
-export TARGET:=iphone:clang:13.5:7.0
 include $(THEOS)/makefiles/common.mk
 
 BUNDLE_NAME = tools420
 
 export ARCHS = armv7 armv7s arm64 arm64e
 
-tools420_FILES = $(wildcard *.m) $(wildcard */*.m)
+tools420_FILES = $(wildcard */*.m) $(wildcard */*/*.m)
 tools420_INSTALL_PATH = /Library/PreferenceBundles
 tools420_FRAMEWORKS = UIKit
 tools420_PRIVATE_FRAMEWORKS = Preferences

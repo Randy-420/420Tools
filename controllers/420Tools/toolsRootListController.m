@@ -1,5 +1,4 @@
 #include "toolsRootListController.h"
-//#import <objc/runtime.h>
 
 @implementation tools420RootListController
 - (instancetype)init{
@@ -167,23 +166,7 @@
 		setImg(@"giticon");
 		addSpec;
 
-		/*specifier = [PSSpecifier preferenceSpecifierNamed:nil target:nil set:nil get:nil detail:nil cell:PSButtonCell edit:nil];
-		specifier.properties[@"cellClass"] = @"HBTwitterCell";
-		specifier.properties[@"label"] = @"test";
-		specifier.properties[@"user"] = @"rj_skins";
-		addSpec;*/
-		//specifier = hbTwitterCell(@"test");
-		//[specifier setProperty:@"HBTwitterCell" forKey:@"cellClass"];
-		//[specifier setProperty:@"rj_skins" forKey:@"user"];
-		//[specifier setProperty:@"Randy420" forKey:@"label"];
-		//addSpec;
-
 		_specifiers = [mutableSpecifiers copy];
-
-
-		//specifier->action = @selector(advGen);
-		//specifier->cellClass = @selector(HBTwitterCell);//??
-
 
 		self.savedSpecifiers = [NSMutableDictionary dictionary];
 		for(PSSpecifier *specifier in _specifiers){
@@ -210,6 +193,7 @@
 		[self hideMe:@"support" animate:NO];
 		[self hideMe:@"emerald" animate:NO];
 	}
+
 	if (!self.Up2Date){
 		self.totalz = 0;
 		[self hideMe:@"Vs" animate:NO];
@@ -217,29 +201,37 @@
 		[self hideMe:@"Ftt" animate:NO];
 		[self hideMe:@"rr" animate:NO];
 		[self hideMe:@"aptFix" animate:NO];
-		if (self.aptFix){			self.totalz++;
-			[self showMe:@"aptFix" after:@"Installed" animate:NO];
-		} else{
-			[self showMe:@"aptFix" after:@"Not" animate:NO];
-		}
-		if (self.Vs){			self.totalz++;
+
+		if (self.Vs){
+			self.totalz++;
 			[self showMe:@"Vs" after:@"Installed" animate:NO];
 		} else{
 			[self showMe:@"Vs" after:@"Not" animate:NO];
 		}
+
 		if (self.Tai){
 			self.totalz++;
 			[self showMe:@"Tai" after:@"Installed" animate:NO];
 		} else{
 			[self showMe:@"Tai" after:@"Not" animate:NO];
 		}
+
 		self.rr ? [self showMe:@"rr" after:@"Installed" animate:NO] :0;
+
 		if (self.Ftt){
 			self.totalz++;
 			[self showMe:@"Ftt" after:@"Installed" animate:NO];
 		} else{
 			[self showMe:@"Ftt" after:@"Not" animate:NO];
 		}
+
+		if (self.aptFix){
+			self.totalz++;
+			[self showMe:@"aptFix" after:@"Installed" animate:NO];
+		} else{
+			[self showMe:@"aptFix" after:@"Not" animate:NO];
+		}
+
 		if (self.totalz == 4){
 			[self hideMe:@"Not" animate:NO];
 		} else if ((self.totalz == 0) && !self.rr){
@@ -263,20 +255,18 @@
 		[self hideMe:@"Ftt" animate:NO];
 		[self hideMe:@"rr" animate:NO];
 		[self hideMe:@"aptFix" animate: NO];
-		if ([self aptFix]){
+
+		if ([self Vs]){
 			self.totalz++;
-			[self showMe:@"aptFix" after:@"Installed" animate:NO];
-		} else{
-			[self showMe:@"aptFix" after:@"Not" animate:NO];
-		}
-		if ([self Vs]){			self.totalz++;
 			[self showMe:@"Vs" after:@"Installed" animate:NO];
 		} else{
 			[self showMe:@"Vs" after:@"Not" animate:NO];
 		}
-		if (self.Tai){			self.totalz++;
+		if (self.Tai){
+			self.totalz++;
 			[self showMe:@"Tai" after:@"Installed" animate:NO];
-		} else{			[self showMe:@"Tai" after:@"Not" animate:NO];
+		} else{
+			[self showMe:@"Tai" after:@"Not" animate:NO];
 		}
 		self.rr ? [self showMe:@"rr" after:@"Installed" animate:NO] : 0;
 		if (self.Ftt){
@@ -285,6 +275,13 @@
 		} else{
 			[self showMe:@"Ftt" after:@"Not" animate:NO];
 		}
+		if ([self aptFix]){
+			self.totalz++;
+			[self showMe:@"aptFix" after:@"Installed" animate:NO];
+		} else{
+			[self showMe:@"aptFix" after:@"Not" animate:NO];
+		}
+
 		if (self.totalz == 4){
 			[self hideMe:@"Not" animate:NO];
 		} else if ((self.totalz == 0) && !self.rr){
@@ -295,7 +292,7 @@
 }
 
 - (BOOL)_isRegularWidth {
-   return NO;
+	return NO;
 }
 
 //#if (API_AVAILABLE(ios(11)))

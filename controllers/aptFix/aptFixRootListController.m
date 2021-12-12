@@ -103,12 +103,12 @@
 -(void) popUp:(NSString *)popUp{
 	UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"aptFix" message: popUp preferredStyle:UIAlertControllerStyleAlert];
 
-			
+			__block NSString *value;
 	UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
 		if (installed)
-			[self RunCMD:CC(runCode) WaitUntilExit:YES];
+			value = [self RunCMDWithLog:runCode];
 
-		UIAlertController *cleared = [UIAlertController alertControllerWithTitle:@"aptFix" message:@"Errors should be cleared successfully!" preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertController *cleared = [UIAlertController alertControllerWithTitle:@"aptFix" message:value preferredStyle:UIAlertControllerStyleAlert];
 
 		UIAlertAction *clearedAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
 			
@@ -129,7 +129,7 @@
 
 -(void)aptFix{
 	if (installed) {
-		runCode = @"killall Cydia;killall apt apt-get;rm -rf /var/log/apt;mkdir /var/log/apt;rm -f /var/lib/apt/lists/lock;rm -f /var/lib/dpkg/lock-frontend;rm -f /var/cache/apt/archives/lock;rm -f /var/lib/dpkg/lock;dpkg --configureu -a";
+		runCode = @"aptFix"; //@"killall Cydia;killall apt apt-get;rm -rf /var/log/apt;mkdir /var/log/apt;rm -f /var/lib/apt/lists/lock;rm -f /var/lib/dpkg/lock-frontend;rm -f /var/cache/apt/archives/lock;rm -f /var/lib/dpkg/lock;dpkg --configureu -a";
 		[self popUp:@"Only run if you're unable to fix the errors yourself."];
 		return;
 	}

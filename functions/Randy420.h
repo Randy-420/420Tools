@@ -31,8 +31,10 @@
 -(void)link:(NSString *)link name:(NSString *)name;
 -(void)showMe:(NSString *)showMe after:(NSString*)after animate:(bool)animate;
 -(void)hideMe:(NSString *)hideMe animate:(bool)animate;
+//- (void)shouldEnable:(NSString *)enableMe value:(BOOL)value;
 //-(id)readPrefsValue:(PSSpecifier *)specifier path:(NSString *) path;
 -(NSString *)RunCMD:(NSString *)RunCMD WaitUntilExit:(BOOL)WaitUntilExit;
+-(NSString *) RunCMDWithLog:(NSString *)RunCMDWithLog;
 @end
 
 // NSTask.h

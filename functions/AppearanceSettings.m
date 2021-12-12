@@ -1,4 +1,4 @@
-#import "functions/Randy420.h"
+#import "Randy420.h"
 
 @implementation AppearanceSettings
 -(UIColor *)tintColor {

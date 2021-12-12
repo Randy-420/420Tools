@@ -1,3 +1,5 @@
 #!/bin/sh
 chown 0:0 /usr/bin/gap
 chmod +s /usr/bin/gap
+chown 0:0 /usr/sbin/fixTheos
+chmod +s /usr/sbin/fixTheos

@@ -1,4 +1,4 @@
-#include "../functions/Randy420.h"
+#import "../../functions/Randy420.h" 
 
 @interface rrRootListController : randy420
 {
