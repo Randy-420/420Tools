@@ -67,11 +67,6 @@ extern char **environ;
 	[self containsSpecifier:self.savedSpecifiers[hideMe]] ? [self removeContiguousSpecifiers:@[self.savedSpecifiers[hideMe]] animated:animate] : 0;
 }
 
-/*- (id)readPrefsValue:(PSSpecifier *)specifier path:(NSString *)path {
-	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
-	[settings addEntriesFromDictionary:[NSDictionary dictionaryWithContentsOfFile:path]];
-	return (settings[specifier.properties[@"key"]]) ?: specifier.properties[@"default"];
-}*/
 -(id)readPreferenceValue:(PSSpecifier *)specifier{
 	NSString *path = [NSString stringWithFormat:@"/User/Library/Preferences/%@.plist", specifier.properties[@"defaults"]];
 	NSMutableDictionary *settings = [NSMutableDictionary dictionary];
@@ -201,5 +196,13 @@ extern char **environ;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 	tableView.tableHeaderView = self.headerView;
 	return [super tableView:tableView cellForRowAtIndexPath:indexPath];
+}
+
+-(void)Save{
+	[self.view endEditing:YES];
+}
+
+- (void)_returnKeyPressed:(id)notification {
+	[self Save];
 }
 @end

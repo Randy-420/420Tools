@@ -32,9 +32,9 @@
 -(void)showMe:(NSString *)showMe after:(NSString*)after animate:(bool)animate;
 -(void)hideMe:(NSString *)hideMe animate:(bool)animate;
 //- (void)shouldEnable:(NSString *)enableMe value:(BOOL)value;
-//-(id)readPrefsValue:(PSSpecifier *)specifier path:(NSString *) path;
 -(NSString *)RunCMD:(NSString *)RunCMD WaitUntilExit:(BOOL)WaitUntilExit;
 -(NSString *) RunCMDWithLog:(NSString *)RunCMDWithLog;
+-(void)Save;
 @end
 
 // NSTask.h
@@ -127,6 +127,7 @@ static BOOL GetBool(NSString *pkey, BOOL defaultValue, NSString *plst) {
 #define setDefaultForSpec(sDefault) [specifier setProperty:sDefault forKey:@"default"]
 #define setKey(key) [specifier setProperty:key forKey:@"key"]
 #define setId(id) [specifier setProperty:id forKey:@"id"]
+#define setAlign(align) [specifier setProperty:align forKey:@"alignment"]
 #define setImg(img) [specifier setProperty:imageNamed(img) forKey:@"iconImage"];
 #define setFooter(footer) [specifier setProperty:footer forKey:@"footerText"]
 #define setMin(minimum) [specifier setProperty:minimum forKey:@"min"]

@@ -11,6 +11,36 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
+			<key>footerAlignment</key>
+			<string>0</string>
+			<key>footerText</key>
+			<string>If this is switched off, only the patches which are set to 'on' will appear as options when you use 'ftt'</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.randy420.fttprefs</string>
+			<key>key</key>
+			<string>showAll</string>
+			<key>label</key>
+			<string>Show all patches</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>detail</key>
+			<string>fttFolder</string>
+			<key>isController</key>
+			<true/>
+			<key>label</key>
+			<string>Output Folder Handling</string>
 		</dict>
 		<dict>
 			<key>cell</key>

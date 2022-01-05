@@ -8,7 +8,7 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>"Remove Russian Language" Options</string>
+			<string>Remove Language Options</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -26,13 +26,83 @@
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
-			<true/>
+			<false/>
 			<key>defaults</key>
 			<string>com.randy420.rr</string>
 			<key>key</key>
 			<string>turkish</string>
 			<key>label</key>
 			<string>Remove Turkish Language Packs</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Location Handling:</string>
+			<key>footerAlignment</key>
+			<string>0</string>
+			<key>footerText</key>
+			<string>This will remove language files from almost all downloaded tweaks. If this action was not desired, it can be reversed by redownloading the tweaks they've been removed from.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.randy420.rr</string>
+			<key>key</key>
+			<string>standardRemove</string>
+			<key>label</key>
+			<string>Standard Remove</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerAlignment</key>
+			<string>0</string>
+			<key>footerText</key>
+			<string>This will remove language files from '/System/Library/PreferenceBundles/' which can house tweak files as well as stock ios language files. Turning this on will PERMANENTLY remove selected language packs from your phone.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.randy420.rr</string>
+			<key>key</key>
+			<string>deepRemove</string>
+			<key>label</key>
+			<string>Deep Remove</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerAlignment</key>
+			<string>0</string>
+			<key>footerText</key>
+			<string>This will remove language files from all applications located in '/Applications' which also houses stock iOS language files. Turning this on will ((PERMANENTLY) from select stock ios apps) remove language packs from your phone.</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.randy420.rr</string>
+			<key>key</key>
+			<string>deepRemoveApps</string>
+			<key>label</key>
+			<string>Remove from apps</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -56,7 +126,7 @@
 			<key>id</key>
 			<string>button</string>
 			<key>label</key>
-			<string>🇷🇺Remove Selected Language Packs🇹🇷 </string>
+			<string>🇷🇺Remove Selected Language Packs🇹🇷</string>
 		</dict>
 		<dict>
 			<key>cell</key>

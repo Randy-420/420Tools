@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>isStaticText</key>
+			<true/>
+			<key>label</key>
+			<string>only edit these sections if you know what you're doing ಠ_ಠ</string>
+</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>debug:</string>
+			<key>footerAlignment</key>
+			<string>0</string>
+			<key>footerText</key>
+			<string>Set DEBUG for all your tweaks</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSegmentCell</string>
+			<key>default</key>
+			<string>0</string>
+			<key>defaults</key>
+			<string>com.randy420.tai</string>
+			<key>key</key>
+			<string>debug</string>
+			<key>validTitles</key>
+			<array>
+				<string>YES</string>
+				<string>NO</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<string>1</string>
+				<string>0</string>
+			</array>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>finalPackage:</string>
+			<key>footerAlignment</key>
+			<string>0</string>
+			<key>footerText</key>
+			<string>Set FINALPACKAGE for all your tweaks</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSegmentCell</string>
+			<key>default</key>
+			<string>1</string>
+			<key>defaults</key>
+			<string>com.randy420.tai</string>
+			<key>key</key>
+			<string>finalPackage</string>
+			<key>validTitles</key>
+			<array>
+				<string>YES</string>
+				<string>NO</string>
+			</array>
+			<key>validValues</key>
+			<array>
+				<string>1</string>
+				<string>0</string>
+			</array>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerAlignment</key>
+			<string>0</string>
+			<key>footerText</key>
+			<string>Choose which devices your future projects will compile for.
+
+If you turn all 4 off, it will automatically use arm64 and arm64e to avoid breaking packages.</string>
+			<key>label</key>
+			<string>Archs:</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.randy420.tai</string>
+			<key>key</key>
+			<string>armv7</string>
+			<key>label</key>
+			<string>Arm7 Support</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<false/>
+			<key>defaults</key>
+			<string>com.randy420.tai</string>
+			<key>key</key>
+			<string>armv7s</string>
+			<key>label</key>
+			<string>Armv7s Support</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.randy420.tai</string>
+			<key>key</key>
+			<string>arm64</string>
+			<key>label</key>
+			<string>Arm64 Support</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.randy420.tai</string>
+			<key>key</key>
+			<string>arm64e</string>
+			<key>label</key>
+			<string>Arm64e Support</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerAlignment</key>
+			<string>0</string>
+			<key>footerText</key>
+			<string>Default output folder when creating debs</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.randy420.tai</string>
+			<key>id</key>
+			<string>changeDebFolder</string>
+			<key>key</key>
+			<string>changeDebFolder</string>
+			<key>label</key>
+			<string>Customize 'packages' folder name</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSEditTextCell</string>
+			<key>default</key>
+			<string>DEBs</string>
+			<key>defaults</key>
+			<string>com.randy420.tai</string>
+			<key>id</key>
+			<string>debFolder</string>
+			<key>key</key>
+			<string>debFolder</string>
+			<key>keyboard</key>
+			<string>letters</string>
+			<key>label</key>
+			<string>Enter deb output folder name:</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>Save</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Save</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerAlignment</key>
+			<string>1</string>
+			<key>footerText</key>
+			<string>Copyright - TAI By:Randy420 2021</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>Theos Auto Installer</string>
+</dict>
+</plist>

@@ -70,7 +70,7 @@
 			<key>key</key>
 			<string>armv7</string>
 			<key>label</key>
-			<string>Arm7 Support</string>
+			<string>Armv7 Support</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -92,9 +92,9 @@
 			<key>defaults</key>
 			<string>com.randy420.fttprefs</string>
 			<key>key</key>
-			<string>arm64e</string>
+			<string>arm64</string>
 			<key>label</key>
-			<string>Arm64e Support</string>
+			<string>Arm64 Support</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -104,9 +104,9 @@
 			<key>defaults</key>
 			<string>com.randy420.fttprefs</string>
 			<key>key</key>
-			<string>arm64</string>
+			<string>arm64e</string>
 			<key>label</key>
-			<string>Arm64 Support</string>
+			<string>Arm64e Support</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -116,7 +116,7 @@
 			<key>label</key>
 			<string>Choose which devices your project will compile for.
 
-If you turn all 3 off, it will automatically use arm64 and arm64e to avoid breaking packages.</string>
+If you turn all 4 off, it will automatically use arm64 and arm64e to avoid breaking packages.</string>
 		</dict>
 	</array>
 	<key>title</key>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>items</key>
+	<array>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerAlignment</key>
+			<string>0</string>
+			<key>footerText</key>
+			<string>Automatically put flex to theos packages inside this folder to keep things organized. (default: /var/mobile/tweaks)</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.randy420.fttprefs</string>
+			<key>id</key>
+			<string>Dump</string>
+			<key>key</key>
+			<string>useDumpFolder</string>
+			<key>label</key>
+			<string>Use custom flex dump folder:</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSEditTextCell</string>
+			<key>defaults</key>
+			<string>com.randy420.fttprefs</string>
+			<key>id</key>
+			<string>DumpPath</string>
+			<key>key</key>
+			<string>dumpFolder</string>
+			<key>label</key>
+			<string>Enter the path:</string>
+			<key>placeholder</key>
+			<string>/var/mobile/tweaks/myFlex</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerAlignment</key>
+			<string>0</string>
+			<key>footerText</key>
+			<string>This will be the default generated folder name (default: Randy)</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSEditTextCell</string>
+			<key>default</key>
+			<string>Randy</string>
+			<key>defaults</key>
+			<string>com.randy420.fttprefs</string>
+			<key>key</key>
+			<string>folderPrefix</string>
+			<key>label</key>
+			<string>Enter the default folder name:</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerAlignment</key>
+			<string>0</string>
+			<key>footerText</key>
+			<string>This will be the default number generated in case of duplicate folders (default: 420)</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSEditTextCell</string>
+			<key>default</key>
+			<string>420</string>
+			<key>defaults</key>
+			<string>com.randy420.fttprefs</string>
+			<key>isNumeric</key>
+			<true/>
+			<key>key</key>
+			<string>folderSuffix</string>
+			<key>keyboard</key>
+			<string>numbers</string>
+			<key>label</key>
+			<string>Folder number suffix:</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
+			<key>action</key>
+			<string>Save</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
+			<key>label</key>
+			<string>Save</string>
+		</dict>
+	</array>
+	<key>title</key>
+	<string>Flex to Theos settings by Randy420</string>
+</dict>
+</plist>

@@ -68,20 +68,13 @@
 		</dict>
 		<dict>
 			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>footerAlignment</key>
-			<string>0</string>
-			<key>footerText</key>
-			<string>Usage (run in mTerminal or theosTerm):
-'tai' will download &amp; install theos &amp; sdks files if it's not already.
-
-'tai -r' will download &amp; re-install theos &amp; all the chosen sdks files.
-
-'tai -u' will uninstall theos &amp; sdks files.
-
-'tai -s' will install the enhancement files &amp; any sdks that have been selected for download
-
-'tai -v' will update theos</string>
+			<string>PSLinkCell</string>
+			<key>detail</key>
+			<string>taiExtra</string>
+			<key>isController</key>
+			<true/>
+			<key>label</key>
+			<string>⚜️Advanced〽️Options🔱</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -170,6 +163,27 @@
 			<string>bottom</string>
 			<key>label</key>
 			<string>🛑WAIT•UNTIL•FINISHED⛔️</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>footerAlignment</key>
+			<string>0</string>
+			<key>footerText</key>
+			<string>Usage (run in mTerminal or theosTerm):
+'tai' will download &amp; install theos &amp; sdks files if it's not already.
+
+'tai -r' will download &amp; re-install theos &amp; all the chosen sdks files.
+
+'tai -u' will uninstall theos &amp; sdks files.
+
+'tai -s' will install the enhancement files &amp; any sdks that have been selected for download
+
+'tai -v' will update theos</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
 		</dict>
 		<dict>
 			<key>action</key>
