@@ -21,7 +21,7 @@
 	self.aptFix = [fileManager fileExistsAtPath:@"/usr/bin/aptFix"];
 
 	self.plistName = @"Root";
-	self.chosenIDs = @[@"Ftt", @"Vs", @"Tai", @"Installed", @"rr", @"Not", @"emerald", @"support", @"aptFix", @"Contact", @"myTwitter", @"myTelegram", @"Donate", @"cdn", @"Emerald", @"find", @"myRepo", @"BigBoss", @"myGit", @"special", @"ali", @"CM", @"translate", @"polatby", @"vlad", @"dilfa", @"spawnFox", @"canpng"];
+	self.chosenIDs = @[@"Ftt", @"Vs", @"Tai", @"Installed", @"rr", @"Not", @"emerald", @"support", @"aptFix", @"Contact", @"myTwitter", @"myTelegram", @"Donate", @"cdn", @"Emerald", @"find", @"myRepo", @"BigBoss", @"myGit", @"special", @"ali", @"CM", @"translate", @"polatby", @"vlad", @"dilfa", @"spawnFox", @"canpng", @"saeed", @"igerman"];
 
 	if (!_specifiers) {
 		NSMutableArray *mutableSpecifiers = [NSMutableArray new];
@@ -194,6 +194,18 @@
 		setId(@"canpng");
 		addSpec;
 
+		specifier = buttonCell(@"@Saeed97271 - Arabic");
+		specifier->action = @selector(saeed);
+		setImg(@"t");
+		setId(@"saeed");
+		addSpec;
+
+		specifier = buttonCell(@"@iGerman00 - Russian");
+		specifier->action = @selector(igerman);
+		setImg(@"t");
+		setId(@"igerman");
+		addSpec;
+
 		specifier = buttonCell(@"Polatby12");
 		specifier->action = @selector(Polat);
 		setImg(@"t");
@@ -324,6 +336,8 @@
 		[self hideMe:@"spawnFox" animate:NO];
 		[self hideMe:@"dilfa" animate:NO];
 		[self hideMe:@"vlad" animate:NO];
+		[self hideMe:@"saeed" animate:NO];
+		[self hideMe:@"igerman" animate:NO];
 		[self hideMe:@"polatby" animate:NO];
 		[self hideMe:@"canpng" animate:NO];
 	}
@@ -421,6 +435,10 @@
 	[self link:@"https://mobile.twitter.com/MYM_SPAWNFOX" name:@"Twitter"];
 }
 
+-(void)saeed{
+	[self link:@"https://mobile.twitter.com/saeed97271" name:@"Twitter"];
+}
+
 -(void)GitHub{
 	[self link:@"https://github.com/Randy-420" name:@"GitHub"];
 }
@@ -435,6 +453,10 @@
 
 -(void)CM{
 	[self link:@"https://twitter.com/crazymind90" name:@"Twitter"];
+}
+
+-(void)igerman{
+	[self link:@"https://twitter.com/iGerman00" name:@"Twitter"];
 }
 
 -(void)Tele{
