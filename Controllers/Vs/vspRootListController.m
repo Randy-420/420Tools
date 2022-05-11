@@ -10,7 +10,7 @@
 
 - (NSArray *)specifiers {
 	self.plistName = @"vs";
-	self.chosenIDs = @[@"VibeHide", @"vsSeperate", @"VolumeUp", @"VolumeUpDown", @"prefInt", @"VolumeDown", @"prefIntDown"];
+	self.chosenIDs = @[@"VibeHide", @"vsSeperate", @"VolumeUp", @"VolumeUpDown", @"prefInt", @"VolumeDown", @"prefIntDown", @"VibMinMax"];
 	return [super specifiers];
 }
 
@@ -62,9 +62,11 @@
 		}
 	}	if ([key isEqualToString:@"vsVibEnabled"]){
 		if (![value boolValue]){
+			[self hideMe:@"VibMinMax" animate:YES];
 			[self hideMe:@"VibeHide" animate:YES];
 		} else{
-			[self showMe:@"VibeHide" after:@"Vibration" animate:YES];
+			[self showMe:@"VibMinMax" after:@"Vibration" animate:YES];
+			[self showMe:@"VibeHide" after:@"VibMinMax" animate:YES];
 		}
 	}
 }
@@ -91,7 +93,10 @@
 		[self hideMe:@"VolumeUpDown" animate:YES];
 	}
 
-	!GetBool(@"vsVibEnabled", NO, local) ? [self hideMe:@"VibeHide" animate:YES] : 0;
+	if (!GetBool(@"vsVibEnabled", NO, local)) {
+		[self hideMe:@"VibeHide" animate:YES];
+		[self hideMe:@"VibMinMax" animate:YES];
+	}
 }
 
 -(void)source{

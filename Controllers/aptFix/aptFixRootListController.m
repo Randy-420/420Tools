@@ -2,10 +2,14 @@
 
 @implementation aptFixRootListController
 -(instancetype)init{
+	if (!self)
+		self = [super init];
+
 	installed = [[NSFileManager defaultManager] fileExistsAtPath:@"/usr/bin/aptFix"];
 	myIcon = @"aptFix";
 	myTitle = @"aptFix";
-	self = [super init];
+	self.BundlePath=@"/Library/PreferenceBundles/tools420.bundle";
+
 	return self;
 }
 
@@ -79,7 +83,7 @@
 	UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"aptFix" message: popUp preferredStyle:UIAlertControllerStyleAlert];
 
 			__block NSString *value;
-	UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
+	UIAlertAction *action = [UIAlertAction actionWithTitle:@"RUN" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *action) {
 		if (installed)
 			value = [self RunCMDWithLog:runCode];
 
@@ -94,7 +98,7 @@
 	[alert addAction:action];
 
 	if (installed){
-		action = [UIAlertAction actionWithTitle:@"NO" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+		action = [UIAlertAction actionWithTitle:@"EXIT" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
 		}];
 		[alert addAction:action];
 	}
@@ -131,8 +135,8 @@
 	if (installed) {
 		runCode = @"ldrestart";
 		[self popUp:@"Are you sure you want to LDRESTART?"];
-		}
-		[self popUp:@"Please install this deb from BigBoss"];
+	}
+	[self popUp:@"Please install this deb from BigBoss"];
 }
 
 -(void)Respring{

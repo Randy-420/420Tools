@@ -2,12 +2,15 @@
 
 @implementation tools420RootListController
 - (instancetype)init{
+	if (!self)
+		self = [super init];
+
 	altPics = @"/Library/PreferenceBundles/tools420.bundle/420altIcon.png";
 	origPics = @"/Library/PreferenceBundles/tools420.bundle/420icon.png";
 	originalPics = @"/Library/PreferenceBundles/tools420.bundle/420origIcon.png";
 	myIcon = @"420head";
 	myTitle = @"Randy420 Tools";
-	self = [super init];
+	self.BundlePath=@"/Library/PreferenceBundles/tools420.bundle";
 	return self;
 }
 

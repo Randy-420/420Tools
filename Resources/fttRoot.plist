@@ -64,6 +64,16 @@
 		</dict>
 		<dict>
 			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>detail</key>
+			<string>fttCode</string>
+			<key>isControler</key>
+			<true/>
+			<key>label</key>
+			<string>Code Handling</string>
+		</dict>
+		<dict>
+			<key>cell</key>
 			<string>PSGroupCell</string>
 		</dict>
 		<dict>

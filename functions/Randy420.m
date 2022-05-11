@@ -53,6 +53,10 @@ extern char **environ;
 	return _specifiers;
 }
 
+-(UIImage *)imageNamed:(NSString *)name {
+	return [UIImage imageNamed:name inBundle:[NSBundle bundleWithPath:self.BundlePath] compatibleWithTraitCollection:nil];
+}
+
 /*- (void)shouldEnable:(NSString *)enableMe value:(BOOL)value {
 	if (self containsSpecifier: self.savedSpecifiers[enableMe]]){
 		[self.savedSpecifiers[enableMe]].enabled = value;

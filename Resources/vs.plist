@@ -132,7 +132,7 @@
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
-			<false/>
+			<true/>
 			<key>defaults</key>
 			<string>com.randy420.volumestepprefs</string>
 			<key>id</key>
@@ -141,6 +141,22 @@
 			<string>vsVibEnabled</string>
 			<key>label</key>
 			<string>Haptic Feedback Enabled</string>
+		</dict>
+		<dict>
+			<key>PostNotification</key>
+			<string>com.randy420.volumestepprefs.settingschanged</string>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.randy420.volumestepprefs</string>
+			<key>id</key>
+			<string>VibMinMax</string>
+			<key>key</key>
+			<string>vsVibeMinMax</string>
+			<key>label</key>
+			<string>Vibrate only on 0% or 100%</string>
 		</dict>
 		<dict>
 			<key>PostNotification</key>
@@ -177,10 +193,10 @@
 			<string>PSGroupCell</string>
 		</dict>
 		<dict>
-			<key>cell</key>
-			<string>PSButtonCell</string>
 			<key>action</key>
 			<string>source</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
 			<key>icon</key>
 			<string>giticon.png</string>
 			<key>label</key>

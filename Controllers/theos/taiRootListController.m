@@ -126,7 +126,7 @@
 			[self showMe:@"bottom" after:@"top" animate:NO];
 			[self hideMe:@"fix" animate:NO];
 
-			[self results:[self RunCMD:@"tai -f" WaitUntilExit:YES]];
+			[self results:[self RunCMD:@"tai -~f" WaitUntilExit:YES]];
 
 			[self showMe:@"fix" after:@"divFix" animate:NO];
 			[self hideMe:@"top" animate:NO];
