@@ -1,0 +1,6 @@
+#! /bin/bash
+
+chown 0:0 /usr/bin/gap -cv
+chmod 06755 /usr/bin/gap -cv
+
+exit 0
