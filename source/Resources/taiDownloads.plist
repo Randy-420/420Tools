@@ -106,7 +106,7 @@
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
-			<true/>
+			<false/>
 			<key>defaults</key>
 			<string>com.randy420.tai</string>
 			<key>icon</key>
@@ -170,7 +170,7 @@
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
-			<false/>
+			<true/>
 			<key>defaults</key>
 			<string>com.randy420.tai</string>
 			<key>icon</key>
@@ -186,7 +186,7 @@
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
-			<false/>
+			<true/>
 			<key>defaults</key>
 			<string>com.randy420.tai</string>
 			<key>icon</key>
@@ -250,7 +250,7 @@
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
-			<false/>
+			<true/>
 			<key>defaults</key>
 			<string>com.randy420.tai</string>
 			<key>icon</key>
@@ -266,7 +266,7 @@
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
-			<true/>
+			<false/>
 			<key>defaults</key>
 			<string>com.randy420.tai</string>
 			<key>icon</key>
@@ -330,7 +330,7 @@
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
-			<true/>
+			<false/>
 			<key>defaults</key>
 			<string>com.randy420.tai</string>
 			<key>icon</key>
@@ -362,7 +362,7 @@
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
-			<false/>
+			<true/>
 			<key>defaults</key>
 			<string>com.randy420.tai</string>
 			<key>icon</key>
@@ -422,22 +422,6 @@
 			<key>label</key>
 			<string>14.4 SDKS</string>
 		</dict>
-		<!--<dict>
-			<key>cell</key>
-			<string>PSSwitchCell</string>
-			<key>default</key>
-			<false/>
-			<key>defaults</key>
-			<string>com.randy420.tai</string>
-			<key>icon</key>
-			<string>00.png</string>
-			<key>id</key>
-			<string>fourteenFive</string>
-			<key>key</key>
-			<string>14.5</string>
-			<key>label</key>
-			<string>14.5 SDKS</string>
-		</dict>-->
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>

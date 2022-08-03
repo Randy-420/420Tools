@@ -15,7 +15,7 @@
 - (NSArray *)specifiers {
 	fm = [[NSFileManager alloc] init];
 	self.plistName = @"Tai";
-	self.chosenIDs = @[@"top", @"bottom", @"topGroup", @"load", @"Full", @"Update", @"Sdks", @"installLoc", @"theos", @"varTheos", @"Note", @"fix", @"divFix"];
+	self.chosenIDs = @[@"top", @"bottom", @"load", @"Full", @"Update", @"Sdks", @"theos", @"varTheos", @"Note", @"fix", @"divFix", @"optTheos"];
 	[self upDate];
 	return [super specifiers];
 }
@@ -42,8 +42,8 @@
 	if (![fm fileExistsAtPath:@"/var/theos"])
 		[self hideMe:@"varTheos" animate:NO];
 
-	if ([fm fileExistsAtPath:@"/theos"] || [fm fileExistsAtPath:@"/var/theos"])
-		[self hideMe:@"installLoc" animate:NO];
+	if (![fm fileExistsAtPath:@"/opt/theos"])
+		[self hideMe:@"optTheos" animate:NO];
 }
 
 -(void) sDks{
@@ -86,8 +86,9 @@
 			[self showMe:@"bottom" after:@"load" animate:NO];
 			[self hideMe:@"Sdks" animate:NO];
 
-			[self results:[self RunCMD:@"tai -~s" WaitUntilExit:YES]];
-
+			//[self results:[self RunCMD:@"tai -~s" WaitUntilExit:YES]];
+			[self results:[self RunCMD:@"export | grep TERM_PROGRAM" WaitUntilExit:YES]];
+			
 			[self showMe:@"Sdks" after:@"Note" animate:NO];
 			[self hideMe:@"top" animate:NO];
 			[self hideMe:@"bottom" animate:NO];

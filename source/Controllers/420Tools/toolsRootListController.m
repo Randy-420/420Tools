@@ -24,7 +24,7 @@
 	self.aptFix = [fileManager fileExistsAtPath:@"/usr/bin/aptFix"];
 
 	self.plistName = @"Root";
-	self.chosenIDs = @[@"Ftt", @"Vs", @"Tai", @"Installed", @"rr", @"Not", @"emerald", @"support", @"aptFix", @"Contact", @"myTwitter", @"myTelegram", @"Donate", @"cdn", @"Emerald", @"find", @"myRepo", @"BigBoss", @"myGit", @"special", @"ali", @"CM", @"translate", @"polatby", @"vlad", @"dilfa", @"spawnFox", @"canpng", @"saeed", @"igerman"];
+	self.chosenIDs = @[@"Ftt", @"Vs", @"Tai", @"Installed", @"rr", @"Not", @"emerald", @"support", @"aptFix", @"Contact", @"myTwitter", @"myTelegram", @"Donate", @"cdn", @"Emerald", @"find", @"myRepo", @"BigBoss", @"myGit", @"special", @"ali", @"Turann", @"Sudo", @"translate", @"polatby", @"vlad", @"dilfa", @"spawnFox", @"canpng", @"saeed", @"igerman"];
 
 	if (!_specifiers) {
 		NSMutableArray *mutableSpecifiers = [NSMutableArray new];
@@ -173,10 +173,16 @@
 		setId(@"ali");
 		addSpec;
 
-		specifier = buttonCell(@"CrazyMind");
-		specifier->action = @selector(CM);
+		specifier = buttonCell(@"Turann");
+		specifier->action = @selector(Turann);
+		setImg(@"teleicon");
+		setId(@"Turann");
+		addSpec;
+
+		specifier = buttonCell(@"Sudo");
+		specifier->action = @selector(Sudo);
 		setImg(@"t");
-		setId(@"CM");
+		setId(@"Sudo");
 		addSpec;
 
 		specifier = groupSpec(@"");
@@ -332,7 +338,8 @@
 
 	if (!GetBool(@"specialOpen", NO, @"com.randy420.420tools")){
 		[self hideMe:@"ali" animate:NO];
-		[self hideMe:@"CM" animate:NO];
+		[self hideMe:@"Turann" animate:NO];
+		[self hideMe:@"Sudo" animate:NO];
 	}
 
 	if (!GetBool(@"translateOpen", NO, @"com.randy420.420tools")){
@@ -454,8 +461,12 @@
 	[self link:@"cydia://url/https://cydia.saurik.com/api/share#?source=https://Randy-420.github.io" name:@"Cydia"];
 }
 
--(void)CM{
-	[self link:@"https://twitter.com/crazymind90" name:@"Twitter"];
+-(void)Turann{
+	[self link:@"https://t.me/TuranUl" name:@"Telegram"];
+}
+
+-(void)Sudo{
+	[self link:@"https://mobile.twitter.com/sudo1469" name:@"Twitter"];
 }
 
 -(void)igerman{
