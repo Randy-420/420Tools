@@ -1,4 +1,1 @@
-special thanks to turann and sudo for consistently helping me debug my programs and offering insight at all hours day or night.
-${THEOS}
-removed the choice of where to install theos as it was causing issues. instead theos will now install to /opt/theos
-updated the default sdks that're on by default.
+

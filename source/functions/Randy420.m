@@ -59,7 +59,7 @@ extern char **environ;
 
 /*- (void)shouldEnable:(NSString *)enableMe value:(BOOL)value {
 	if (self containsSpecifier: self.savedSpecifiers[enableMe]]){
-		[self.savedSpecifiers[enableMe]].enabled = value;
+ 		[self.savedSpecifiers[enableMe]].enabled = value;
 	}
 }*/
 

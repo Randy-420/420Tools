@@ -15,7 +15,7 @@ fi
 
 rm -rf DEBs/*
 
-make clean package
+make package
 
 cp DEBs/* $repoReleaseFolder$debName.deb
 
