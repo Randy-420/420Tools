@@ -86,9 +86,8 @@
 			[self showMe:@"bottom" after:@"load" animate:NO];
 			[self hideMe:@"Sdks" animate:NO];
 
-			//[self results:[self RunCMD:@"tai -~s" WaitUntilExit:YES]];
-			[self results:[self RunCMD:@"export | grep TERM_PROGRAM" WaitUntilExit:YES]];
-			
+			[self results:[self RunCMD:@"tai -~s" WaitUntilExit:YES]];
+
 			[self showMe:@"Sdks" after:@"Note" animate:NO];
 			[self hideMe:@"top" animate:NO];
 			[self hideMe:@"bottom" animate:NO];
