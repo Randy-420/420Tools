@@ -248,6 +248,13 @@
 		setImg(@"giticon");
 		addSpec;
 
+		specifier = groupSpec(@"");
+		addSpec;
+
+		specifier = textCell(PKG_VERSION);
+		setAlign(@"1");
+		addSpec;
+
 		_specifiers = [mutableSpecifiers copy];
 
 		self.savedSpecifiers = [NSMutableDictionary dictionary];

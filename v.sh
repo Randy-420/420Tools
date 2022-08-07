@@ -1,6 +1,6 @@
 #!/bin/bash
 control="control"
-controlFind="Version:"
+controlFind="Version: "
 controlVersion=0
 
 makefile="Makefile"
@@ -15,10 +15,9 @@ updateVersion(){
 	findMe=$1
 
 	oldVersion=$(sed -n "/^$findMe/p" $file)
-	oldV=$(echo "$oldVersion" | sed -n "s/^$findMe//; s/ //p")
-echo "\"$oldV\""
-	IFS="."
-	read -r -a v <<< $oldV
+	oldV=$(echo "$oldVersion" | sed -n "s/^$findMe//g; s/ //pg")
+
+	IFS="." read -r -a v <<< $oldV
 
 	shopt -s extdebug
 	f "${v[@]}"
@@ -62,7 +61,11 @@ echo "\"$oldV\""
 			continue
 		fi
 		if [[ $((index - 1)) -le 2 ]]; then
-			newVersion="${findMe} ${i}"
+			if [[ $file == $control ]]; then
+				newVersion="${findMe} ${i}"
+			else
+				newVersion="${findMe}${i}"
+			fi
 			newV=${i}
 		else
 			newVersion="${newVersion}.${i}"

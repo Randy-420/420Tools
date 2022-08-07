@@ -29,6 +29,8 @@
 		<dict>
 			<key>cell</key>
 			<string>PSEditTextCell</string>
+			<key>default</key>
+			<string>/var/mobile/tweaks/myFlex</string>
 			<key>defaults</key>
 			<string>com.randy420.fttprefs</string>
 			<key>id</key>
@@ -63,6 +65,8 @@
 			<string>folderPrefix</string>
 			<key>label</key>
 			<string>Enter the default folder name:</string>
+			<key>placeholder</key>
+			<string>Randy</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -87,6 +91,8 @@
 			<string>numbers</string>
 			<key>label</key>
 			<string>Folder number suffix:</string>
+			<key>placeholder</key>
+			<string>420</string>
 		</dict>
 		<dict>
 			<key>cell</key>

@@ -1,4 +1,3 @@
-FINALPACKAGE = 1
 include $(THEOS)/makefiles/common.mk
 
 BUNDLE_NAME = tools420
@@ -11,7 +10,7 @@ tools420_FRAMEWORKS = UIKit
 tools420_PRIVATE_FRAMEWORKS = Preferences
 tools420_EXTRA_FRAMEWORKS += Cephei CepheiPrefs
 
-tools420_CFLAGS = -fobjc-arc
+tools420_CFLAGS = -fobjc-arc -DPKG_VERSION="@\"420Tools Version: $(PKG_VERSION)\""
 
 include $(THEOS_MAKE_PATH)/bundle.mk
 

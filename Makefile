@@ -1,3 +1,8 @@
+FINALPACKAGE = 1
+PACKAGE_VERSION= 2.3.4
+
+export PKG_VERSION=$(PACKAGE_VERSION)
+
 SUBPROJECTS += source
 
 include $(THEOS)/makefiles/common.mk
