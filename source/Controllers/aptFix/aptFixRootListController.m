@@ -2,13 +2,11 @@
 
 @implementation aptFixRootListController
 -(instancetype)init{
-	if (!self)
-		self = [super init];
-
 	installed = [[NSFileManager defaultManager] fileExistsAtPath:@"/usr/bin/aptFix"];
 	myIcon = @"aptFix";
 	myTitle = @"aptFix";
 	self.BundlePath=@"/Library/PreferenceBundles/tools420.bundle";
+	self = [super init];
 
 	return self;
 }

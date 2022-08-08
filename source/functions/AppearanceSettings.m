@@ -25,6 +25,9 @@
 	return YES;
 }
 
+-(UIUserInterfaceStyle)userInterfaceStyle {
+	return 2;
+}
 -(UIColor *)tableViewCellSeparatorColor {
 	return [UIColor blackColor];
 }
@@ -34,7 +37,7 @@
 }
 
 -(UIColor *)tableViewCellSelectionColor {
-	return [UIColor blackColor];
+	return [UIColor greenColor];
 }
 
 -(UIColor *)tableViewCellBackgroundColor {
