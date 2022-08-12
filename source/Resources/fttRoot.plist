@@ -75,16 +75,49 @@
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
+			<key>footerAlignment</key>
+			<string>0</string>
+			<key>footerText</key>
+			<string>🚀 Automatically check for updates when launching ftt from terminal 🚀
+Alert Once -> only be alerted about an update once</string>
 		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.randy420.fttprefs</string>
+			<key>key</key>
+			<string>autoUpdateCheck</string>
+			<key>label</key>
+			<string>Check For Updates</string>
+		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSSwitchCell</string>
+			<key>default</key>
+			<true/>
+			<key>defaults</key>
+			<string>com.randy420.fttprefs</string>
+			<key>key</key>
+			<string>alertOnce</string>
+			<key>label</key>
+			<string>Alert Once</string>
+			</dict>
 		<dict>
 			<key>cell</key>
 			<string>PSGroupCell</string>
 		</dict>
 		<dict>
 			<key>cell</key>
-			<string>PSButtonCell</string>
+			<string>PSGroupCell</string>
+		</dict>
+		<dict>
 			<key>action</key>
 			<string>source</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
 			<key>icon</key>
 			<string>giticon.png</string>
 			<key>label</key>

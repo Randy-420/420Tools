@@ -33,10 +33,10 @@ updateVersion(){
 	for i in ${v[@]}
 	do
 		if [ $i != $findMe ]; then
-			if [[ $i -eq 9 ]]; then
-				v[$index]=0
+			if [[ $i -eq 0 ]]; then
+				v[$index]=9
 			else
-				v[$index]=$((i+1))
+				v[$index]=$((i-1))
 				break
 			fi
 		fi
@@ -87,6 +87,7 @@ updateVersion $makefile $makefileFind
 updateVersion $control $controlFind
 #echo "makefile:\"$makefileVersion\""
 #echo "control:\"$controlVersion\""
+#exit 1
 
 if ([[ $controlVersion == $makefileVersion ]] && [[ $oldControlVersion != $controlVersion ]] && [[ $oldMakefileVersion != $makefileVersion ]]) || ([[ $makefileVersion == 0 ]] && [[ $oldControlVersion != $controlVersion ]]); then
 	echo -e "\n\n\e[1;32mVERSION INCREMENTATION SUCCESSFUL\e[0m\n\e[31m$oldControlVersion\e[0m => \e[1;34m$controlVersion\n\n\e[0m"

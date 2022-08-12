@@ -1,3 +1,1 @@
-
-Fixed a bug with the settings where the user inputted text would turn the same color as the background.
-Fixed the ViewController for 420Tools and aptFix
+added two new options to flex to theos for automatic update alerts

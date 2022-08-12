@@ -10,7 +10,7 @@ changesBullet="•"
 ############################################
 ################DO#NOT#TOUCH################
 ############################################
-Version=$1
+Version="$1"
 changeLog=$(cat update.txt)
 changeLog=$(echo "${changeLog//$'\n'/<br>• }")
 changeLog=$(echo "$changeLog" | sed "s/^/• /g")

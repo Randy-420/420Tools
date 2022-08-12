@@ -15,7 +15,7 @@ fi
 
 rm -rf DEBs/*
 
-make package
+make clean package
 
 cp DEBs/* $repoReleaseFolder$debName.deb
 
@@ -23,11 +23,13 @@ git add .
 IFS=$'\n'
 if test -f "$commitFile"; then
 	for line in $(<$commitFile); do
-		if [[ $commitMsg == "" ]]; then
-			commitMsg="${line}"
-		else  
-			commitMsg="$commitMsg
+		if [[ $line != "\n" ]]; then
+			if [[ $commitMsg == "" ]]; then
+				commitMsg="${line}"
+			else  
+				commitMsg="$commitMsg
 $line"
+			fi
 		fi 
 	done
 fi
@@ -45,7 +47,9 @@ $tmsg"
 		fi
 	done
 done
-echo "" > $commitFile
+
+rm -f $commitFile
+touch $commitFile
 git commit -m "$commitMsg"
 git push
 
